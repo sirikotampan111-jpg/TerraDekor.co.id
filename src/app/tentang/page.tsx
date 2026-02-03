@@ -116,18 +116,21 @@ export default function TentangPage() {
 
             <div className="relative">
               <div className="aspect-square bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                <img 
-  src="/images/office.jpg" 
-  alt="office" 
-  className="w-24 h-24 object-cover"
-/>
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20"></div>
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] text-white p-6 rounded-xl shadow-2xl">
-                <div className="text-4xl font-display font-bold">10+</div>
-                <div className="text-sm font-semibold">Tahun Pengalaman</div>
-              </div>
-            </div>
+               <div className="relative">
+  <div className="aspect-square bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl flex items-center justify-center relative overflow-hidden">
+    <img 
+      src="/img/office.jpg"  // <- path dari root public/
+      alt="office" 
+      className="w-24 h-24 object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20"></div>
+  </div>
+  <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] text-white p-6 rounded-xl shadow-2xl">
+    <div className="text-4xl font-display font-bold">10+</div>
+    <div className="text-sm font-semibold">Tahun Pengalaman</div>
+  </div>
+</div>
+
           </div>
         </div>
       </section>
