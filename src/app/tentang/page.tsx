@@ -36,7 +36,12 @@ export default function TentangPage() {
 
   const milestones = [
     { year: '2014', title: 'Didirikan', description: 'Terradekor didirikan dengan visi menjadi solusi interior terpercaya' },
-    { year: '2016', title: 'Ekspansi Produk', description: 'Mulai mengimpor produk interior premium dari berbagai negara' },
+    {
+      year: '2016',
+      title: 'Ekspansi Produk',
+      description: 'Mulai mengimpor produk interior premium dari berbagai negara',
+      image: '/img/office.jpg', // <- gambar milestone 2016
+    },
     { year: '2018', title: 'Layanan Kontraktor', description: 'Meluncurkan layanan kontraktor untuk solusi terpadu' },
     { year: '2020', title: '100+ Proyek', description: 'Mencapai milestone 100 proyek sukses di berbagai kota' },
     { year: '2022', title: '500+ Proyek', description: 'Mencapai milestone 500 proyek dengan tingkat kepuasan 98%' },
@@ -114,25 +119,19 @@ export default function TentangPage() {
               </div>
             </div>
 
-           <div className="relative">
-  <div className="aspect-square bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl flex items-center justify-center relative overflow-hidden">
-    {/* Ganti emoji dengan gambar */}
-    <img
-      src="/img/office.jpg"   // <-- path dari folder public/img
-      alt="office"
-      className="w-24 h-24 object-cover"
-    />
-    {/* Gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20"></div>
-  </div>
-
-  {/* Badge / info */}
-  <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] text-white p-6 rounded-xl shadow-2xl">
-    <div className="text-4xl font-display font-bold">10+</div>
-    <div className="text-sm font-semibold">Tahun Pengalaman</div>
-  </div>
-</div>
-
+            <div className="relative">
+              <div className="aspect-square bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                <div className="text-9xl">🏢</div>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20"></div>
+              </div>
+              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] text-white p-6 rounded-xl shadow-2xl">
+                <div className="text-4xl font-display font-bold">10+</div>
+                <div className="text-sm font-semibold">Tahun Pengalaman</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Vision & Mission */}
       <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -249,13 +248,23 @@ export default function TentangPage() {
                   </div>
                   <div className="flex-1">
                     <Card className="bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-[#C9A24D]/20 p-6 lg:ml-8 lg:mr-8">
-                      <div className="lg:hidden mb-4">
-                        <span className="inline-block bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] text-white px-4 py-2 rounded-lg text-lg font-bold">
-                          {milestone.year}
-                        </span>
+                      {/* Milestone Image */}
+                      {milestone.year === '2016' ? (
+                        <div className="relative mb-4">
+                          <div className="aspect-square bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                            <img
+                              src={milestone.image}
+                              alt={milestone.title}
+                              className="w-24 h-24 object-cover rounded-xl"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20"></div>
+                          </div>
+                        </div>
+                      ) : null}
+                      <div className="mb-2">
+                        <h3 className="text-xl font-bold text-[#C9A24D]">{milestone.title}</h3>
+                        <p className="text-gray-300 font-semibold">{milestone.description}</p>
                       </div>
-                      <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{milestone.title}</h3>
-                      <p className="text-gray-300 font-semibold">{milestone.description}</p>
                     </Card>
                   </div>
                 </div>
@@ -285,52 +294,4 @@ export default function TentangPage() {
             </div>
             <div className="text-center space-y-2">
               <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center mb-4">
-                <Clock className="w-8 h-8 text-white" />
-              </div>
-              <div className="text-4xl font-display font-bold text-gray-900">10+</div>
-              <p className="text-gray-700 font-bold">Tahun Pengalaman</p>
-            </div>
-            <div className="text-center space-y-2">
-              <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center mb-4">
-                <Award className="w-8 h-8 text-white" />
-              </div>
-              <div className="text-4xl font-display font-bold text-gray-900">50+</div>
-              <p className="text-gray-700 font-bold">Tim Profesional</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#C9A24D] via-[#D4AF6A] to-[#B89B5E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4">
-            Siap Bekerja Sama dengan Kami?
-          </h2>
-          <p className="text-xl text-white/90 font-bold mb-8 max-w-2xl mx-auto">
-            Hubungi kami sekarang untuk konsultasi gratis dan mulai mewujudkan ruang impian Anda
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/konsultasi">
-              <Button
-                size="lg"
-                className="bg-white text-[#C9A24D] hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
-              >
-                Konsultasi Gratis
-              </Button>
-            </Link>
-            <Link href="/kontak">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-[#C9A24D] font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
-                Hubungi Kami
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
+                <Clock className="w-8 h
