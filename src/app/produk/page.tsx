@@ -142,6 +142,7 @@ export default function ProdukPage() {
                       alt={product.name}
                       className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/10 to-[#B89B5E]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
                   {/* Product Info */}
