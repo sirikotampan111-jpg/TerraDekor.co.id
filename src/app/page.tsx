@@ -5,7 +5,7 @@ import { Check, Phone, MessageCircle, ArrowRight, Star, Award, Clock, Shield, Za
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
-import './animations.css'; // Animasi teks ringan
+import './animations.css';
 
 export default function Home() {
   const advantages = [
@@ -18,12 +18,12 @@ export default function Home() {
   ];
 
   const highlights = [
-    { title: 'Wall Panel', description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.', image: 'wallpanel.jpg' },
-    { title: 'Wallpaper', description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.', image: 'walpaper.jpg' },
-    { title: 'Vinyl & SPC', description: 'Lantai vinyl dan SPC dengan berbagai motif dan tekstur realistik.', image: 'vinil.jpg' },
-    { title: 'WPC Decking', description: 'Decking WPC tahan cuaca untuk outdoor dan semi-outdoor.', image: 'wpc.jpg' },
-    { title: 'Pintu WPC & Baja', description: 'Pintu modern dan tahan lama dengan material berkualitas.', image: 'pintu-baja.jpg' },
-    { title: 'Jasa Interior', description: 'Layanan desain dan pemasangan interior komprehensif.', image: 'terima-jasa.jpg' },
+    { title: 'Wall Panel', description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.', image: '/wallpanel.jpg' },
+    { title: 'Wallpaper', description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.', image: '/walpaper.jpg' },
+    { title: 'Vinyl & SPC', description: 'Lantai vinyl dan SPC dengan berbagai motif dan tekstur realistik.', image: '/vinil.jpg' },
+    { title: 'WPC Decking', description: 'Decking WPC tahan cuaca untuk outdoor dan semi-outdoor.', image: '/wpc.jpg' },
+    { title: 'Pintu WPC & Baja', description: 'Pintu modern dan tahan lama dengan material berkualitas.', image: '/pintu-baja.jpg' },
+    { title: 'Jasa Interior', description: 'Layanan desain dan pemasangan interior komprehensif.', image: '/terima-jasa.jpg' },
   ];
 
   return (
@@ -117,7 +117,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Highlights Section (foto penuh card) */}
+      {/* Highlights Section (Foto Penuh Card) */}
       <section className="py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -130,7 +130,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {highlights.map((item, i) => (
               <Card key={i} className="relative p-0 overflow-hidden rounded-xl shadow-lg group h-80">
-                <img src={`/${item.image}`} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+                <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
                 <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
                   <h3 className="text-2xl font-bold text-white">{item.title}</h3>
                   <p className="text-white/90 font-semibold mt-2">{item.description}</p>
