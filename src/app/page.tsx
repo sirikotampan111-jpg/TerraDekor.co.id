@@ -3,10 +3,9 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
-import './animations.css'; // animasi ringan untuk teks
+import './animations.css';
 
 export default function Home() {
-
   const highlights = [
     { title: 'Wall Panel', description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.', image: '/wallpanel.jpg' },
     { title: 'Wallpaper', description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.', image: '/walpaper.jpg' },
