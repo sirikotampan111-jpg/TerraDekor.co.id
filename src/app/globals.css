@@ -1,148 +1,245 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* =====================
-   Theme Variables
-===================== */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-poppins);
+  --font-display: var(--font-playfair);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
 :root {
   --radius: 0.625rem;
+
+  /* Premium Metallic Theme Colors */
   --background: #E8E8E8;
   --foreground: #1E1E1E;
+
+  /* Gold/Bronze Primary Colors */
   --primary: #C9A24D;
   --primary-foreground: #FFFFFF;
   --primary-hover: #B89B5E;
+
+  /* Secondary - Dark Grey/Charcoal */
   --secondary: #1E1E1E;
   --secondary-foreground: #FFFFFF;
   --secondary-hover: #2A2A2A;
+
+  /* Card Colors */
   --card: #F5F5F5;
   --card-foreground: #1E1E1E;
+
+  /* Accent Colors */
   --accent: #C9A24D;
   --accent-foreground: #FFFFFF;
+  --accent-light: #F5E6C8;
+
+  /* Muted Colors */
   --muted: #D3D3D3;
   --muted-foreground: #4A4A4A;
+
+  /* Border & Input */
   --border: #C0C0C0;
   --input: #C0C0C0;
+
+  /* Ring */
   --ring: #C9A24D;
+
+  /* Popover */
   --popover: #FFFFFF;
   --popover-foreground: #1E1E1E;
+
+  /* Destructive */
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
+
+  /* Chart Colors */
+  --chart-1: #C9A24D;
+  --chart-2: #B89B5E;
+  --chart-3: #E8D5A3;
+  --chart-4: #1E1E1E;
+  --chart-5: #4A4A4A;
 }
 
-/* =====================
-   Base Styles
-===================== */
+.dark {
+  --background: #1E1E1E;
+  --foreground: #E8E8E8;
+
+  /* Gold/Bronze Primary Colors - brighter in dark mode */
+  --primary: #C9A24D;
+  --primary-foreground: #1E1E1E;
+  --primary-hover: #D4AF6A;
+
+  /* Secondary */
+  --secondary: #2A2A2A;
+  --secondary-foreground: #FFFFFF;
+
+  /* Card Colors */
+  --card: #2A2A2A;
+  --card-foreground: #E8E8E8;
+
+  /* Accent Colors */
+  --accent: #C9A24D;
+  --accent-foreground: #1E1E1E;
+  --accent-light: #4A3F2A;
+
+  /* Muted Colors */
+  --muted: #2A2A2A;
+  --muted-foreground: #A0A0A0;
+
+  /* Border & Input */
+  --border: #4A4A4A;
+  --input: #4A4A4A;
+
+  /* Ring */
+  --ring: #C9A24D;
+
+  /* Popover */
+  --popover: #2A2A2A;
+  --popover-foreground: #E8E8E8;
+
+  /* Destructive */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+
+  /* Chart Colors */
+  --chart-1: #C9A24D;
+  --chart-2: #B89B5E;
+  --chart-3: #E8D5A3;
+  --chart-4: #FFFFFF;
+  --chart-5: #A0A0A0;
+}
+
 @layer base {
-  * { @apply border-border outline-ring/50; }
+  * {
+    @apply border-border outline-ring/50;
+  }
+
   body {
-    @apply bg-background text-foreground relative;
+    @apply bg-background text-foreground;
     font-family: var(--font-poppins), system-ui, sans-serif;
   }
-  h1,h2,h3,h4,h5,h6 { font-family: var(--font-playfair), Georgia, serif; }
-  p,a,span { color: var(--foreground); }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    font-family: var(--font-playfair), Georgia, serif;
+  }
 }
 
-/* =====================
-   Video Background Helper
-===================== */
-.video-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -20;
-}
-.video-overlay {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background-color: rgba(0,0,0,0.6);
-  z-index:-10;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* =====================
-   Animations
-===================== */
-@keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
-.animate-float { animation: float 3s ease-in-out infinite; }
-
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-.shimmer::before {
-  content:"";
-  position: absolute;
-  top:0; left:-100%;
-  width:100%; height:100%;
-  background: linear-gradient(90deg, transparent, rgba(201,162,77,0.2), transparent);
-  animation: shimmer 3s infinite;
-}
-@keyframes shimmer { 0% { left:-100%; } 100% { left:100%; } }
-
-/* =====================
-   Card Styling (Kotak Putih + Foto)
-===================== */
-.card {
-  background: var(--card);
-  color: var(--card-foreground);
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px rgba(201,162,77,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(201,162,77,0.2);
+::-webkit-scrollbar-track {
+  background: var(--background);
 }
 
-/* =====================
-   Scrollbar
-===================== */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #C9A24D 0%, #B89B5E 100%);
   border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #D4AF6A 0%, #C9A24D 100%);
 }
 
-/* =====================
-   Particle Background
-===================== */
-.particle-bg {
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  z-index:-1;
-  background: radial-gradient(circle, rgba(201,162,77,0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-  animation: moveParticles 20s linear infinite;
-}
-@keyframes moveParticles {
-  0% { background-position: 0 0; }
-  100% { background-position: 100px 100px; }
+/* Metallic gradient utilities */
+.metallic-gradient {
+  background: linear-gradient(135deg, #E8E8E8 0%, #D0D0D0 50%, #E8E8E8 100%);
 }
 
-/* =====================
-   Utilities
-===================== */
-.text-glow { text-shadow: 0 0 20px rgba(201,162,77,0.3); }
-.premium-hover { transition: all 0.3s ease; }
-.premium-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,162,77,0.2); }
-.flex-center { display:flex; align-items:center; justify-content:center; }
-.uppercase { text-transform:uppercase; }
-.rounded-lg { border-radius: var(--radius); }
-.shadow-2xl { box-shadow:0 25px 50px rgba(0,0,0,0.25); }
+.gold-gradient {
+  background: linear-gradient(135deg, #C9A24D 0%, #D4AF6A 50%, #B89B5E 100%);
+}
 
-/* =====================
-   Responsive Tweaks
-===================== */
-@media (max-width:768px){
-  body { font-size:14px; }
-  h1 { font-size:24px; }
-  h2 { font-size:20px; }
-  .animated-letter { transform: translateY(10px); }
+.dark-metallic {
+  background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 50%, #1E1E1E 100%);
+}
+
+/* Text shadow for better readability */
+.text-glow {
+  text-shadow: 0 0 20px rgba(201, 162, 77, 0.3);
+}
+
+/* Premium hover effects */
+.premium-hover {
+  transition: all 0.3s ease;
+}
+
+.premium-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201, 162, 77, 0.2);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Shimmer effect for premium feel */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 162, 77, 0.2),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
