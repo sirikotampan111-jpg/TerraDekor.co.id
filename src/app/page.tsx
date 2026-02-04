@@ -5,7 +5,7 @@ import { Check, Phone, MessageCircle, ArrowRight, Star, Award, Clock, Shield, Za
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
-import './animations.css'; // animasi teks ringan
+import './animations.css'; // Animasi teks ringan
 
 export default function Home() {
   const advantages = [
@@ -28,7 +28,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Floating WhatsApp */}
       <FloatingWhatsApp />
 
       {/* Hero Section */}
@@ -36,7 +35,7 @@ export default function Home() {
         className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/background.jpg')", backgroundAttachment: 'fixed' }}
       >
-        <div className="absolute inset-0 bg-black/60"></div> {/* overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full mb-6 animate-fadeIn">
             <Star className="w-5 h-5 text-[#C9A24D]" />
@@ -118,25 +117,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product & Service Highlights */}
-      <section className="py-20 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/background2.jpg')" }}>
+      {/* Highlights Section (foto penuh card) */}
+      <section className="py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-display font-bold text-gray-900 mb-4">
               Produk & Layanan <span className="text-[#C9A24D]">Premium</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full"></div>
-            <p className="text-xl text-gray-700 font-bold mt-8 max-w-2xl mx-auto">
-              Solusi lengkap untuk kebutuhan interior dan konstruksi Anda
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {highlights.map((item, i) => (
-              <Card key={i} className="relative p-0 overflow-hidden rounded-xl shadow-lg group">
-                {/* Gambar memenuhi card */}
-                <img src={`/${item.image}`} alt={item.title} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"/>
-                {/* Overlay teks */}
+              <Card key={i} className="relative p-0 overflow-hidden rounded-xl shadow-lg group h-80">
+                <img src={`/${item.image}`} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
                 <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
                   <h3 className="text-2xl font-bold text-white">{item.title}</h3>
                   <p className="text-white/90 font-semibold mt-2">{item.description}</p>
