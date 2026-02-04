@@ -20,32 +20,32 @@ export default function Home() {
     {
       title: 'Wall Panel',
       description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.',
-      icon: '🏠',
+      icon: 'wallpanel.jpg',
     },
     {
       title: 'Wallpaper',
       description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.',
-      icon: '🎨',
+      icon: 'walpaper.jpg',
     },
     {
       title: 'Vinyl & SPC',
       description: 'Lantai vinyl dan SPC dengan berbagai motif dan tekstur realistik.',
-      icon: '🪵',
+      icon: 'vinil.jpg',
     },
     {
       title: 'WPC Decking',
       description: 'Decking WPC tahan cuaca untuk outdoor dan semi-outdoor.',
-      icon: '🌿',
+      icon: 'wpc.jpg',
     },
     {
       title: 'Pintu WPC & Baja',
       description: 'Pintu modern dan tahan lama dengan material berkualitas.',
-      icon: '🚪',
+      icon: 'pintu-baja.jpg',
     },
     {
       title: 'Jasa Interior',
       description: 'Layanan desain dan pemasangan interior komprehensif.',
-      icon: '🛠️',
+      icon: 'terima-jasa.jpg',
     },
   ];
 
@@ -55,65 +55,61 @@ export default function Home() {
       <FloatingWhatsApp />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px)' }}></div>
-        </div>
+      <section
+        className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/background.jpg')",
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/60"></div> {/* overlay */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full">
+            <Star className="w-5 h-5 text-[#C9A24D]" />
+            <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">Solusi Interior Premium</span>
+          </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full">
-              <Star className="w-5 h-5 text-[#C9A24D]" />
-              <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">Solusi Interior Premium</span>
-            </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mt-6 overflow-hidden">
+            <span className="inline-block animate-slideIn">
+              Solusi Interior & Konstruksi Premium<br/>
+              <span className="bg-gradient-to-r from-[#C9A24D] via-[#D4AF6A] to-[#C9A24D] bg-clip-text text-transparent">Terima Beres</span>
+            </span>
+          </h1>
 
-            {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight">
-              Solusi Interior &<br />
-              Konstruksi Premium<br />
-              <span className="bg-gradient-to-r from-[#C9A24D] via-[#D4AF6A] to-[#C9A24D] bg-clip-text text-transparent">
-                Terima Beres
-              </span>
-            </h1>
+          <p className="text-xl sm:text-2xl text-gray-300 font-bold max-w-4xl mx-auto leading-relaxed mt-6">
+            Dari desain, penyediaan material, hingga pembangunan dan pemasangan profesional.
+          </p>
 
-            {/* Subheading */}
-            <p className="text-xl sm:text-2xl text-gray-300 font-bold max-w-4xl mx-auto leading-relaxed">
-              Dari desain, penyediaan material, hingga pembangunan dan pemasangan profesional.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <Link href="/konsultasi">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Konsultasi Gratis
-                </Button>
-              </Link>
-              <Link href="/produk">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D] hover:text-white font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  Lihat Produk
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <a
-                href="https://wa.me/6281251511997"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+            <Link href="/konsultasi">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
               >
-                <Phone className="w-5 h-5" />
-                <span>Hubungi Kami</span>
-              </a>
-            </div>
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Konsultasi Gratis
+              </Button>
+            </Link>
+            <Link href="/produk">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D] hover:text-white font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                Lihat Produk
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <a
+              href="https://wa.me/6281251511997"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+            >
+              <Phone className="w-5 h-5" />
+              <span>Hubungi Kami</span>
+            </a>
           </div>
         </div>
 
@@ -176,7 +172,12 @@ export default function Home() {
       </section>
 
       {/* Product & Service Highlights */}
-      <section className="py-20 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200">
+      <section
+        className="py-20 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/background2.jpg')",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-display font-bold text-gray-900 mb-4">
@@ -195,8 +196,13 @@ export default function Home() {
                 className="bg-white border-2 border-gray-200 p-8 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
               >
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
-                    {item.icon}
+                  {/* Kotak foto di atas title */}
+                  <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <img
+                      src={`/${item.icon}`}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900">{item.title}</h3>
                   <p className="text-gray-700 font-semibold">{item.description}</p>
@@ -266,4 +272,4 @@ export default function Home() {
       </section>
     </div>
   );
-}
+      }
