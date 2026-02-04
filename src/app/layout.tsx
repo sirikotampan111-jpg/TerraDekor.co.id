@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Poppins } from "next/font/google";
-import "./globals.css";
+import "./globals.css"; // pastikan ini mengarah ke globals.css yang sudah kita rapikan
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -21,8 +21,18 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Terradekor.id - Solusi Interior & Konstruksi Premium",
-  description: "PT. Opulent Interior Indonesia - Produsen dan importir produk interior premium serta penyedia jasa interior dan kontraktor terpadu. Terima beres dengan kualitas premium.",
-  keywords: ["interior", "kontraktor", "wall panel", "wpc", "vinyl", "furniture", "desain interior", "Terradekor"],
+  description:
+    "PT. Opulent Interior Indonesia - Produsen dan importir produk interior premium serta penyedia jasa interior dan kontraktor terpadu. Terima beres dengan kualitas premium.",
+  keywords: [
+    "interior",
+    "kontraktor",
+    "wall panel",
+    "wpc",
+    "vinyl",
+    "furniture",
+    "desain interior",
+    "Terradekor",
+  ],
   authors: [{ name: "PT. Opulent Interior Indonesia" }],
   icons: {
     icon: "/favicon.ico",
@@ -37,13 +47,18 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${poppins.variable} antialiased bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 text-gray-900`}
+        className={`${playfair.variable} ${poppins.variable} antialiased bg-background text-foreground relative`}
       >
-        <div className="min-h-screen flex flex-col">
+        {/* Particle Background */}
+        <div className="particle-bg" />
+
+        {/* Navbar + Content + Footer */}
+        <div className="min-h-screen flex flex-col relative z-10">
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+
         <Toaster />
       </body>
     </html>
