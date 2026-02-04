@@ -14,7 +14,7 @@
   --secondary: #1E1E1E;
   --secondary-foreground: #FFFFFF;
   --secondary-hover: #2A2A2A;
-  --card: #FFFFFF; /* Kotak putih */
+  --card: #F5F5F5;
   --card-foreground: #1E1E1E;
   --accent: #C9A24D;
   --accent-foreground: #FFFFFF;
@@ -82,7 +82,7 @@
 @keyframes shimmer { 0% { left:-100%; } 100% { left:100%; } }
 
 /* =====================
-   Card Styling
+   Card Styling (Kotak Putih + Foto)
 ===================== */
 .card {
   background: var(--card);
@@ -90,21 +90,10 @@
   border-radius: var(--radius);
   box-shadow: 0 10px 30px rgba(201,162,77,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  position: relative;
 }
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(201,162,77,0.2);
-}
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-.card:hover img {
-  transform: scale(1.05);
 }
 
 /* =====================
