@@ -25,36 +25,28 @@ const products = [
 
 export default function HomePage() {
   const { scrollY } = useScroll();
+  const heroRef = useRef<HTMLDivElement>(null);
 
-  // Hero parallax
+  // Parallax
   const heroTextY = useTransform(scrollY, [0, 400], [0, -60]);
   const heroSubY = useTransform(scrollY, [0, 400], [0, -30]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
   const bgY = useTransform(scrollY, [0, 800], [0, -200]);
-
   const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
 
   return (
     <main className="relative w-full text-white overflow-x-hidden">
 
-      {/* BACKGROUND FULL PAGE */}
-      <motion.div
-        className="fixed inset-0 -z-10"
-        style={{ y: bgY }}
-      >
-        <Image
-          src="/background1.jpg"
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-        />
+      {/* BACKGROUND */}
+      <motion.div className="fixed inset-0 -z-10" style={{ y: bgY }}>
+        <Image src="/background1.jpg" alt="Background" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-black/70" />
       </motion.div>
 
       {/* HERO */}
       <section className="min-h-screen flex items-center justify-center px-6 relative z-10">
         <motion.div
+          ref={heroRef}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -103,14 +95,9 @@ export default function HomePage() {
 
       {/* KENAPA MEMILIH KAMI */}
       <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
-          >
-            Kenapa Memilih Kami
-          </motion.h2>
-        </div>
+        <motion.h2 style={{ y: sectionTitleY }} className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-12 text-center">
+          Kenapa Memilih Kami
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {advantages.map((item, idx) => (
@@ -126,12 +113,7 @@ export default function HomePage() {
                 className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
                 style={{ y: useTransform(scrollY, [0, 500], [0, -20]) }}
               >
-                <Image
-                  src={`/${item.img}`}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
               </motion.div>
 
               <motion.h3
@@ -152,14 +134,9 @@ export default function HomePage() {
 
       {/* PRODUK & LAYANAN */}
       <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
-          >
-            Produk & Layanan Premium
-          </motion.h2>
-        </div>
+        <motion.h2 style={{ y: sectionTitleY }} className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-12 text-center">
+          Produk & Layanan Premium
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((item, idx) => (
@@ -175,12 +152,7 @@ export default function HomePage() {
                 className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
                 style={{ y: useTransform(scrollY, [0, 500], [0, -20]) }}
               >
-                <Image
-                  src={`/${item.img}`}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
               </motion.div>
 
               <motion.h3
@@ -197,55 +169,46 @@ export default function HomePage() {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA BAWAH */}
+        <div className="text-center mt-20">
+          <Link
+            href="https://wa.me/62XXXXXXXXXX"
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+          >
+            Hubungi Kami Sekarang
+          </Link>
+        </div>
       </section>
 
-      {/* INFO TERRADEKOR.ID → selalu di bawah, muncul setelah scroll */}
-      <motion.footer
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="bg-white/90 text-gray-900 px-6 py-8 max-w-7xl mx-auto mt-20 rounded-md shadow-lg"
-      >
-        <h1 className="font-bold text-xl">Terradekor.id</h1>
-        <p className="text-sm mt-1">
-          PT. Opulent Interior Indonesia - Solusi interior dan konstruksi premium
-          dengan kualitas terbaik dan harga terjangkau.
-        </p>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-sm">
+      {/* FOOTER TERRADEKOR */}
+      <footer className="bg-[#111111] text-gray-200 px-6 py-16 mt-24 relative z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h2 className="font-semibold">Navigasi Cepat</h2>
-            <ul className="space-y-1">
-              <li>Beranda</li>
-              <li>Produk</li>
-              <li>Layanan</li>
-              <li>Portofolio</li>
-              <li>Tentang Kami</li>
-              <li>Konsultasi Gratis</li>
+            <h2 className="text-xl font-bold mb-2 text-[#C9A24D]">Terradekor.id</h2>
+            <p>PT. Opulent Interior Indonesia - Solusi interior dan konstruksi premium dengan kualitas terbaik dan harga terjangkau.</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Navigasi Cepat</h3>
+            <ul>
+              <li><Link href="#" className="hover:text-[#C9A24D]">Beranda</Link></li>
+              <li><Link href="#" className="hover:text-[#C9A24D]">Produk</Link></li>
+              <li><Link href="#" className="hover:text-[#C9A24D]">Layanan</Link></li>
+              <li><Link href="#" className="hover:text-[#C9A24D]">Portofolio</Link></li>
+              <li><Link href="#" className="hover:text-[#C9A24D]">Tentang Kami</Link></li>
+              <li><Link href="#" className="hover:text-[#C9A24D]">Konsultasi Gratis</Link></li>
             </ul>
           </div>
 
           <div>
-            <h2 className="font-semibold">Produk Populer</h2>
-            <ul className="space-y-1">
-              <li>Wall Panel Dinding</li>
-              <li>WPC Decking</li>
-              <li>Vinyl & SPC</li>
-              <li>Wallpaper</li>
-              <li>Pintu WPC & Baja</li>
-              <li>Furniture Custom</li>
-            </ul>
-          </div>
-
-          <div className="md:col-span-2">
-            <h2 className="font-semibold">Kontak & Alamat</h2>
+            <h3 className="font-semibold mb-2">Kontak & Alamat</h3>
             <p>Pergudangan Pantai Indah Dadap Blok BJ 23, Kosambi, Tangerang, Banten 15213</p>
-            <p>ptopulentinteriors@gmail.com</p>
-            <p>0812-5151-1997</p>
+            <p className="mt-2">ptopulentinteriors@gmail.com</p>
+            <p className="mt-2">0812-5151-1997</p>
           </div>
         </div>
-      </motion.footer>
+      </footer>
 
     </main>
   );
