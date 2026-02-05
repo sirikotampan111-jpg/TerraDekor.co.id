@@ -2,178 +2,172 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { motion, useAnimation, useInView } from 'framer-motion';
-import { useRef, useEffect } from 'react';
-import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
+import { motion } from 'framer-motion';
 
-const sections = [
-  {
-    title: 'Solusi Interior & Konstruksi Premium',
-    subtitle: 'Terima Beres',
-    description:
-      'Dari desain, penyediaan material, hingga pembangunan dan pemasangan profesional.',
-    cta: [
-      { text: 'Konsultasi Gratis', href: '/konsultasi', type: 'link' },
-      { text: 'Lihat Produk', href: '/produk', type: 'link' },
-      { text: 'Hubungi Kami', href: 'https://wa.me/6281251511997', type: 'external' },
-    ],
-  },
-  {
-    title: 'Mengapa Memilih Kami',
-    items: [
-      { title: 'Terima Beres', desc: 'Dari desain hingga pemasangan, kami tangani profesional.' },
-      { title: 'Kualitas Premium', desc: 'Material berkualitas tinggi standar internasional.' },
-      { title: 'Harga Terjangkau', desc: 'Solusi terbaik dengan harga kompetitif.' },
-      { title: 'Tim Profesional', desc: 'Didukung tenaga ahli berpengalaman.' },
-      { title: 'Material Berkualitas', desc: 'Menggunakan bahan terbaik.' },
-      { title: 'Tepat Waktu', desc: 'Pengerjaan sesuai jadwal.' },
-    ],
-  },
-  {
-    title: 'Produk & Layanan Premium',
-    items: [
-      { title: 'Wall Panel', desc: 'Interior modern & elegan.' },
-      { title: 'Wallpaper', desc: 'Motif eksklusif.' },
-      { title: 'Vinyl & SPC', desc: 'Lantai berkualitas tinggi.' },
-      { title: 'WPC Decking', desc: 'Outdoor tahan cuaca.' },
-      { title: 'Pintu WPC & Baja', desc: 'Kuat & estetis.' },
-      { title: 'Jasa Interior', desc: 'Desain & pengerjaan.' },
-    ],
-  },
-  {
-    title: 'Wujudkan Ruang Impian Anda',
-    description:
-      'Bersama Terradekor, transformasi ruang Anda menjadi masterpiece elegan dan fungsional.',
-    cta: [
-      { text: 'Konsultasi Gratis Sekarang', href: '/konsultasi', type: 'link' },
-      { text: 'WhatsApp Kami', href: 'https://wa.me/6281251511997', type: 'external' },
-    ],
-  },
+const advantages = [
+  { title: 'Material Berkualitas', desc: 'Kami hanya menggunakan material pilihan dengan standar premium.' },
+  { title: 'Tim Profesional', desc: 'Dikerjakan oleh tenaga ahli berpengalaman di bidang interior.' },
+  { title: 'Desain Elegan', desc: 'Mengutamakan estetika modern dan fungsional.' },
+  { title: 'Harga Transparan', desc: 'Tanpa biaya tersembunyi, semua jelas sejak awal.' },
+  { title: 'Tepat Waktu', desc: 'Komitmen terhadap jadwal pengerjaan.' },
+  { title: 'After Sales', desc: 'Layanan purna jual yang responsif dan bertanggung jawab.' },
 ];
 
-const ScrollFadeIn = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: '-50px' });
-  const controls = useAnimation();
+const products = [
+  { title: 'Wall Panel', desc: 'Panel dinding premium untuk tampilan mewah.' },
+  { title: 'WPC', desc: 'Material tahan lama untuk interior dan eksterior.' },
+  { title: 'Wallpaper', desc: 'Beragam motif eksklusif dan modern.' },
+  { title: 'PVC Marmer', desc: 'Alternatif marmer dengan harga lebih efisien.' },
+  { title: 'Vinyl & SPC', desc: 'Lantai berkualitas tinggi dan tahan lama.' },
+  { title: 'Custom Interior', desc: 'Solusi interior sesuai kebutuhan Anda.' },
+];
 
-  useEffect(() => {
-    controls.start(inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 });
-  }, [inView, controls]);
-
+export default function HomePage() {
   return (
-    <motion.div
-      ref={ref}
-      animate={controls}
-      initial={{ opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
-      {children}
-    </motion.div>
-  );
-};
+    <main className="relative w-full text-white">
 
-export default function Home() {
-  return (
-    <div className="relative min-h-screen text-white">
       {/* BACKGROUND FULL PAGE */}
       <div className="fixed inset-0 -z-10">
         <Image
-          src="/bg-interior.jpg"
-          alt="Background Interior"
+          src="/background/main-bg.jpg"
+          alt="Background"
           fill
-          priority
           className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-black/70" />
       </div>
 
-      <FloatingWhatsApp />
-
       {/* HERO */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
-        <ScrollFadeIn>
-          <h1 className="text-4xl sm:text-6xl font-bold mb-4">
-            {sections[0].title}
+      <section className="min-h-screen flex items-center justify-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-4xl"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6">
+            Interior Elegan & Premium
           </h1>
-          <h2 className="text-3xl sm:text-5xl font-bold text-[#C9A24D] mb-6">
-            {sections[0].subtitle}
-          </h2>
-          <p className="text-lg text-gray-200 max-w-3xl mx-auto mb-8">
-            {sections[0].description}
+          <p className="text-gray-200 text-lg md:text-xl mb-10">
+            Solusi desain interior modern dengan kualitas terbaik dan sentuhan profesional.
           </p>
-        </ScrollFadeIn>
+
+          <Link
+            href="https://wa.me/62XXXXXXXXXX"
+            className="inline-block px-10 py-4 rounded-full
+            bg-[#C9A24D] text-black font-semibold text-lg
+            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+          >
+            Konsultasi Sekarang
+          </Link>
+        </motion.div>
       </section>
 
-      {/* ===== MENGAPA MEMILIH KAMI ===== */}
-      <section className="py-20">
-        <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold text-white mb-3">
-            {sections[1].title}
+      {/* SECTION 1 */}
+      <section className="px-6 py-24 max-w-7xl mx-auto">
+
+        {/* JUDUL */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
+            Kenapa Memilih Kami
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full" />
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Kami mengutamakan kualitas, ketelitian, dan kepuasan pelanggan dalam setiap proyek.
+          </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sections[1].items.map((item, idx) => (
-            <ScrollFadeIn key={idx}>
-              <div className="bg-black/50 border-2 border-[#C9A24D]/30 p-6 rounded-lg text-center hover:scale-105 transition-transform">
-                <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
-                  <Image
-                    src={`/gallery/why-${idx + 1}.jpg`}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
-                <p className="text-gray-200">{item.desc}</p>
+        {/* GRID CARD 1 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {advantages.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-black/40 border-2 border-[#C9A24D]/20
+              p-4 rounded-lg shadow-lg text-center
+              hover:scale-105 transition-transform"
+            >
+              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+                <Image
+                  src={`/gallery/why-${idx + 1}.jpg`}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
-            </ScrollFadeIn>
+
+              <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-200">
+                {item.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* ===== PRODUK & LAYANAN PREMIUM ===== */}
-      <section className="py-20">
-        <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold text-white mb-3">
-            {sections[2].title}
+      {/* SECTION 2 */}
+      <section className="px-6 py-24 max-w-7xl mx-auto">
+
+        {/* JUDUL */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
+            Produk & Layanan Premium
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full" />
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Pilihan produk dan layanan terbaik untuk hunian dan komersial Anda.
+          </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sections[2].items.map((item, idx) => (
-            <ScrollFadeIn key={idx}>
-              <div className="bg-black/50 border-2 border-[#C9A24D]/30 p-6 rounded-lg text-center hover:scale-105 transition-transform">
-                <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
-                  <Image
-                    src={`/gallery/product-${idx + 1}.jpg`}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
-                <p className="text-gray-200">{item.desc}</p>
+        {/* GRID CARD 2 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-black/40 border-2 border-[#C9A24D]/20
+              p-4 rounded-lg shadow-lg text-center
+              hover:scale-105 transition-transform"
+            >
+              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+                <Image
+                  src={`/gallery/product-${idx + 1}.jpg`}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
-            </ScrollFadeIn>
+
+              <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-200">
+                {item.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
+
+        {/* CTA BAWAH */}
+        <div className="text-center mt-20">
+          <Link
+            href="https://wa.me/62XXXXXXXXXX"
+            className="inline-block px-10 py-4 rounded-full
+            bg-[#C9A24D] text-black font-semibold text-lg
+            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+          >
+            Hubungi Kami Sekarang
+          </Link>
+        </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 text-center">
-        <ScrollFadeIn>
-          <h2 className="text-4xl font-bold mb-4">
-            {sections[3].title}
-          </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
-            {sections[3].description}
-          </p>
-        </ScrollFadeIn>
-      </section>
-    </div>
+    </main>
   );
-}
+          }
