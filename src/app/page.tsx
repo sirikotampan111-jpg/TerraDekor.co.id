@@ -9,13 +9,13 @@ const advantages = [
   { title: 'Kualitas Premium', desc: 'Standar material terbaik.', img: 'kualitas-premium.jpg' },
   { title: 'Harga Terjangkau', desc: 'Transparan & masuk akal.', img: 'harga-terjangkau.jpg' },
   { title: 'Tim Profesional', desc: 'Tenaga ahli berpengalaman.', img: 'tim-profesional.jpg' },
-  { title: 'Material Berkualitas', desc: 'Pilihan material unggulan.', img: 'material-berkualitas.jpg' },
-  { title: 'Tepat Waktu', desc: 'Komitmen deadline.', img: 'tepat-waktu.jpg' },
+  { title: 'Material Berkualitas', desc: 'Pilihan material unggulan.', img: 'bahan-premium.jpg' },
+  { title: 'Tepat Waktu', desc: 'Komitmen deadline.', img: 'tepat waktu.jpg' },
 ];
 
 const products = [
   { title: 'Wall Panel', desc: 'Panel dinding premium.', img: 'wallpanel.jpg' },
-  { title: 'Wallpaper', desc: 'Motif eksklusif.', img: 'wallpaper.jpg' },
+  { title: 'Wallpaper', desc: 'Motif eksklusif.', img: 'walpaper.jpg' },
   { title: 'Vinyl', desc: 'Lantai kuat & elegan.', img: 'vinil.jpg' },
   { title: 'WPC', desc: 'Interior & eksterior.', img: 'wpc.jpg' },
   { title: 'Pintu Baja', desc: 'Aman & kokoh.', img: 'pintu-baja.jpg' },
