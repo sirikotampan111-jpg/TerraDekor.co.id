@@ -1,66 +1,205 @@
-import type { Metadata } from "next";
-import { Playfair_Display, Poppins } from "next/font/google";
-import "./globals.css"; // pastikan ini mengarah ke globals.css yang sudah kita rapikan
-import { Toaster } from "@/components/ui/toaster";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+'use client';
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useRef } from 'react';
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
+const advantages = [
+  { title: 'Terima Beres', desc: 'Pengerjaan rapi tanpa ribet.', img: 'terima-beres.jpg' },
+  { title: 'Kualitas Premium', desc: 'Standar material terbaik.', img: 'kualitas-premium.jpg' },
+  { title: 'Harga Terjangkau', desc: 'Transparan & masuk akal.', img: 'harga-terjangkau.jpg' },
+  { title: 'Tim Profesional', desc: 'Tenaga ahli berpengalaman.', img: 'tim-profesional.jpg' },
+  { title: 'Material Berkualitas', desc: 'Pilihan material unggulan.', img: 'bahan-premium.jpg' },
+  { title: 'Tepat Waktu', desc: 'Komitmen deadline.', img: 'tepat waktu.jpg' },
+];
 
-export const metadata: Metadata = {
-  title: "Terradekor.id - Solusi Interior & Konstruksi Premium",
-  description:
-    "PT. Opulent Interior Indonesia - Produsen dan importir produk interior premium serta penyedia jasa interior dan kontraktor terpadu. Terima beres dengan kualitas premium.",
-  keywords: [
-    "interior",
-    "kontraktor",
-    "wall panel",
-    "wpc",
-    "vinyl",
-    "furniture",
-    "desain interior",
-    "Terradekor",
-  ],
-  authors: [{ name: "PT. Opulent Interior Indonesia" }],
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+const products = [
+  { title: 'Wall Panel', desc: 'Panel dinding premium.', img: 'wallpanel.jpg' },
+  { title: 'Wallpaper', desc: 'Motif eksklusif.', img: 'walpaper.jpg' },
+  { title: 'Vinyl', desc: 'Lantai kuat & elegan.', img: 'vinil.jpg' },
+  { title: 'WPC', desc: 'Interior & eksterior.', img: 'wpc.jpg' },
+  { title: 'Pintu Baja', desc: 'Aman & kokoh.', img: 'pintu-baja.jpg' },
+  { title: 'Terima Jasa', desc: 'Custom interior.', img: 'terima-jasa.jpg' },
+];
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function HomePage() {
+  const { scrollY } = useScroll();
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  // Parallax / smooth spring
+  const heroTextY = useSpring(useTransform(scrollY, [0, 400], [0, -60]), { damping: 20, stiffness: 100 });
+  const heroSubY = useSpring(useTransform(scrollY, [0, 400], [0, -30]), { damping: 20, stiffness: 100 });
+  const heroOpacity = useSpring(useTransform(scrollY, [0, 400], [1, 0.85]), { damping: 20, stiffness: 100 });
+  const bgY = useSpring(useTransform(scrollY, [0, 800], [0, -200]), { damping: 25, stiffness: 120 });
+
+  // Section title parallax
+  const sectionTitleY = useSpring(useTransform(scrollY, [200, 700], [40, 0]), { damping: 20, stiffness: 100 });
+
   return (
-    <html lang="id" suppressHydrationWarning>
-      <body
-        className={`${playfair.variable} ${poppins.variable} antialiased bg-background text-foreground relative`}
-      >
-        {/* Particle Background */}
-        <div className="particle-bg" />
+    <main className="relative w-full text-white overflow-x-hidden">
 
-        {/* Navbar + Content + Footer */}
-        <div className="min-h-screen flex flex-col relative z-10">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+      {/* BACKGROUND FULL PAGE */}
+      <motion.div className="fixed inset-0 -z-10" style={{ y: bgY }}>
+        <Image src="/background1.jpg" alt="Background" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/70" />
+      </motion.div>
+
+      {/* HERO */}
+      <section className="min-h-screen flex items-center justify-center px-6 relative">
+        <motion.div
+          ref={heroRef}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="text-center max-w-4xl relative z-10"
+        >
+          <motion.h1
+            style={{ y: heroTextY, opacity: heroOpacity }}
+            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg flex flex-wrap justify-center"
+          >
+            {Array.from('Interior Elegan & Premium').map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: i * 0.03, duration: 0.5 }}
+                viewport={{ once: false }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </motion.h1>
+
+          <motion.p
+            style={{ y: heroSubY, opacity: heroOpacity }}
+            className="text-gray-200 text-lg md:text-xl mb-10 flex flex-wrap justify-center"
+          >
+            {Array.from('Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.').map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: 15, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: i * 0.01, duration: 0.4 }}
+                viewport={{ once: false }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </motion.p>
+
+          {/* CTA HERO */}
+          <Link
+            href="https://wa.me/62XXXXXXXXXX"
+            className="inline-block px-10 py-4 rounded-full
+            bg-[#C9A24D] text-black font-semibold text-lg
+            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+          >
+            Konsultasi Sekarang
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* KENAPA MEMILIH KAMI */}
+      <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <motion.h2
+            style={{ y: sectionTitleY }}
+            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
+          >
+            Kenapa Memilih Kami
+          </motion.h2>
         </div>
 
-        <Toaster />
-      </body>
-    </html>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {advantages.map((item, idx) => {
+            const imageY = useSpring(useTransform(scrollY, [0, 500], [0, -20]), { damping: 20, stiffness: 100 });
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: false }}
+                className="p-4 rounded-lg bg-gradient-to-t from-black/70 via-black/50 to-black/70 backdrop-blur-sm hover:scale-[1.03] transition will-change-transform,opacity"
+              >
+                <motion.div className="relative w-full h-48 mb-4 rounded-md overflow-hidden" style={{ y: imageY }}>
+                  <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
+                </motion.div>
+
+                <motion.h3
+                  initial={{ y: 10, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                  viewport={{ once: false }}
+                  className="text-xl font-bold text-[#C9A24D] mb-2"
+                >
+                  {item.title}
+                </motion.h3>
+
+                <p className="text-gray-200">{item.desc}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* PRODUK & LAYANAN */}
+      <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <motion.h2
+            style={{ y: sectionTitleY }}
+            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
+          >
+            Produk & Layanan Premium
+          </motion.h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((item, idx) => {
+            const imageY = useSpring(useTransform(scrollY, [0, 500], [0, -20]), { damping: 20, stiffness: 100 });
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: false }}
+                className="p-4 rounded-lg bg-gradient-to-t from-black/70 via-black/50 to-black/70 backdrop-blur-sm hover:scale-[1.03] transition will-change-transform,opacity"
+              >
+                <motion.div className="relative w-full h-48 mb-4 rounded-md overflow-hidden" style={{ y: imageY }}>
+                  <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
+                </motion.div>
+
+                <motion.h3
+                  initial={{ y: 10, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                  viewport={{ once: false }}
+                  className="text-xl font-bold text-[#C9A24D] mb-2"
+                >
+                  {item.title}
+                </motion.h3>
+
+                <p className="text-gray-200">{item.desc}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* CTA BAWAH */}
+        <div className="text-center mt-20">
+          <Link
+            href="https://wa.me/62XXXXXXXXXX"
+            className="inline-block px-10 py-4 rounded-full
+            bg-[#C9A24D] text-black font-semibold text-lg
+            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+          >
+            Hubungi Kami Sekarang
+          </Link>
+        </div>
+      </section>
+
+    </main>
   );
 }
