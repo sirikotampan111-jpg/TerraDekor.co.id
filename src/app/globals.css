@@ -1,11 +1,14 @@
-@import "tailwindcss";
+/* =========================
+   IMPORT TAILWIND DAN ANIMASI
+========================= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "tw-animate-css";
 
 /* =========================
-   THEME VARIABEL
+   THEME VARIABLES
 ========================= */
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --radius: 0.625rem;
 
@@ -53,8 +56,8 @@
   --chart-5: #4A4A4A;
 
   /* Fonts */
-  --font-sans: var(--font-poppins);
-  --font-display: var(--font-playfair);
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
 }
 
 /* Dark Mode */
@@ -106,13 +109,13 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-sans), system-ui, sans-serif;
+    font-family: var(--font-sans);
     line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
-    font-family: var(--font-display), Georgia, serif;
+    font-family: var(--font-display);
     line-height: 1.2;
   }
 
