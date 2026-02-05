@@ -5,6 +5,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { motion } from "framer-motion";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -35,9 +36,7 @@ export const metadata: Metadata = {
     "Terradekor",
   ],
   authors: [{ name: "PT. Opulent Interior Indonesia" }],
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
@@ -46,15 +45,30 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${poppins.variable} antialiased bg-gray-50 text-gray-900`}
+        className={`${playfair.variable} ${poppins.variable} antialiased text-gray-900`}
       >
+        {/* Background Fixed + Parallax Layer */}
+        <div
+          className="fixed inset-0 -z-10 bg-[url('/background.jpg')] bg-cover bg-center bg-fixed"
+          style={{ transform: "translateZ(0)" }}
+        />
+
         {/* Navbar */}
         <header className="relative z-40">
           <Navbar />
         </header>
 
-        {/* Konten utama */}
-        <main className="relative z-10 overflow-x-hidden">{children}</main>
+        {/* Konten utama dengan animasi masuk */}
+        <main className="relative z-10 overflow-x-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            {children}
+          </motion.div>
+        </main>
 
         {/* Footer */}
         <footer className="relative z-30">
