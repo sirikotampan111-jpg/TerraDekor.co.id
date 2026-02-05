@@ -1,91 +1,98 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-import { Building, Home, Utensils, Hotel, Store, Briefcase, Heart, School, Stethoscope, Palette, Hammer, ArrowLeft, Home as HomeIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 
 const services = [
   {
-    icon: Building,
     title: 'Interior Kantor & Co-working Space',
     description: 'Desain dan pemasangan interior kantor modern dan fungsional untuk produktivitas tim',
-    color: 'from-blue-500 to-blue-700',
+    img: '/services/kantor.jpg',
   },
   {
-    icon: Home,
     title: 'Interior Rumah',
     description: 'Transformasi rumah menjadi ruang nyaman dan estetis sesuai gaya hidup Anda',
-    color: 'from-green-500 to-green-700',
+    img: '/services/rumah.jpg',
   },
   {
-    icon: Building,
     title: 'Interior Apartment',
     description: 'Solusi interior apartment compact yang maksimal dan elegan',
-    color: 'from-purple-500 to-purple-700',
+    img: '/services/apartment.jpg',
   },
   {
-    icon: Utensils,
     title: 'Interior Restoran, Kafe & Retail',
     description: 'Desain interior yang menarik pelanggan dan meningkatkan pengalaman bersantap',
-    color: 'from-orange-500 to-orange-700',
+    img: '/services/restoran.jpg',
   },
   {
-    icon: Stethoscope,
     title: 'Interior Rumah Sakit, Klinik & Apotek',
     description: 'Interior medis yang bersih, profesional, dan nyaman untuk pasien',
-    color: 'from-red-500 to-red-700',
+    img: '/services/rumah-sakit.jpg',
   },
   {
-    icon: Hotel,
     title: 'Interior Hotel',
     description: 'Desain interior hotel yang mewah dan memberikan pengalaman tak terlupakan',
-    color: 'from-amber-500 to-amber-700',
+    img: '/services/hotel.jpg',
   },
   {
-    icon: Store,
     title: 'Interior Showroom Produk',
     description: 'Showroom produk yang menarik dan profesional untuk meningkatkan penjualan',
-    color: 'from-cyan-500 to-cyan-700',
+    img: '/services/showroom.jpg',
   },
   {
-    icon: School,
     title: 'Interior Kampus',
     description: 'Interior kampus yang inspiratif dan mendukung kegiatan belajar mengajar',
-    color: 'from-indigo-500 to-indigo-700',
+    img: '/services/kampus.jpg',
   },
   {
-    icon: Store,
     title: 'Interior Ruko',
     description: 'Solusi interior ruko yang efektif untuk usaha dan bisnis Anda',
-    color: 'from-teal-500 to-teal-700',
+    img: '/services/ruko.jpg',
   },
   {
-    icon: Building,
     title: 'Interior Aula',
     description: 'Desain aula yang luas, fungsional, dan estetis untuk berbagai acara',
-    color: 'from-pink-500 to-pink-700',
+    img: '/services/aula.jpg',
   },
   {
-    icon: Store,
     title: 'Interior Booth & Exhibition',
     description: 'Booth pameran yang menarik perhatian dan efektif untuk branding',
-    color: 'from-rose-500 to-rose-700',
+    img: '/services/booth.jpg',
   },
   {
-    icon: Palette,
     title: 'Furniture Custom',
     description: 'Furniture custom yang dibuat khusus sesuai kebutuhan dan selera Anda',
-    color: 'from-violet-500 to-violet-700',
-  },
-  {
-    icon: Hammer,
-    title: 'Jasa Kontraktor',
-    description: 'Jasa konstruksi ground-up dan renovasi dengan tim ahli berpengalaman',
-    color: 'from-gray-600 to-gray-800',
+    img: '/services/furniture.jpg',
   },
 ];
+
+export default function ServicesPage() {
+  return (
+    <main className="px-6 py-24 max-w-7xl mx-auto">
+      <h1 className="text-4xl font-bold text-center mb-16">Layanan Kami</h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service, idx) => (
+          <div
+            key={idx}
+            className="relative rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
+          >
+            <Image
+              src={service.img}
+              alt={service.title}
+              width={400}
+              height={300}
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-black/50 p-4 text-white">
+              <h3 className="font-bold text-lg">{service.title}</h3>
+              <p className="text-sm">{service.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
 
 export default function LayananPage() {
   return (
