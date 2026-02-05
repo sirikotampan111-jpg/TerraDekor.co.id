@@ -75,8 +75,8 @@ const services = [
   },
   {
     icon: Hammer,
-    title: 'Jasa Kontraktor',
-    description: 'Jasa konstruksi ground-up dan renovasi dengan tim ahli berpengalaman',
+    title: 'Furnituer costume',
+    description: 'Furniture custom yang dibuat khusus sesuai kebutuhan dan selera Anda',
     color: 'from-gray-600 to-gray-800',
   },
 ];
