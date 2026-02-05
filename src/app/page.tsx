@@ -31,7 +31,7 @@ const sections = [
     ],
   },
   {
-    title: 'Produk & Layanan',
+    title: 'Produk & Layanan Premium',
     items: [
       { title: 'Wall Panel', desc: 'Interior modern & elegan.' },
       { title: 'Wallpaper', desc: 'Motif eksklusif.' },
@@ -58,11 +58,7 @@ const ScrollFadeIn = ({ children }: { children: React.ReactNode }) => {
   const controls = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, y: 0 });
-    } else {
-      controls.start({ opacity: 0, y: 50 });
-    }
+    controls.start(inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 });
   }, [inView, controls]);
 
   return (
@@ -103,37 +99,26 @@ export default function Home() {
           <h2 className="text-3xl sm:text-5xl font-bold text-[#C9A24D] mb-6">
             {sections[0].subtitle}
           </h2>
-          <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+          <p className="text-lg text-gray-200 max-w-3xl mx-auto mb-8">
             {sections[0].description}
           </p>
         </ScrollFadeIn>
-
-        <div className="flex flex-col sm:flex-row gap-4">
-          {sections[0].cta.map((btn, idx) =>
-            btn.type === 'link' ? (
-              <Link key={idx} href={btn.href}>
-                <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] font-bold">
-                  {btn.text}
-                </Button>
-              </Link>
-            ) : (
-              <a key={idx} href={btn.href} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#25D366] font-bold">
-                  {btn.text}
-                </Button>
-              </a>
-            )
-          )}
-        </div>
       </section>
 
-      {/* ADVANTAGES */}
+      {/* ===== MENGAPA MEMILIH KAMI ===== */}
       <section className="py-20">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-bold text-white mb-3">
+            {sections[1].title}
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full" />
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sections[1].items.map((item, idx) => (
             <ScrollFadeIn key={idx}>
               <div className="bg-black/50 border-2 border-[#C9A24D]/30 p-6 rounded-lg text-center hover:scale-105 transition-transform">
-                <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+                <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
                   <Image
                     src={`/gallery/why-${idx + 1}.jpg`}
                     alt={item.title}
@@ -149,13 +134,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRODUCTS */}
+      {/* ===== PRODUK & LAYANAN PREMIUM ===== */}
       <section className="py-20">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-bold text-white mb-3">
+            {sections[2].title}
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full" />
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sections[2].items.map((item, idx) => (
             <ScrollFadeIn key={idx}>
               <div className="bg-black/50 border-2 border-[#C9A24D]/30 p-6 rounded-lg text-center hover:scale-105 transition-transform">
-                <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+                <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
                   <Image
                     src={`/gallery/product-${idx + 1}.jpg`}
                     alt={item.title}
@@ -174,30 +166,12 @@ export default function Home() {
       {/* CTA */}
       <section className="py-24 text-center">
         <ScrollFadeIn>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+          <h2 className="text-4xl font-bold mb-4">
             {sections[3].title}
           </h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
             {sections[3].description}
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {sections[3].cta.map((btn, idx) =>
-              btn.type === 'link' ? (
-                <Link key={idx} href={btn.href}>
-                  <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] font-bold">
-                    {btn.text}
-                  </Button>
-                </Link>
-              ) : (
-                <a key={idx} href={btn.href} target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#25D366] font-bold">
-                    {btn.text}
-                  </Button>
-                </a>
-              )
-            )}
-          </div>
         </ScrollFadeIn>
       </section>
     </div>
