@@ -5,7 +5,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -42,24 +42,36 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // framer-motion scroll untuk parallax
+  const { scrollYProgress } = useScroll();
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, -50]); // background sedikit bergerak saat scroll
+
   return (
     <html lang="id" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${poppins.variable} antialiased text-gray-900`}
       >
-        {/* Background Fixed + Parallax Layer */}
-        <div
-          className="fixed inset-0 -z-10 bg-[url('/background.jpg')] bg-cover bg-center bg-fixed"
-          style={{ transform: "translateZ(0)" }}
-        />
+        {/* =========================
+            Background Parallax (Mobile-friendly)
+        ========================= */}
+        <motion.div
+          style={{ y: yParallax }}
+          className="fixed inset-0 -z-10 w-full h-full"
+        >
+          <img
+            src="/background.jpg"
+            className="w-full h-full object-cover"
+            alt="Background Terradekor"
+          />
+        </motion.div>
 
         {/* Navbar */}
         <header className="relative z-40">
           <Navbar />
         </header>
 
-        {/* Konten utama dengan animasi masuk */}
-        <main className="relative z-10 overflow-x-hidden">
+        {/* Konten utama */}
+        <main className="relative z-10 overflow-x-hidden pt-[80px] md:pt-[120px] px-4 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -75,6 +87,7 @@ export default function RootLayout({
           <Footer />
         </footer>
 
+        {/* Toast */}
         <Toaster />
       </body>
     </html>
