@@ -112,7 +112,12 @@ export default function HomePage() {
               hover:bg-[#e3bb5f] hover:scale-105"
           >
             Konsultasi Sekarang
-          </Link>
+          <Link
+           href="https://wa.me/6281251511997"
+            className="inline-block px-10 py-4 rounded-full
+              bg-[#C9A24D] text-black font-semibold text-lg
+              shadow-lg transition-transform duration-300 ease-out
+              hover:bg-[#e3bb5f] hover:scale-105"
         </motion.div>
       </section>
 
@@ -231,7 +236,12 @@ export default function HomePage() {
               hover:bg-[#e3bb5f] hover:scale-105"
           >
             Hubungi Kami Sekarang
-          </Link>
+          <Link
+          href="https://wa.me/6281251511997"
+            className="inline-block px-10 py-4 rounded-full
+              bg-[#C9A24D] text-black font-semibold text-lg
+              shadow-lg transition-transform duration-300 ease-out
+              hover:bg-[#e3bb5f] hover:scale-105"
         </div>
       </section>
 
