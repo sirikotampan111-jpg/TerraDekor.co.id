@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
@@ -47,14 +48,22 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${poppins.variable} antialiased bg-black text-white`}
+        className={`${playfair.variable} ${poppins.variable} antialiased bg-gray-50 text-gray-900`}
       >
-        {/* Container ini biar scroll natural */}
-        <div className="relative min-h-screen w-full overflow-x-hidden">
+        {/* Navbar selalu di atas */}
+        <header className="relative z-30">
           <Navbar />
-          <main className="relative z-0">{children}</main>
+        </header>
+
+        {/* Main content */}
+        <main className="relative z-10 flex-1 overflow-x-hidden">{children}</main>
+
+        {/* Footer selalu terlihat di atas background */}
+        <footer className="relative z-20">
           <Footer />
-        </div>
+        </footer>
+
+        {/* Toaster notifikasi */}
         <Toaster />
       </body>
     </html>
