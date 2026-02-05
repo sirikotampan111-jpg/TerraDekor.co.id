@@ -21,8 +21,18 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Terradekor.id - Solusi Interior & Konstruksi Premium",
-  description: "PT. Opulent Interior Indonesia - Produsen dan importir produk interior premium serta penyedia jasa interior dan kontraktor terpadu. Terima beres dengan kualitas premium.",
-  keywords: ["interior", "kontraktor", "wall panel", "wpc", "vinyl", "furniture", "desain interior", "Terradekor"],
+  description:
+    "PT. Opulent Interior Indonesia - Produsen dan importir produk interior premium serta penyedia jasa interior dan kontraktor terpadu. Terima beres dengan kualitas premium.",
+  keywords: [
+    "interior",
+    "kontraktor",
+    "wall panel",
+    "wpc",
+    "vinyl",
+    "furniture",
+    "desain interior",
+    "Terradekor",
+  ],
   authors: [{ name: "PT. Opulent Interior Indonesia" }],
   icons: {
     icon: "/favicon.ico",
@@ -37,11 +47,12 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${poppins.variable} antialiased bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 text-gray-900`}
+        className={`${playfair.variable} ${poppins.variable} antialiased bg-black text-white`}
       >
-        <div className="min-h-screen flex flex-col">
+        {/* Container ini biar scroll natural */}
+        <div className="relative min-h-screen w-full overflow-x-hidden">
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="relative z-0">{children}</main>
           <Footer />
         </div>
         <Toaster />
