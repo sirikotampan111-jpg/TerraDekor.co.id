@@ -79,53 +79,60 @@ const ScrollFadeIn = ({ children }: { children: React.ReactNode }) => {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen text-white">
+      {/* BACKGROUND FULL PAGE */}
       <div className="fixed inset-0 -z-10">
         <Image
-          src="/office.jpg"
-          alt="Background Office"
+          src="/bg-interior.jpg"
+          alt="Background Interior"
           fill
-          className="object-cover object-center"
           priority
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       <FloatingWhatsApp />
 
-      {/* Hero */}
+      {/* HERO */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
         <ScrollFadeIn>
-          <h1 className="text-6xl font-bold text-white mb-4">{sections[0].title}</h1>
-          <h2 className="text-5xl font-bold text-[#C9A24D] mb-6">{sections[0].subtitle}</h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+          <h1 className="text-4xl sm:text-6xl font-bold mb-4">
+            {sections[0].title}
+          </h1>
+          <h2 className="text-3xl sm:text-5xl font-bold text-[#C9A24D] mb-6">
+            {sections[0].subtitle}
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
             {sections[0].description}
           </p>
         </ScrollFadeIn>
 
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           {sections[0].cta.map((btn, idx) =>
             btn.type === 'link' ? (
               <Link key={idx} href={btn.href}>
-                <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E]">
+                <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] font-bold">
                   {btn.text}
                 </Button>
               </Link>
             ) : (
               <a key={idx} href={btn.href} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-[#25D366]">{btn.text}</Button>
+                <Button className="bg-[#25D366] font-bold">
+                  {btn.text}
+                </Button>
               </a>
             )
           )}
         </div>
       </section>
 
-      {/* Advantages */}
+      {/* ADVANTAGES */}
       <section className="py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sections[1].items.map((item, idx) => (
             <ScrollFadeIn key={idx}>
-              <div className="bg-black/40 border-2 border-[#C9A24D]/20 p-6 rounded-lg text-center hover:scale-105 transition-transform">
+              <div className="bg-black/50 border-2 border-[#C9A24D]/30 p-6 rounded-lg text-center hover:scale-105 transition-transform">
                 <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
                   <Image
                     src={`/gallery/why-${idx + 1}.jpg`}
@@ -142,12 +149,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Products */}
+      {/* PRODUCTS */}
       <section className="py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sections[2].items.map((item, idx) => (
             <ScrollFadeIn key={idx}>
-              <div className="bg-black/40 border-2 border-[#C9A24D]/20 p-6 rounded-lg text-center hover:scale-105 transition-transform">
+              <div className="bg-black/50 border-2 border-[#C9A24D]/30 p-6 rounded-lg text-center hover:scale-105 transition-transform">
                 <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
                   <Image
                     src={`/gallery/product-${idx + 1}.jpg`}
@@ -165,10 +172,32 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 text-center">
+      <section className="py-24 text-center">
         <ScrollFadeIn>
-          <h2 className="text-5xl font-bold text-white mb-4">{sections[3].title}</h2>
-          <p className="text-xl text-gray-200 mb-8">{sections[3].description}</p>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            {sections[3].title}
+          </h2>
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+            {sections[3].description}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {sections[3].cta.map((btn, idx) =>
+              btn.type === 'link' ? (
+                <Link key={idx} href={btn.href}>
+                  <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] font-bold">
+                    {btn.text}
+                  </Button>
+                </Link>
+              ) : (
+                <a key={idx} href={btn.href} target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-[#25D366] font-bold">
+                    {btn.text}
+                  </Button>
+                </a>
+              )
+            )}
+          </div>
         </ScrollFadeIn>
       </section>
     </div>
