@@ -1,8 +1,8 @@
-'use client';
+ 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 const advantages = [
@@ -27,22 +27,25 @@ export default function HomePage() {
   const { scrollY } = useScroll();
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Parallax / smooth spring
-  const heroTextY = useSpring(useTransform(scrollY, [0, 400], [0, -60]), { damping: 20, stiffness: 100 });
-  const heroSubY = useSpring(useTransform(scrollY, [0, 400], [0, -30]), { damping: 20, stiffness: 100 });
-  const heroOpacity = useSpring(useTransform(scrollY, [0, 400], [1, 0.85]), { damping: 20, stiffness: 100 });
-  const bgY = useSpring(useTransform(scrollY, [0, 800], [0, -200]), { damping: 25, stiffness: 120 });
+  // Hero parallax
+  const heroTextY = useTransform(scrollY, [0, 400], [0, -50]);
+  const heroSubY = useTransform(scrollY, [0, 400], [0, -25]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.8]);
+  const bgY = useTransform(scrollY, [0, 800], [0, -200]);
 
-  // Section title parallax
-  const sectionTitleY = useSpring(useTransform(scrollY, [200, 700], [40, 0]), { damping: 20, stiffness: 100 });
+  // Section titles
+  const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
+
+  // Image parallax helper
+  const imageParallax = (start: number, end: number) => useTransform(scrollY, [0, 500], [start, end]);
 
   return (
     <main className="relative w-full text-white overflow-x-hidden">
 
-      {/* BACKGROUND FULL PAGE */}
+      {/* Background */}
       <motion.div className="fixed inset-0 -z-10" style={{ y: bgY }}>
         <Image src="/background1.jpg" alt="Background" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-black/70" />
       </motion.div>
 
       {/* HERO */}
@@ -56,150 +59,111 @@ export default function HomePage() {
         >
           <motion.h1
             style={{ y: heroTextY, opacity: heroOpacity }}
-            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg flex flex-wrap justify-center"
+            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg"
           >
             {Array.from('Interior Elegan & Premium').map((char, i) => (
               <motion.span
                 key={i}
-                initial={{ y: 30, opacity: 0 }}
+                initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                transition={{ delay: i * 0.03, duration: 0.5 }}
                 viewport={{ once: false }}
+                transition={{ delay: i * 0.03, duration: 0.5 }}
               >
-                {char === ' ' ? '\u00A0' : char}
+                {char}
               </motion.span>
             ))}
           </motion.h1>
 
           <motion.p
             style={{ y: heroSubY, opacity: heroOpacity }}
-            className="text-gray-200 text-lg md:text-xl mb-10 flex flex-wrap justify-center"
+            className="text-gray-200 text-lg md:text-xl mb-10"
           >
             {Array.from('Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.').map((char, i) => (
               <motion.span
                 key={i}
-                initial={{ y: 15, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                transition={{ delay: i * 0.01, duration: 0.4 }}
                 viewport={{ once: false }}
+                transition={{ delay: i * 0.01, duration: 0.4 }}
               >
-                {char === ' ' ? '\u00A0' : char}
+                {char}
               </motion.span>
             ))}
           </motion.p>
 
-          {/* CTA HERO */}
           <Link
             href="https://wa.me/62XXXXXXXXXX"
-            className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
           >
             Konsultasi Sekarang
           </Link>
         </motion.div>
       </section>
 
-      {/* KENAPA MEMILIH KAMI */}
+      {/* Advantages */}
       <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
-          >
-            Kenapa Memilih Kami
-          </motion.h2>
-        </div>
+        <motion.h2 style={{ y: sectionTitleY }} className="text-3xl md:text-4xl font-bold text-[#C9A24D] text-center mb-16">
+          Kenapa Memilih Kami
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {advantages.map((item, idx) => {
-            const imageY = useSpring(useTransform(scrollY, [0, 500], [0, -20]), { damping: 20, stiffness: 100 });
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: false }}
-                className="p-4 rounded-lg bg-gradient-to-t from-black/70 via-black/50 to-black/70 backdrop-blur-sm hover:scale-[1.03] transition will-change-transform,opacity"
-              >
-                <motion.div className="relative w-full h-48 mb-4 rounded-md overflow-hidden" style={{ y: imageY }}>
-                  <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
-                </motion.div>
-
-                <motion.h3
-                  initial={{ y: 10, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.4 }}
-                  viewport={{ once: false }}
-                  className="text-xl font-bold text-[#C9A24D] mb-2"
-                >
-                  {item.title}
-                </motion.h3>
-
-                <p className="text-gray-200">{item.desc}</p>
+          {advantages.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition-transform"
+            >
+              <motion.div className="relative w-full h-48 mb-4 rounded-md overflow-hidden" style={{ y: imageParallax(0, -20) }}>
+                <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
               </motion.div>
-            );
-          })}
+              <motion.h3 initial={{ y: 10, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: false }} transition={{ duration: 0.4 }} className="text-xl font-bold text-[#C9A24D] mb-2">
+                {item.title}
+              </motion.h3>
+              <p className="text-gray-200">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* PRODUK & LAYANAN */}
+      {/* Products */}
       <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
-          >
-            Produk & Layanan Premium
-          </motion.h2>
-        </div>
+        <motion.h2 style={{ y: sectionTitleY }} className="text-3xl md:text-4xl font-bold text-[#C9A24D] text-center mb-16">
+          Produk & Layanan Premium
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((item, idx) => {
-            const imageY = useSpring(useTransform(scrollY, [0, 500], [0, -20]), { damping: 20, stiffness: 100 });
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                viewport={{ once: false }}
-                className="p-4 rounded-lg bg-gradient-to-t from-black/70 via-black/50 to-black/70 backdrop-blur-sm hover:scale-[1.03] transition will-change-transform,opacity"
-              >
-                <motion.div className="relative w-full h-48 mb-4 rounded-md overflow-hidden" style={{ y: imageY }}>
-                  <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
-                </motion.div>
-
-                <motion.h3
-                  initial={{ y: 10, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.4 }}
-                  viewport={{ once: false }}
-                  className="text-xl font-bold text-[#C9A24D] mb-2"
-                >
-                  {item.title}
-                </motion.h3>
-
-                <p className="text-gray-200">{item.desc}</p>
+          {products.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition-transform"
+            >
+              <motion.div className="relative w-full h-48 mb-4 rounded-md overflow-hidden" style={{ y: imageParallax(0, -20) }}>
+                <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
               </motion.div>
-            );
-          })}
+              <motion.h3 initial={{ y: 10, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: false }} transition={{ duration: 0.4 }} className="text-xl font-bold text-[#C9A24D] mb-2">
+                {item.title}
+              </motion.h3>
+              <p className="text-gray-200">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* CTA BAWAH */}
         <div className="text-center mt-20">
           <Link
             href="https://wa.me/62XXXXXXXXXX"
-            className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
           >
             Hubungi Kami Sekarang
           </Link>
         </div>
       </section>
-
     </main>
   );
 }
