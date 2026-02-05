@@ -1,135 +1,94 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* =========================
+   THEME VARIABEL
+========================= */
 @custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-poppins);
-  --font-display: var(--font-playfair);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
 
 :root {
   --radius: 0.625rem;
 
-  /* Premium Metallic Theme Colors */
+  /* Core Colors */
   --background: #E8E8E8;
   --foreground: #1E1E1E;
 
-  /* Gold/Bronze Primary Colors */
+  /* Primary (Gold/Bronze) */
   --primary: #C9A24D;
   --primary-foreground: #FFFFFF;
   --primary-hover: #B89B5E;
 
-  /* Secondary - Dark Grey/Charcoal */
+  /* Secondary (Dark Grey) */
   --secondary: #1E1E1E;
   --secondary-foreground: #FFFFFF;
   --secondary-hover: #2A2A2A;
 
-  /* Card Colors */
+  /* Card / Surface */
   --card: #F5F5F5;
   --card-foreground: #1E1E1E;
 
-  /* Accent Colors */
+  /* Accent & Muted */
   --accent: #C9A24D;
   --accent-foreground: #FFFFFF;
   --accent-light: #F5E6C8;
-
-  /* Muted Colors */
   --muted: #D3D3D3;
   --muted-foreground: #4A4A4A;
 
-  /* Border & Input */
+  /* Border & Ring */
   --border: #C0C0C0;
   --input: #C0C0C0;
-
-  /* Ring */
   --ring: #C9A24D;
 
-  /* Popover */
+  /* Popover & Destructive */
   --popover: #FFFFFF;
   --popover-foreground: #1E1E1E;
-
-  /* Destructive */
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
 
-  /* Chart Colors */
+  /* Chart Palette */
   --chart-1: #C9A24D;
   --chart-2: #B89B5E;
   --chart-3: #E8D5A3;
   --chart-4: #1E1E1E;
   --chart-5: #4A4A4A;
+
+  /* Fonts */
+  --font-sans: var(--font-poppins);
+  --font-display: var(--font-playfair);
 }
 
+/* Dark Mode */
 .dark {
   --background: #1E1E1E;
   --foreground: #E8E8E8;
 
-  /* Gold/Bronze Primary Colors - brighter in dark mode */
   --primary: #C9A24D;
   --primary-foreground: #1E1E1E;
   --primary-hover: #D4AF6A;
 
-  /* Secondary */
   --secondary: #2A2A2A;
   --secondary-foreground: #FFFFFF;
 
-  /* Card Colors */
   --card: #2A2A2A;
   --card-foreground: #E8E8E8;
 
-  /* Accent Colors */
   --accent: #C9A24D;
   --accent-foreground: #1E1E1E;
   --accent-light: #4A3F2A;
 
-  /* Muted Colors */
   --muted: #2A2A2A;
   --muted-foreground: #A0A0A0;
 
-  /* Border & Input */
   --border: #4A4A4A;
   --input: #4A4A4A;
-
-  /* Ring */
   --ring: #C9A24D;
 
-  /* Popover */
   --popover: #2A2A2A;
   --popover-foreground: #E8E8E8;
 
-  /* Destructive */
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
 
-  /* Chart Colors */
   --chart-1: #C9A24D;
   --chart-2: #B89B5E;
   --chart-3: #E8D5A3;
@@ -137,23 +96,53 @@
   --chart-5: #A0A0A0;
 }
 
+/* =========================
+   BASE STYLING
+========================= */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 transition-colors transition-shadow;
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-poppins), system-ui, sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
-    font-family: var(--font-playfair), Georgia, serif;
+    font-family: var(--font-display), Georgia, serif;
+    line-height: 1.2;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--primary-hover);
+  }
+
+  button, input, select, textarea {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(201, 162, 77, 0.2);
   }
 }
 
-/* Custom scrollbar */
+/* =========================
+   SCROLLBAR STYLING
+========================= */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -163,15 +152,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #C9A24D 0%, #B89B5E 100%);
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-hover) 100%);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #D4AF6A 0%, #C9A24D 100%);
+  background: linear-gradient(180deg, var(--primary-hover) 0%, var(--primary) 100%);
 }
 
-/* Metallic gradient utilities */
+/* =========================
+   GRADIENT & EFFECTS
+========================= */
 .metallic-gradient {
   background: linear-gradient(135deg, #E8E8E8 0%, #D0D0D0 50%, #E8E8E8 100%);
 }
@@ -184,36 +175,22 @@
   background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 50%, #1E1E1E 100%);
 }
 
-/* Text shadow for better readability */
 .text-glow {
   text-shadow: 0 0 20px rgba(201, 162, 77, 0.3);
 }
 
-/* Premium hover effects */
-.premium-hover {
-  transition: all 0.3s ease;
-}
-
-.premium-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(201, 162, 77, 0.2);
-}
-
-/* Floating animation */
+/* =========================
+   ANIMATIONS
+========================= */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Shimmer effect for premium feel */
 .shimmer {
   position: relative;
   overflow: hidden;
@@ -226,20 +203,23 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(201, 162, 77, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(201,162,77,0.2), transparent);
   animation: shimmer 3s infinite;
 }
 
 @keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* =========================
+   UTILITY CLASSES
+========================= */
+.premium-hover {
+  transition: all 0.3s ease;
+}
+
+.premium-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201, 162, 77, 0.2);
 }
