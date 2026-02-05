@@ -25,9 +25,8 @@ const products = [
 
 export default function HomePage() {
   const { scrollY } = useScroll();
-  const heroRef = useRef<HTMLDivElement>(null);
 
-  // Hero paralax
+  // Hero parallax
   const heroTextY = useTransform(scrollY, [0, 400], [0, -60]);
   const heroSubY = useTransform(scrollY, [0, 400], [0, -30]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
@@ -35,11 +34,8 @@ export default function HomePage() {
 
   const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
 
-  const heroText = 'Interior Elegan & Premium';
-  const heroSub = 'Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.';
-
   return (
-    <main className="relative w-full text-white overflow-hidden">
+    <main className="relative w-full text-white overflow-x-hidden">
 
       {/* BACKGROUND FULL PAGE */}
       <motion.div
@@ -57,28 +53,23 @@ export default function HomePage() {
       </motion.div>
 
       {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center px-6 relative">
+      <section className="min-h-screen flex items-center justify-center px-6 relative z-10">
         <motion.div
-          ref={heroRef}
-          initial="hidden"
-          animate="visible"
-          className="text-center max-w-4xl relative z-10"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.03 } }
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="text-center max-w-4xl"
         >
           <motion.h1
             style={{ y: heroTextY, opacity: heroOpacity }}
             className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg"
           >
-            {Array.from(heroText).map((char, i) => (
+            {Array.from('Interior Elegan & Premium').map((char, i) => (
               <motion.span
                 key={i}
-                variants={{
-                  hidden: { y: 20, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
-                }}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: i * 0.03, duration: 0.5 }}
               >
                 {char}
               </motion.span>
@@ -89,25 +80,21 @@ export default function HomePage() {
             style={{ y: heroSubY, opacity: heroOpacity }}
             className="text-gray-200 text-lg md:text-xl mb-10"
           >
-            {Array.from(heroSub).map((char, i) => (
+            {Array.from('Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.').map((char, i) => (
               <motion.span
                 key={i}
-                variants={{
-                  hidden: { y: 10, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.4 } }
-                }}
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: i * 0.01, duration: 0.4 }}
               >
                 {char}
               </motion.span>
             ))}
           </motion.p>
 
-          {/* CTA HERO */}
           <Link
             href="https://wa.me/62XXXXXXXXXX"
-            className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
           >
             Konsultasi Sekarang
           </Link>
@@ -119,10 +106,6 @@ export default function HomePage() {
         <div className="text-center mb-16">
           <motion.h2
             style={{ y: sectionTitleY }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
           >
             Kenapa Memilih Kami
@@ -135,8 +118,8 @@ export default function HomePage() {
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: false }}
               className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition"
             >
               <motion.div
@@ -154,8 +137,8 @@ export default function HomePage() {
               <motion.h3
                 initial={{ y: 10, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.4 }}
+                viewport={{ once: false }}
                 className="text-xl font-bold text-[#C9A24D] mb-2"
               >
                 {item.title}
@@ -172,10 +155,6 @@ export default function HomePage() {
         <div className="text-center mb-16">
           <motion.h2
             style={{ y: sectionTitleY }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
           >
             Produk & Layanan Premium
@@ -188,8 +167,8 @@ export default function HomePage() {
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: false }}
               className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition"
             >
               <motion.div
@@ -207,8 +186,8 @@ export default function HomePage() {
               <motion.h3
                 initial={{ y: 10, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.4 }}
+                viewport={{ once: false }}
                 className="text-xl font-bold text-[#C9A24D] mb-2"
               >
                 {item.title}
@@ -218,20 +197,56 @@ export default function HomePage() {
             </motion.div>
           ))}
         </div>
-
-        {/* CTA BAWAH */}
-        <div className="text-center mt-20">
-          <Link
-            href="https://wa.me/62XXXXXXXXXX"
-            className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
-          >
-            Hubungi Kami Sekarang
-          </Link>
-        </div>
       </section>
+
+      {/* INFO TERRADEKOR.ID → selalu di bawah, muncul setelah scroll */}
+      <motion.footer
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="bg-white/90 text-gray-900 px-6 py-8 max-w-7xl mx-auto mt-20 rounded-md shadow-lg"
+      >
+        <h1 className="font-bold text-xl">Terradekor.id</h1>
+        <p className="text-sm mt-1">
+          PT. Opulent Interior Indonesia - Solusi interior dan konstruksi premium
+          dengan kualitas terbaik dan harga terjangkau.
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-sm">
+          <div>
+            <h2 className="font-semibold">Navigasi Cepat</h2>
+            <ul className="space-y-1">
+              <li>Beranda</li>
+              <li>Produk</li>
+              <li>Layanan</li>
+              <li>Portofolio</li>
+              <li>Tentang Kami</li>
+              <li>Konsultasi Gratis</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-semibold">Produk Populer</h2>
+            <ul className="space-y-1">
+              <li>Wall Panel Dinding</li>
+              <li>WPC Decking</li>
+              <li>Vinyl & SPC</li>
+              <li>Wallpaper</li>
+              <li>Pintu WPC & Baja</li>
+              <li>Furniture Custom</li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-2">
+            <h2 className="font-semibold">Kontak & Alamat</h2>
+            <p>Pergudangan Pantai Indah Dadap Blok BJ 23, Kosambi, Tangerang, Banten 15213</p>
+            <p>ptopulentinteriors@gmail.com</p>
+            <p>0812-5151-1997</p>
+          </div>
+        </div>
+      </motion.footer>
 
     </main>
   );
-                  }
+}
