@@ -5,7 +5,6 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { motion, useScroll, useTransform } from "framer-motion";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -30,16 +29,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const { scrollYProgress } = useScroll();
-  const yParallax = useTransform(scrollYProgress, [0,1], [0,-50]);
-
   return (
     <html lang="id">
       <body className={`${playfair.variable} ${poppins.variable} antialiased`}>
-        {/* Background Parallax */}
-        <motion.div style={{ y: yParallax }} className="fixed inset-0 -z-10 w-full h-full">
+        {/* Background diam */}
+        <div className="fixed inset-0 -z-10 w-full h-full">
           <img src="/background.jpg" className="w-full h-full object-cover" alt="Background" />
-        </motion.div>
+        </div>
 
         {/* Navbar */}
         <header className="relative z-40">
@@ -61,4 +57,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-}
+        }
