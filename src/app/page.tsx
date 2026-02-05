@@ -25,22 +25,22 @@ const products = [
 export default function HomePage() {
   const { scrollY } = useScroll();
 
-  // 🔥 PARALLAX TAMBAHAN (GLOBAL)
-  const bgY = useTransform(scrollY, [0, 1200], [0, -300]);
+  // HERO PARALLAX
+  const heroY = useTransform(scrollY, [0, 400], [0, -120]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
 
-  const heroTextY = useTransform(scrollY, [0, 600], [0, -180]);
-  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0.6]);
+  // SECTION TITLE PARALLAX
+  const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
 
-  const sectionTitleY = useTransform(scrollY, [300, 900], [60, 0]);
+  // CARD PARALLAX
+  const advantagesY = useTransform(scrollY, [500, 1600], [40, -40]);
+  const productsY = useTransform(scrollY, [1000, 2200], [40, -40]);
 
   return (
-    <main className="relative w-full text-white overflow-hidden">
+    <main className="relative w-full text-white overflow-x-hidden">
 
-      {/* BACKGROUND (DITAMBAH GERAK, TIDAK DIHAPUS) */}
-      <motion.div
-        style={{ y: bgY }}
-        className="fixed inset-0 -z-10"
-      >
+      {/* BACKGROUND FULL PAGE */}
+      <div className="fixed inset-0 -z-10">
         <Image
           src="/background1.jpg"
           alt="Background"
@@ -49,22 +49,21 @@ export default function HomePage() {
           priority
         />
         <div className="absolute inset-0 bg-black/70" />
-      </motion.div>
+      </div>
 
-      {/* HERO (ASLI + PARALLAX) */}
+      {/* HERO */}
       <section className="min-h-screen flex items-center justify-center px-6">
         <motion.div
-          style={{ y: heroTextY, opacity: heroOpacity }}
+          style={{ y: heroY, opacity: heroOpacity }}
           className="text-center max-w-4xl"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg">
             Interior Elegan & Premium
           </h1>
-
           <p className="text-gray-200 text-lg md:text-xl mb-10">
             Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.
           </p>
-
+          {/* CTA HERO */}
           <Link
             href="https://wa.me/62XXXXXXXXXX"
             className="inline-block px-10 py-4 rounded-full
@@ -76,100 +75,92 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* KENAPA MEMILIH KAMI (TETAP ADA + PARALLAX) */}
+      {/* KENAPA MEMILIH KAMI */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D]"
-          >
-            Kenapa Memilih Kami
-          </motion.h2>
-        </div>
+        <motion.h2
+          style={{ y: sectionTitleY }}
+          className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16"
+        >
+          Kenapa Memilih Kami
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {advantages.map((item, idx) => {
-            const imgY = useTransform(scrollY, [600, 1600], [120, -120]);
-            const textY = useTransform(scrollY, [600, 1600], [60, 0]);
-
-            return (
-              <motion.div
-                key={idx}
-                className="bg-black/40 p-4 rounded-lg backdrop-blur-sm"
+          {advantages.map((item, idx) => (
+            <motion.div
+              key={idx}
+              style={{ y: advantagesY }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-black/40 p-4 rounded-xl backdrop-blur-sm hover:scale-[1.03] transition-all shadow-lg"
+            >
+              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+                <Image
+                  src={`/${item.img}`}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <motion.h3
+                initial={{ y: 10, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="text-xl font-bold text-[#C9A24D] mb-2"
               >
-                <motion.div
-                  style={{ y: imgY }}
-                  className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
-                >
-                  <Image
-                    src={`/${item.img}`}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-
-                <motion.h3
-                  style={{ y: textY }}
-                  className="text-xl font-bold text-[#C9A24D] mb-2"
-                >
-                  {item.title}
-                </motion.h3>
-
-                <motion.p
-                  style={{ y: textY }}
-                  className="text-gray-200"
-                >
-                  {item.desc}
-                </motion.p>
-              </motion.div>
-            );
-          })}
+                {item.title}
+              </motion.h3>
+              <p className="text-gray-200">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* PRODUK & LAYANAN (TETAP ADA + PARALLAX) */}
+      {/* PRODUK & LAYANAN */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D]"
-          >
-            Produk & Layanan Premium
-          </motion.h2>
-        </div>
+        <motion.h2
+          style={{ y: sectionTitleY }}
+          className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16"
+        >
+          Produk & Layanan Premium
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((item, idx) => {
-            const imgY = useTransform(scrollY, [1200, 2200], [100, -100]);
-
-            return (
-              <motion.div
-                key={idx}
-                className="bg-black/40 p-4 rounded-lg backdrop-blur-sm"
+          {products.map((item, idx) => (
+            <motion.div
+              key={idx}
+              style={{ y: productsY }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-black/40 p-4 rounded-xl backdrop-blur-sm hover:scale-[1.03] transition-all shadow-lg"
+            >
+              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+                <Image
+                  src={`/${item.img}`}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <motion.h3
+                initial={{ y: 10, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="text-xl font-bold text-[#C9A24D] mb-2"
               >
-                <motion.div
-                  style={{ y: imgY }}
-                  className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
-                >
-                  <Image
-                    src={`/${item.img}`}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-
-                <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-200">{item.desc}</p>
-              </motion.div>
-            );
-          })}
+                {item.title}
+              </motion.h3>
+              <p className="text-gray-200">{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* CTA BAWAH (TIDAK DIHAPUS) */}
+        {/* CTA BAWAH */}
         <div className="text-center mt-20">
           <Link
             href="https://wa.me/62XXXXXXXXXX"
@@ -184,4 +175,4 @@ export default function HomePage() {
 
     </main>
   );
-}
+      }
