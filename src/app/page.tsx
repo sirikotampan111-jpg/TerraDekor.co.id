@@ -25,16 +25,17 @@ const products = [
 export default function HomePage() {
   const { scrollY } = useScroll();
 
-  // HERO PARALLAX
+  // HERO
   const heroY = useTransform(scrollY, [0, 400], [0, -120]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
 
-  // SECTION TITLE PARALLAX
+  // Section title
   const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
 
-  // CARD PARALLAX
-  const advantagesY = useTransform(scrollY, [500, 1600], [40, -40]);
-  const productsY = useTransform(scrollY, [1000, 2200], [40, -40]);
+  // Paralax per card (gambar lebih lambat dari teks)
+  const cardY = useTransform(scrollY, [500, 1600], [0, -30]);
+  const cardImageY = useTransform(scrollY, [500, 1600], [0, -60]);
+  const cardTextY = useTransform(scrollY, [500, 1600], [0, -10]);
 
   return (
     <main className="relative w-full text-white overflow-x-hidden">
@@ -88,31 +89,33 @@ export default function HomePage() {
           {advantages.map((item, idx) => (
             <motion.div
               key={idx}
-              style={{ y: advantagesY }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-black/40 p-4 rounded-xl backdrop-blur-sm hover:scale-[1.03] transition-all shadow-lg"
+              whileHover={{ scale: 1.05, rotateX: 3, rotateY: 3 }}
+              transition={{ type: 'spring', stiffness: 120 }}
+              className="bg-black/40 p-4 rounded-xl backdrop-blur-sm shadow-lg relative overflow-hidden cursor-pointer"
             >
-              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+              <motion.div
+                style={{ y: cardImageY }}
+                className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
+              >
                 <Image
                   src={`/${item.img}`}
                   alt={item.title}
                   fill
                   className="object-cover"
                 />
-              </div>
+              </motion.div>
               <motion.h3
-                initial={{ y: 10, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.4 }}
-                viewport={{ once: true }}
+                style={{ y: cardTextY }}
                 className="text-xl font-bold text-[#C9A24D] mb-2"
               >
                 {item.title}
               </motion.h3>
-              <p className="text-gray-200">{item.desc}</p>
+              <motion.p
+                style={{ y: cardTextY }}
+                className="text-gray-200"
+              >
+                {item.desc}
+              </motion.p>
             </motion.div>
           ))}
         </div>
@@ -131,31 +134,33 @@ export default function HomePage() {
           {products.map((item, idx) => (
             <motion.div
               key={idx}
-              style={{ y: productsY }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-black/40 p-4 rounded-xl backdrop-blur-sm hover:scale-[1.03] transition-all shadow-lg"
+              whileHover={{ scale: 1.05, rotateX: 3, rotateY: 3 }}
+              transition={{ type: 'spring', stiffness: 120 }}
+              className="bg-black/40 p-4 rounded-xl backdrop-blur-sm shadow-lg relative overflow-hidden cursor-pointer"
             >
-              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+              <motion.div
+                style={{ y: cardImageY }}
+                className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
+              >
                 <Image
                   src={`/${item.img}`}
                   alt={item.title}
                   fill
                   className="object-cover"
                 />
-              </div>
+              </motion.div>
               <motion.h3
-                initial={{ y: 10, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.4 }}
-                viewport={{ once: true }}
+                style={{ y: cardTextY }}
                 className="text-xl font-bold text-[#C9A24D] mb-2"
               >
                 {item.title}
               </motion.h3>
-              <p className="text-gray-200">{item.desc}</p>
+              <motion.p
+                style={{ y: cardTextY }}
+                className="text-gray-200"
+              >
+                {item.desc}
+              </motion.p>
             </motion.div>
           ))}
         </div>
@@ -175,4 +180,4 @@ export default function HomePage() {
 
     </main>
   );
-      }
+}
