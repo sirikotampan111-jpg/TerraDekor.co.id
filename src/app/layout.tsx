@@ -1,4 +1,3 @@
-
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Playfair_Display, Poppins } from "next/font/google";
