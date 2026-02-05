@@ -1,4 +1,3 @@
- '
 'use client';
 
 import Image from 'next/image';
@@ -66,7 +65,7 @@ export default function HomePage() {
           className="text-center max-w-4xl relative z-10"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.05 } } // delay lebih smooth
+            visible: { transition: { staggerChildren: 0.05 } }
           }}
         >
           <motion.h1
@@ -112,12 +111,7 @@ export default function HomePage() {
               hover:bg-[#e3bb5f] hover:scale-105"
           >
             Konsultasi Sekarang
-          <Link
-           href="https://wa.me/6281251511997"
-            className="inline-block px-10 py-4 rounded-full
-              bg-[#C9A24D] text-black font-semibold text-lg
-              shadow-lg transition-transform duration-300 ease-out
-              hover:bg-[#e3bb5f] hover:scale-105"
+          </Link>
         </motion.div>
       </section>
 
@@ -236,12 +230,7 @@ export default function HomePage() {
               hover:bg-[#e3bb5f] hover:scale-105"
           >
             Hubungi Kami Sekarang
-          <Link
-          href="https://wa.me/6281251511997"
-            className="inline-block px-10 py-4 rounded-full
-              bg-[#C9A24D] text-black font-semibold text-lg
-              shadow-lg transition-transform duration-300 ease-out
-              hover:bg-[#e3bb5f] hover:scale-105"
+          </Link>
         </div>
       </section>
 
