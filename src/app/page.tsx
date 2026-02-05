@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const advantages = [
   { title: 'Terima Beres', desc: 'Pengerjaan rapi tanpa ribet.', img: 'terima-beres.jpg' },
@@ -23,10 +23,19 @@ const products = [
 ];
 
 export default function HomePage() {
+  const { scrollY } = useScroll();
+
+  // HERO PARALLAX
+  const heroY = useTransform(scrollY, [0, 400], [0, -100]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.6]);
+
+  // SECTION TITLE PARALLAX
+  const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
+
   return (
     <main className="relative w-full text-white overflow-hidden">
 
-      {/* BACKGROUND */}
+      {/* BACKGROUND FULL PAGE */}
       <div className="fixed inset-0 -z-10">
         <Image
           src="/background1.jpg"
@@ -35,54 +44,52 @@ export default function HomePage() {
           className="object-cover"
           priority
         />
-        {/* overlay DIKURANGIN biar background keliatan */}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
       {/* HERO */}
       <section className="min-h-screen flex items-center justify-center px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg">
+          <motion.h1
+            style={{ y: heroY, opacity: heroOpacity }}
+            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg"
+          >
             Interior Elegan & Premium
-          </h1>
+          </motion.h1>
 
-          <p className="text-gray-200 text-lg md:text-xl mb-10">
+          <motion.p
+            style={{ y: heroY }}
+            className="text-gray-200 text-lg md:text-xl mb-10"
+          >
             Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.
-          </p>
+          </motion.p>
 
           {/* CTA HERO */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="#produk"
-              className="px-10 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-gray-200 transition"
-            >
-              Lihat Produk
-            </Link>
-
-            <Link
-              href="https://wa.me/62XXXXXXXXXX"
-              className="px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:bg-[#e3bb5f] transition shadow-lg"
-            >
-              Konsultasi Sekarang
-            </Link>
-          </div>
+          <Link
+            href="https://wa.me/62XXXXXXXXXX"
+            className="inline-block px-10 py-4 rounded-full
+            bg-[#C9A24D] text-black font-semibold text-lg
+            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+          >
+            Konsultasi Sekarang
+          </Link>
         </motion.div>
       </section>
 
       {/* KENAPA MEMILIH KAMI */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
+          <motion.h2
+            style={{ y: sectionTitleY }}
+            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
+          >
             Kenapa Memilih Kami
-          </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Fokus pada kualitas, ketepatan, dan kepuasan pelanggan.
-          </p>
+          </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -93,9 +100,9 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="bg-black/50 border border-[#C9A24D]/20 p-4 rounded-xl hover:scale-105 transition"
+              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.02] transition"
             >
-              <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
+              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
                 <Image
                   src={`/${item.img}`}
                   alt={item.title}
@@ -104,9 +111,16 @@ export default function HomePage() {
                 />
               </div>
 
-              <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
+              <motion.h3
+                initial={{ y: 10, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="text-xl font-bold text-[#C9A24D] mb-2"
+              >
                 {item.title}
-              </h3>
+              </motion.h3>
+
               <p className="text-gray-200">{item.desc}</p>
             </motion.div>
           ))}
@@ -114,14 +128,14 @@ export default function HomePage() {
       </section>
 
       {/* PRODUK & LAYANAN */}
-      <section id="produk" className="px-6 py-24 max-w-7xl mx-auto">
+      <section className="px-6 py-24 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
+          <motion.h2
+            style={{ y: sectionTitleY }}
+            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
+          >
             Produk & Layanan Premium
-          </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Pilihan terbaik untuk hunian dan kebutuhan komersial.
-          </p>
+          </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -132,9 +146,9 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="bg-black/50 border border-[#C9A24D]/20 p-4 rounded-xl hover:scale-105 transition"
+              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.02] transition"
             >
-              <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
+              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
                 <Image
                   src={`/${item.img}`}
                   alt={item.title}
@@ -143,29 +157,33 @@ export default function HomePage() {
                 />
               </div>
 
-              <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
+              <motion.h3
+                initial={{ y: 10, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="text-xl font-bold text-[#C9A24D] mb-2"
+              >
                 {item.title}
-              </h3>
+              </motion.h3>
+
               <p className="text-gray-200">{item.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA BAWAH – AMAN */}
+        {/* CTA BAWAH */}
         <div className="text-center mt-20">
           <Link
             href="https://wa.me/62XXXXXXXXXX"
-            className="inline-block px-12 py-5 rounded-full bg-[#C9A24D] text-black font-bold text-lg hover:bg-[#e3bb5f] transition shadow-xl"
+            className="inline-block px-10 py-4 rounded-full
+            bg-[#C9A24D] text-black font-semibold text-lg
+            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
           >
             Hubungi Kami Sekarang
           </Link>
         </div>
       </section>
-
-      {/* FOOTER SIMPLE (NGAJAKIN TRUST) */}
-      <footer className="py-10 text-center text-gray-300 bg-black/60">
-        © {new Date().getFullYear()} Interior Premium. All rights reserved.
-      </footer>
 
     </main>
   );
