@@ -1,4 +1,5 @@
- 'use client';
+ '
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -65,7 +66,7 @@ export default function HomePage() {
           className="text-center max-w-4xl relative z-10"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.03 } }
+            visible: { transition: { staggerChildren: 0.05 } } // delay lebih smooth
           }}
         >
           <motion.h1
@@ -77,7 +78,7 @@ export default function HomePage() {
                 key={i}
                 variants={{
                   hidden: { y: 20, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }
                 }}
               >
                 {char}
@@ -94,7 +95,7 @@ export default function HomePage() {
                 key={i}
                 variants={{
                   hidden: { y: 10, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.4 } }
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }
                 }}
               >
                 {char}
@@ -104,10 +105,11 @@ export default function HomePage() {
 
           {/* CTA HERO */}
           <Link
-            href="https://wa.me/62XXXXXXXXXX"
+            href="https://wa.me/6281251511997"
             className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+              bg-[#C9A24D] text-black font-semibold text-lg
+              shadow-lg transition-transform duration-300 ease-out
+              hover:bg-[#e3bb5f] hover:scale-105"
           >
             Konsultasi Sekarang
           </Link>
@@ -121,8 +123,8 @@ export default function HomePage() {
             style={{ y: sectionTitleY }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
           >
             Kenapa Memilih Kami
@@ -135,8 +137,8 @@ export default function HomePage() {
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: idx * 0.05, ease: 'easeOut' }}
               className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition"
             >
               <motion.div
@@ -154,8 +156,8 @@ export default function HomePage() {
               <motion.h3
                 initial={{ y: 10, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.4 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
                 className="text-xl font-bold text-[#C9A24D] mb-2"
               >
                 {item.title}
@@ -174,8 +176,8 @@ export default function HomePage() {
             style={{ y: sectionTitleY }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
           >
             Produk & Layanan Premium
@@ -188,8 +190,8 @@ export default function HomePage() {
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: idx * 0.05, ease: 'easeOut' }}
               className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition"
             >
               <motion.div
@@ -207,8 +209,8 @@ export default function HomePage() {
               <motion.h3
                 initial={{ y: 10, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.4 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
                 className="text-xl font-bold text-[#C9A24D] mb-2"
               >
                 {item.title}
@@ -222,10 +224,11 @@ export default function HomePage() {
         {/* CTA BAWAH */}
         <div className="text-center mt-20">
           <Link
-            href="https://wa.me/62XXXXXXXXXX"
+            href="https://wa.me/6281251511997"
             className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+              bg-[#C9A24D] text-black font-semibold text-lg
+              shadow-lg transition-transform duration-300 ease-out
+              hover:bg-[#e3bb5f] hover:scale-105"
           >
             Hubungi Kami Sekarang
           </Link>
