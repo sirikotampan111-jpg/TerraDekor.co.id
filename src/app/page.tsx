@@ -5,31 +5,31 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const advantages = [
-  { title: 'Terima Beres', desc: 'Dari desain hingga pemasangan, kami tangani profesional.' },
-  { title: 'Kualitas Premium', desc: 'Material berkualitas tinggi standar premium.' },
-  { title: 'Harga Terjangkau', desc: 'Solusi terbaik dengan harga transparan.' },
-  { title: 'Tim Profesional', desc: 'Dikerjakan oleh tenaga ahli berpengalaman.' },
-  { title: 'Material Berkualitas', desc: 'Pemilihan material terbaik untuk jangka panjang.' },
-  { title: 'Tepat Waktu', desc: 'Komitmen penyelesaian sesuai jadwal.' },
+  { title: 'Terima Beres', desc: 'Pengerjaan rapi tanpa ribet.', img: 'terima-beres.jpg' },
+  { title: 'Kualitas Premium', desc: 'Standar material terbaik.', img: 'kualitas-premium.jpg' },
+  { title: 'Harga Terjangkau', desc: 'Transparan & masuk akal.', img: 'harga-terjangkau.jpg' },
+  { title: 'Tim Profesional', desc: 'Tenaga ahli berpengalaman.', img: 'tim-profesional.jpg' },
+  { title: 'Material Berkualitas', desc: 'Pilihan material unggulan.', img: 'material-berkualitas.jpg' },
+  { title: 'Tepat Waktu', desc: 'Komitmen deadline.', img: 'tepat-waktu.jpg' },
 ];
 
 const products = [
-  { title: 'Wall Panel', desc: 'Panel dinding premium untuk tampilan mewah.' },
-  { title: 'Wallpaper', desc: 'Beragam motif eksklusif dan modern.' },
-  { title: 'Vinyl', desc: 'Lantai kuat, awet, dan estetik.' },
-  { title: 'WPC', desc: 'Material tahan cuaca untuk interior & eksterior.' },
-  { title: 'Pintu Baja', desc: 'Pintu kokoh dengan desain modern.' },
-  { title: 'Jasa Interior', desc: 'Solusi interior sesuai kebutuhan Anda.' },
+  { title: 'Wall Panel', desc: 'Panel dinding premium.', img: 'wallpanel.jpg' },
+  { title: 'Wallpaper', desc: 'Motif eksklusif.', img: 'wallpaper.jpg' },
+  { title: 'Vinyl', desc: 'Lantai kuat & elegan.', img: 'vinil.jpg' },
+  { title: 'WPC', desc: 'Interior & eksterior.', img: 'wpc.jpg' },
+  { title: 'Pintu Baja', desc: 'Aman & kokoh.', img: 'pintu-baja.jpg' },
+  { title: 'Terima Jasa', desc: 'Custom interior.', img: 'terima-jasa.jpg' },
 ];
 
 export default function HomePage() {
   return (
     <main className="relative w-full text-white">
 
-      {/* BACKGROUND FULL PAGE */}
+      {/* BACKGROUND FULL */}
       <div className="fixed inset-0 -z-10">
         <Image
-          src="/background/background2.jpg"
+          src="/background2.jpg"
           alt="Background"
           fill
           className="object-cover"
@@ -50,23 +50,20 @@ export default function HomePage() {
             Interior Elegan & Premium
           </h1>
           <p className="text-gray-200 text-lg md:text-xl mb-10">
-            Solusi desain interior modern dengan kualitas terbaik dan sentuhan profesional.
+            Solusi desain interior modern dengan kualitas terbaik.
           </p>
 
           <Link
             href="https://wa.me/62XXXXXXXXXX"
-            className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg"
           >
             Konsultasi Sekarang
           </Link>
         </motion.div>
       </section>
 
-      {/* SECTION 1 */}
+      {/* KENAPA MEMILIH KAMI */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
-
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
             Kenapa Memilih Kami
@@ -79,20 +76,13 @@ export default function HomePage() {
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="bg-black/40 border-2 border-[#C9A24D]/20 p-4 rounded-lg text-center"
+              className="bg-black/40 p-4 rounded-lg"
             >
-              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+              <div className="relative w-full h-48 mb-4">
                 <Image
-                  src={[
-                    '/gallery/terima-beres.jpg',
-                    '/gallery/kualitas-premium.jpg',
-                    '/gallery/harga-terjangkau.jpg',
-                    '/gallery/tim-profesional.jpg',
-                    '/gallery/material-berkualitas.jpg',
-                    '/gallery/tepat-waktu.jpg',
-                  ][idx]}
+                  src={`/${item.img}`}
                   alt={item.title}
                   fill
                   className="object-cover"
@@ -108,9 +98,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 2 */}
+      {/* PRODUK & LAYANAN */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
-
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
             Produk & Layanan Premium
@@ -123,20 +112,13 @@ export default function HomePage() {
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="bg-black/40 border-2 border-[#C9A24D]/20 p-4 rounded-lg text-center"
+              className="bg-black/40 p-4 rounded-lg"
             >
-              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
+              <div className="relative w-full h-48 mb-4">
                 <Image
-                  src={[
-                    '/gallery/wallpanel.jpg',
-                    '/gallery/wallpaper.jpg',
-                    '/gallery/vinil.jpg',
-                    '/gallery/wpc.jpg',
-                    '/gallery/pintu-baja.jpg',
-                    '/gallery/terima-jasa.jpg',
-                  ][idx]}
+                  src={`/${item.img}`}
                   alt={item.title}
                   fill
                   className="object-cover"
@@ -149,6 +131,15 @@ export default function HomePage() {
               <p className="text-gray-200">{item.desc}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-20">
+          <Link
+            href="https://wa.me/62XXXXXXXXXX"
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg"
+          >
+            Hubungi Kami Sekarang
+          </Link>
         </div>
       </section>
 
