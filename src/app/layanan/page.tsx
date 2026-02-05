@@ -9,62 +9,62 @@ const services = [
   {
     title: 'Interior Kantor & Co-working Space',
     description: 'Desain dan pemasangan interior kantor modern dan fungsional untuk produktivitas tim',
-    img: '/services/kantor.jpg',
+    img: '/kantor.jpg',
   },
   {
     title: 'Interior Rumah',
     description: 'Transformasi rumah menjadi ruang nyaman dan estetis sesuai gaya hidup Anda',
-    img: '/services/rumah.jpg',
+    img: '/rumah.jpg',
   },
   {
     title: 'Interior Apartment',
     description: 'Solusi interior apartment compact yang maksimal dan elegan',
-    img: '/services/apartment.jpg',
+    img: '/apartment.jpg',
   },
   {
     title: 'Interior Restoran, Kafe & Retail',
     description: 'Desain interior yang menarik pelanggan dan meningkatkan pengalaman bersantap',
-    img: '/services/restoran.jpg',
+    img: '/restoran.jpg',
   },
   {
     title: 'Interior Rumah Sakit, Klinik & Apotek',
     description: 'Interior medis yang bersih, profesional, dan nyaman untuk pasien',
-    img: '/services/rumah-sakit.jpg',
+    img: '/rumah-sakit.jpg',
   },
   {
     title: 'Interior Hotel',
     description: 'Desain interior hotel yang mewah dan memberikan pengalaman tak terlupakan',
-    img: '/services/hotel.jpg',
+    img: '/hotel.jpg',
   },
   {
     title: 'Interior Showroom Produk',
     description: 'Showroom produk yang menarik dan profesional untuk meningkatkan penjualan',
-    img: '/services/showroom.jpg',
+    img: '/showroom.jpg',
   },
   {
     title: 'Interior Kampus',
     description: 'Interior kampus yang inspiratif dan mendukung kegiatan belajar mengajar',
-    img: '/services/kampus.jpg',
+    img: '/kampus.jpg',
   },
   {
     title: 'Interior Ruko',
     description: 'Solusi interior ruko yang efektif untuk usaha dan bisnis Anda',
-    img: '/services/ruko.jpg',
+    img: '/ruko.jpg',
   },
   {
     title: 'Interior Aula',
     description: 'Desain aula yang luas, fungsional, dan estetis untuk berbagai acara',
-    img: '/services/aula.jpg',
+    img: '/aula.jpg',
   },
   {
     title: 'Interior Booth & Exhibition',
     description: 'Booth pameran yang menarik perhatian dan efektif untuk branding',
-    img: '/services/booth.jpg',
+    img: '/booth.jpg',
   },
   {
     title: 'Furniture Custom',
     description: 'Furniture custom yang dibuat khusus sesuai kebutuhan dan selera Anda',
-    img: '/services/furniture.jpg',
+    img: '/furniture.jpg',
   },
 ];
 
@@ -86,13 +86,16 @@ export default function ServicesPage() {
               height={300}
               className="object-cover w-full h-full"
             />
-            <div className="absolute bottom-0 left-0 w-full bg-black/50 p-4 text-white">
+            <div className="absolute bottom-0 left-0 w-full bg-black/40 backdrop-blur-sm p-4 text-white">
               <h3 className="font-bold text-lg">{service.title}</h3>
               <p className="text-sm">{service.description}</p>
             </div>
           </div>
         ))}
       </div>
+    </main>
+  );
+}
 
 export default function LayananPage() {
   return (
