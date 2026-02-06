@@ -12,18 +12,119 @@ const services = [
     title: 'Interior Kantor & Co-working Space',
     description: 'Desain dan pemasangan interior kantor modern dan fungsional untuk produktivitas tim',
     color: 'from-blue-500 to-blue-700',
+    image: '/images/kantor.jpg',
   },
   {
     icon: Home,
     title: 'Interior Rumah',
     description: 'Transformasi rumah menjadi ruang nyaman dan estetis sesuai gaya hidup Anda',
     color: 'from-green-500 to-green-700',
+    image: '/images/rumah.jpg',
   },
   {
     icon: Building,
     title: 'Interior Apartment',
     description: 'Solusi interior apartment compact yang maksimal dan elegan',
     color: 'from-purple-500 to-purple-700',
+    image: '/images/apartment.jpg',
+  },
+  {
+    icon: Utensils,
+    title: 'Interior Restoran, Kafe & Retail',
+    description: 'Desain interior yang menarik pelanggan dan meningkatkan pengalaman bersantap',
+    color: 'from-orange-500 to-orange-700',
+    image: '/images/resto.jpg',
+  },
+  {
+    icon: Stethoscope,
+    title: 'Interior Rumah Sakit, Klinik & Apotek',
+    description: 'Interior medis yang bersih, profesional, dan nyaman untuk pasien',
+    color: 'from-red-500 to-red-700',
+    image: '/images/medis.jpg',
+  },
+  {
+    icon: Hotel,
+    title: 'Interior Hotel',
+    description: 'Desain interior hotel yang mewah dan memberikan pengalaman tak terlupakan',
+    color: 'from-amber-500 to-amber-700',
+    image: '/images/hotel.jpg',
+  },
+  {
+    icon: Store,
+    title: 'Interior Showroom Produk',
+    description: 'Showroom produk yang menarik dan profesional untuk meningkatkan penjualan',
+    color: 'from-cyan-500 to-cyan-700',
+    image: '/images/showroom.jpg',
+  },
+  {
+    icon: School,
+    title: 'Interior Kampus',
+    description: 'Interior kampus yang inspiratif dan mendukung kegiatan belajar mengajar',
+    color: 'from-indigo-500 to-indigo-700',
+    image: '/images/kampus.jpg',
+  },
+  {
+    icon: Store,
+    title: 'Interior Ruko',
+    description: 'Solusi interior ruko yang efektif untuk usaha dan bisnis Anda',
+    color: 'from-teal-500 to-teal-700',
+    image: '/images/ruko.jpg',
+  },
+  {
+    icon: Building,
+    title: 'Interior Aula',
+    description: 'Desain aula yang luas, fungsional, dan estetis untuk berbagai acara',
+    color: 'from-pink-500 to-pink-700',
+    image: '/images/aula.jpg',
+  },
+  {
+    icon: Store,
+    title: 'Interior Booth & Exhibition',
+    description: 'Booth pameran yang menarik perhatian dan efektif untuk branding',
+    color: 'from-rose-500 to-rose-700',
+    image: '/images/booth.jpg',
+  },
+  {
+    icon: Palette,
+    title: 'Furniture costume',
+    description: 'Furniture custom yang dibuat khusus sesuai kebutuhan dan selera Anda',
+    color: 'from-gray-600 to-gray-800',
+    image: '/images/furniture.jpg',
+  },
+];
+
+export default function ServicesPage() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {services.map((service, index) => (
+        <Card key={index} className="overflow-hidden">
+
+          {/* CARD = FOTO */}
+          <div className="w-full h-48">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* TEKS */}
+          <div className="p-4">
+            <h3 className="text-lg font-semibold">
+              {service.title}
+            </h3>
+            <p className="text-sm text-muted-foreground mt-2">
+              {service.description}
+            </p>
+          </div>
+
+        </Card>
+      ))}
+
+      <FloatingWhatsApp />
+    </div>
+  );
+}
   },
   {
     icon: Utensils,
