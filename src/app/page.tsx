@@ -35,7 +35,7 @@ export default function HomePage() {
 
   const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
 
-  const heroText = 'Interior Elegan & Premium';
+  const heroText = 'SELAMAT DATANG DI TERRADEKOR.ID';
   const heroSub = 'Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.';
 
   return (
