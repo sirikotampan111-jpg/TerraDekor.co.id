@@ -74,7 +74,7 @@ const services = [
     color: 'from-rose-500 to-rose-700',
   },
   {
-    icon: Collor,
+    icon: pallete,
     title: 'Furniture costume',
     description: 'Furniture custom yang dibuat khusus sesuai kebutuhan dan selera Anda',
     color: 'from-gray-600 to-gray-800',
