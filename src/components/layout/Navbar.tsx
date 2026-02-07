@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { 
-  Menu, X, Home, Package, Wrench, Users, Phone, MessageSquare, Image 
+  Menu, X, Home, Package, Wrench, Users, Phone, MessageSquare, Image, shield 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: 'Portofolio', href: '/portofolio', icon: Image },
     { name: 'Tentang Kami', href: '/tentang', icon: Users },
     { name: 'Kontak', href: '/kontak', icon: Phone },
+    { name: 'Admin', href: '/admin', icon: Shield },
   ];
 
   return (
