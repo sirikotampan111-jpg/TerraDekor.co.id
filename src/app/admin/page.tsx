@@ -512,4 +512,356 @@ export default function AdminDashboard() {
                       <div className="p-6 space-y-4">
                         <div className="flex items-center justify-between mb-4">
                           <h3 className="text-lg font-bold text-[#C9A24D]">Portofolio #{index + 1}</h3>
-                          <Button onClick={() => handleDeletePortf
+                          <Button onClick={() => handleDeletePortfolio(index)} variant="destructive" size="sm" className="bg-red-600 hover:bg-red-700"><Trash2 className="w-4 h-4 mr-2" />Hapus</Button>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Judul Portofolio</label>
+                            <Input value={item.title} onChange={(e) => { const newPortfolio = [...portfolio]; newPortfolio[index] = { ...newPortfolio[index], title: e.target.value }; setPortfolio(newPortfolio); }} placeholder="Judul portofolio" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Kategori</label>
+                            <Input value={item.category} onChange={(e) => { const newPortfolio = [...portfolio]; newPortfolio[index] = { ...newPortfolio[index], category: e.target.value }; setPortfolio(newPortfolio); }} placeholder="Kategori" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300 flex items-center"><ImageIcon className="w-4 h-4 mr-2 text-[#C9A24D]" />URL Foto</label>
+                            <Input value={item.image} onChange={(e) => { const newPortfolio = [...portfolio]; newPortfolio[index] = { ...newPortfolio[index], image: e.target.value }; setPortfolio(newPortfolio); }} placeholder="/portfolio-nama.jpg" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+            <div className="flex justify-center">
+              <Button onClick={handleSavePortfolio} disabled={saving} size="lg" className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-12 py-4 text-lg shadow-xl">
+                {saving ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Menyimpan...</> : <><Save className="w-5 h-5 mr-2" />Simpan Portofolio</>}
+              </Button>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="produk" className="space-y-6">
+            <Card className="bg-gray-800/50 border-gray-700">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-white text-2xl flex items-center"><Package className="w-6 h-6 mr-3 text-[#C9A24D]" />Kelola Produk</CardTitle>
+                    <p className="text-gray-400 mt-2">Edit semua produk (nama, deskripsi, harga, kategori, foto)</p>
+                  </div>
+                  <Button onClick={handleAddProduct} className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold"><Plus className="w-4 h-4 mr-2" />Tambah Produk</Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {products.map((product) => (
+                    <Card key={product.id} className="bg-gray-900/50 border-gray-700 overflow-hidden">
+                      <div className="p-6 space-y-4">
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-lg font-bold text-[#C9A24D]">Produk #{product.id}</h3>
+                          <Button onClick={() => handleDeleteProduct(product.id)} variant="destructive" size="sm" className="bg-red-600 hover:bg-red-700"><Trash2 className="w-4 h-4 mr-2" />Hapus</Button>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Nama Produk</label>
+                            <Input value={product.name} onChange={(e) => { const newProducts = [...products]; const idx = newProducts.findIndex(p => p.id === product.id); newProducts[idx] = { ...newProducts[idx], name: e.target.value }; setProducts(newProducts); }} placeholder="Nama produk" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Kode Produk</label>
+                            <Input value={product.code} onChange={(e) => { const newProducts = [...products]; const idx = newProducts.findIndex(p => p.id === product.id); newProducts[idx] = { ...newProducts[idx], code: e.target.value }; setProducts(newProducts); }} placeholder="KODE-01" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Kategori</label>
+                            <Input value={product.category} onChange={(e) => { const newProducts = [...products]; const idx = newProducts.findIndex(p => p.id === product.id); newProducts[idx] = { ...newProducts[idx], category: e.target.value }; setProducts(newProducts); }} placeholder="wallpaper, vinylspc, dll" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-300">Harga</label>
+                            <Input value={product.price} onChange={(e) => { const newProducts = [...products]; const idx = newProducts.findIndex(p => p.id === product.id); newProducts[idx] = { ...newProducts[idx], price: e.target.value }; setProducts(newProducts); }} placeholder="Rp 500.000" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                          <div className="space-y-2 md:col-span-2">
+                            <label className="text-sm font-medium text-gray-300 flex items-center"><ImageIcon className="w-4 h-4 mr-2 text-[#C9A24D]" />URL Foto</label>
+                            <Input value={product.image} onChange={(e) => { const newProducts = [...products]; const idx = newProducts.findIndex(p => p.id === product.id); newProducts[idx] = { ...newProducts[idx], image: e.target.value }; setProducts(newProducts); }} placeholder="/produk-nama.jpg" className="bg-gray-800 border-gray-700 text-white placeholder-gray-500" />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-300">Deskripsi</label>
+                          <Textarea value={product.description} onChange={(e) => { const newProducts = [...products]; const idx = newProducts.findIndex(p => p.id === product.id); newProducts[idx] = { ...newProducts[idx], description: e.target.value }; setProducts(newProducts); }} placeholder="Deskripsi produk" rows={3} className="bg-gray-800 border-gray-700 text-white placeholder-gray-500 resize-none" />
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+            <div className="flex justify-center">
+              <Button onClick={handleSaveProducts} disabled={saving} size="lg" className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-12 py-4 text-lg shadow-xl">
+                {saving ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Menyimpan...</> : <><Save className="w-5 h-5 mr-2" />Simpan Produk</>}
+              </Button>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="home" className="space-y-6">
+            {homeData && (
+              <>
+                <Card className="bg-gray-800/50 border-gray-700">
+                  <CardHeader>
+                    <CardTitle className="text-white text-2xl flex items-center"><Home className="w-6 h-6 mr-3 text-[#C9A24D]" />Edit Halaman Home</CardTitle>
+                    <p className="text-gray-400 mt-2">Edit semua konten di halaman beranda</p>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">Hero Section</h3>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Badge</label><Input value={homeData.hero.badge} onChange={(e) => setHomeData({ ...homeData, hero: { ...homeData.hero, badge: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Heading (gunakan \n untuk baris baru)</label><Textarea value={homeData.hero.heading} onChange={(e) => setHomeData({ ...homeData, hero: { ...homeData.hero, heading: e.target.value } })} rows={3} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Subheading</label><Textarea value={homeData.hero.subheading} onChange={(e) => setHomeData({ ...homeData, hero: { ...homeData.hero, subheading: e.target.value } })} rows={2} className="bg-gray-800 border-gray-700 text-white" /></div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">About Section</h3>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Heading</label><Input value={homeData.about.heading} onChange={(e) => setHomeData({ ...homeData, about: { ...homeData.about, heading: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi 1</label><Textarea value={homeData.about.description1} onChange={(e) => setHomeData({ ...homeData, about: { ...homeData.about, description1: e.target.value } })} rows={3} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi 2</label><Textarea value={homeData.about.description2} onChange={(e) => setHomeData({ ...homeData, about: { ...homeData.about, description2: e.target.value } })} rows={3} className="bg-gray-800 border-gray-700 text-white" /></div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-bold text-[#C9A24D] flex items-center"><Star className="w-5 h-5 mr-2" />Advantages Section (Keunggulan)</h3>
+                        <Button onClick={() => setHomeData({
+                          ...homeData,
+                          advantages: {
+                            ...homeData.advantages,
+                            items: [...homeData.advantages.items, { title: 'Keunggulan Baru', description: 'Deskripsi keunggulan', icon: 'Check', image: '/advantage-default.jpg' }]
+                          }
+                        })} size="sm" className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold">
+                          <Plus className="w-4 h-4 mr-2" />Tambah Keunggulan
+                        </Button>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Heading</label><Input value={homeData.advantages.heading} onChange={(e) => setHomeData({ ...homeData, advantages: { ...homeData.advantages, heading: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        {homeData.advantages.items.map((item, index) => (
+                          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-900/50 rounded-lg border border-gray-700">
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-between">
+                                <label className="text-sm font-medium text-gray-300">Keunggulan #{index + 1} - Title</label>
+                                <Button onClick={() => {
+                                  const newItems = homeData.advantages.items.filter((_, i) => i !== index);
+                                  setHomeData({ ...homeData, advantages: { ...homeData.advantages, items: newItems } });
+                                }} variant="destructive" size="sm" className="bg-red-600 hover:bg-red-700 h-7 px-2 text-xs">
+                                  <Trash2 className="w-3 h-3 mr-1" />Hapus
+                                </Button>
+                              </div>
+                              <Input value={item.title} onChange={(e) => { const newItems = [...homeData.advantages.items]; newItems[index] = { ...newItems[index], title: e.target.value }; setHomeData({ ...homeData, advantages: { ...homeData.advantages, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" />
+                            </div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi</label><Textarea value={item.description} onChange={(e) => { const newItems = [...homeData.advantages.items]; newItems[index] = { ...newItems[index], description: e.target.value }; setHomeData({ ...homeData, advantages: { ...homeData.advantages, items: newItems } }); }} rows={2} className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Icon (nama icon Lucide)</label><Input value={item.icon} onChange={(e) => { const newItems = [...homeData.advantages.items]; newItems[index] = { ...newItems[index], icon: e.target.value }; setHomeData({ ...homeData, advantages: { ...homeData.advantages, items: newItems } }); }} placeholder="Check, Award, Star, Shield, Zap, Clock" className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-300 flex items-center"><ImageIcon className="w-4 h-4 mr-2" />Foto (file path di public folder)</label>
+                              <Input value={item.image} onChange={(e) => { const newItems = [...homeData.advantages.items]; newItems[index] = { ...newItems[index], image: e.target.value }; setHomeData({ ...homeData, advantages: { ...homeData.advantages, items: newItems } }); }} placeholder="/nama-foto.jpg" className="bg-gray-800 border-gray-700 text-white" />
+                              {item.image && (
+                                <div className="mt-2 p-2 bg-gray-800 rounded-lg">
+                                  <p className="text-xs text-gray-400 mb-2">Preview:</p>
+                                  <img src={item.image} alt={item.title} className="w-full h-32 object-cover rounded-lg border border-gray-700" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-bold text-[#C9A24D] flex items-center"><TrendingUp className="w-5 h-5 mr-2" />Highlights Section (Produk & Layanan)</h3>
+                        <Button onClick={() => setHomeData({
+                          ...homeData,
+                          highlights: {
+                            ...homeData.highlights,
+                            items: [...homeData.highlights.items, { title: 'Highlight Baru', description: 'Deskripsi highlight', icon: '🏠', image: '/highlight-wallpanel.svg' }]
+                          }
+                                           <Trash2 className="w-3 h-3 mr-1" />Hapus
+                                </Button>
+                              </div>
+                              <Input value={item.title} onChange={(e) => { const newItems = [...homeData.highlights.items]; newItems[index] = { ...newItems[index], title: e.target.value }; setHomeData({ ...homeData, highlights: { ...homeData.highlights, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" />
+                            </div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi</label><Textarea value={item.description} onChange={(e) => { const newItems = [...homeData.highlights.items]; newItems[index] = { ...newItems[index], description: e.target.value }; setHomeData({ ...homeData, highlights: { ...homeData.highlights, items: newItems } }); }} rows={2} className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Icon (emoji)</label><Input value={item.icon} onChange={(e) => { const newItems = [...homeData.highlights.items]; newItems[index] = { ...newItems[index], icon: e.target.value }; setHomeData({ ...homeData, highlights: { ...homeData.highlights, items: newItems } }); }} placeholder="🏠" className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-300 flex items-center"><ImageIcon className="w-4 h-4 mr-2" />Foto</label>
+                              <div className="flex gap-2">
+                                <Input value={item.image} onChange={(e) => { const newItems = [...homeData.highlights.items]; newItems[index] = { ...newItems[index], image: e.target.value }; setHomeData({ ...homeData, highlights: { ...homeData.highlights, items: newItems } }); }} placeholder="/nama-foto.jpg" className="bg-gray-800 border-gray-700 text-white" />
+                              </div>
+                              {item.image && (
+                                <div className="mt-2">
+                                  <img src={item.image} alt={item.title} className="w-full h-24 object-cover rounded-lg border border-gray-700" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">CTA Section</h3>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Heading</label><Input value={homeData.cta.heading} onChange={(e) => setHomeData({ ...homeData, cta: { ...homeData.cta, heading: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi</label><Textarea value={homeData.cta.description} onChange={(e) => setHomeData({ ...homeData, cta: { ...homeData.cta, description: e.target.value } })} rows={2} className="bg-gray-800 border-gray-700 text-white" /></div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="flex justify-center">
+                  <Button onClick={handleSaveHome} disabled={saving} size="lg" className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-12 py-4 text-lg shadow-xl">
+                    {saving ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Menyimpan...</> : <><Save className="w-5 h-5 mr-2" />Simpan Home</>}
+                  </Button>
+                </div>
+              </>
+            )}
+          </TabsContent>
+
+          <TabsContent value="about" className="space-y-6">
+            {aboutData && (
+              <>
+                <Card className="bg-gray-800/50 border-gray-700">
+                  <CardHeader>
+                    <CardTitle className="text-white text-2xl flex items-center"><Info className="w-6 h-6 mr-3 text-[#C9A24D]" />Edit Halaman Tentang Kami</CardTitle>
+                    <p className="text-gray-400 mt-2">Edit semua konten di halaman tentang kami</p>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">Informasi Perusahaan</h3>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Badge</label><Input value={aboutData.hero.badge} onChange={(e) => setAboutData({ ...aboutData, hero: { ...aboutData.hero, badge: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Heading</label><Input value={aboutData.hero.heading} onChange={(e) => setAboutData({ ...aboutData, hero: { ...aboutData.hero, heading: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Nama Perusahaan</label><Input value={aboutData.companyInfo.heading} onChange={(e) => setAboutData({ ...aboutData, companyInfo: { ...aboutData.companyInfo, heading: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Tagline</label><Input value={aboutData.companyInfo.tagline} onChange={(e) => setAboutData({ ...aboutData, companyInfo: { ...aboutData.companyInfo, tagline: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi Perusahaan</label><Textarea value={aboutData.companyInfo.description} onChange={(e) => setAboutData({ ...aboutData, companyInfo: { ...aboutData.companyInfo, description: e.target.value } })} rows={4} className="bg-gray-800 border-gray-700 text-white" /></div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">Visi & Misi</h3>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Visi</label><Textarea value={aboutData.vision.description} onChange={(e) => setAboutData({ ...aboutData, vision: { ...aboutData.vision, description: e.target.value } })} rows={3} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Misi (setiap poin dipisahkan dengan baris baru)</label><Textarea value={aboutData.mission.items.join('\n')} onChange={(e) => setAboutData({ ...aboutData, mission: { ...aboutData.mission, items: e.target.value.split('\n').filter(x => x.trim()) } })} rows={5} className="bg-gray-800 border-gray-700 text-white" /></div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D] flex items-center"><Award className="w-5 h-5 mr-2" />Nilai Perusahaan</h3>
+                      <div className="space-y-4">
+                        {aboutData.values.items.map((item, index) => (
+                          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-900/50 rounded-lg">
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Nilai #{index + 1} - Title</label><Input value={item.title} onChange={(e) => { const newItems = [...aboutData.values.items]; newItems[index] = { ...newItems[index], title: e.target.value }; setAboutData({ ...aboutData, values: { ...aboutData.values, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi</label><Textarea value={item.description} onChange={(e) => { const newItems = [...aboutData.values.items]; newItems[index] = { ...newItems[index], description: e.target.value }; setAboutData({ ...aboutData, values: { ...aboutData.values, items: newItems } }); }} rows={2} className="bg-gray-800 border-gray-700 text-white" /></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D] flex items-center"><TrendingUp className="w-5 h-5 mr-2" />Stats / Pencapaian</h3>
+                      <div className="space-y-4">
+                        {aboutData.stats.items.map((item, index) => (
+                          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-900/50 rounded-lg">
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Stat #{index + 1} - Angka</label><Input value={item.number} onChange={(e) => { const newItems = [...aboutData.stats.items]; newItems[index] = { ...newItems[index], number: e.target.value }; setAboutData({ ...aboutData, stats: { ...aboutData.stats, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Label</label><Input value={item.label} onChange={(e) => { const newItems = [...aboutData.stats.items]; newItems[index] = { ...newItems[index], label: e.target.value }; setAboutData({ ...aboutData, stats: { ...aboutData.stats, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="flex justify-center">
+                  <Button onClick={handleSaveAbout} disabled={saving} size="lg" className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-12 py-4 text-lg shadow-xl">
+                    {saving ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Menyimpan...</> : <><Save className="w-5 h-5 mr-2" />Simpan Tentang Kami</>}
+                  </Button>
+                </div>
+              </>
+            )}
+          </TabsContent>
+
+          <TabsContent value="contact" className="space-y-6">
+            {contactData && (
+              <>
+                <Card className="bg-gray-800/50 border-gray-700">
+                  <CardHeader>
+                    <CardTitle className="text-white text-2xl flex items-center"><Phone className="w-6 h-6 mr-3 text-[#C9A24D]" />Edit Halaman Kontak</CardTitle>
+                    <p className="text-gray-400 mt-2">Edit semua konten di halaman kontak</p>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">Hero Section</h3>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Badge</label><Input value={contactData.hero.badge} onChange={(e) => setContactData({ ...contactData, hero: { ...contactData.hero, badge: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Heading</label><Input value={contactData.hero.heading} onChange={(e) => setContactData({ ...contactData, hero: { ...contactData.hero, heading: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Subheading</label><Textarea value={contactData.hero.subheading} onChange={(e) => setContactData({ ...contactData, hero: { ...contactData.hero, subheading: e.target.value } })} rows={2} className="bg-gray-800 border-gray-700 text-white" /></div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">Informasi Kontak</h3>
+                      <div className="space-y-4">
+                        {contactData.contactInfo.items.map((item, index) => (
+                          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Label</label><Input value={item.label} onChange={(e) => { const newItems = [...contactData.contactInfo.items]; newItems[index] = { ...newItems[index], label: e.target.value }; setContactData({ ...contactData, contactInfo: { ...contactData.contactInfo, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Value</label><Input value={item.value} onChange={(e) => { const newItems = [...contactData.contactInfo.items]; newItems[index] = { ...newItems[index], value: e.target.value }; setContactData({ ...contactData, contactInfo: { ...contactData.contactInfo, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">Jam Operasional</h3>
+                      <div className="space-y-4">
+                        {contactData.officeHours.items.map((item, index) => (
+                          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Hari</label><Input value={item.day} onChange={(e) => { const newItems = [...contactData.officeHours.items]; newItems[index] = { ...newItems[index], day: e.target.value }; setContactData({ ...contactData, officeHours: { ...contactData.officeHours, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Jam</label><Input value={item.hours} onChange={(e) => { const newItems = [...contactData.officeHours.items]; newItems[index] = { ...newItems[index], hours: e.target.value }; setContactData({ ...contactData, officeHours: { ...contactData.officeHours, items: newItems } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D] flex items-center"><Globe className="w-5 h-5 mr-2" />Media Sosial</h3>
+                      <div className="space-y-4">
+                        {contactData.socialMedia.platforms.map((item, index) => (
+                          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-900/50 rounded-lg">
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Nama Platform</label><Input value={item.name} onChange={(e) => { const newPlatforms = [...contactData.socialMedia.platforms]; newPlatforms[index] = { ...newPlatforms[index], name: e.target.value }; setContactData({ ...contactData, socialMedia: { ...contactData.socialMedia, platforms: newPlatforms } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                            <div className="space-y-2"><label className="text-sm font-medium text-gray-300">URL</label><Input value={item.url} onChange={(e) => { const newPlatforms = [...contactData.socialMedia.platforms]; newPlatforms[index] = { ...newPlatforms[index], url: e.target.value }; setContactData({ ...contactData, socialMedia: { ...contactData.socialMedia, platforms: newPlatforms } }); }} className="bg-gray-800 border-gray-700 text-white" /></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-[#C9A24D]">Form Section</h3>
+                      <div className="space-y-4">
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Heading</label><Input value={contactData.form.heading} onChange={(e) => setContactData({ ...contactData, form: { ...contactData.form, heading: e.target.value } })} className="bg-gray-800 border-gray-700 text-white" /></div>
+                        <div className="space-y-2"><label className="text-sm font-medium text-gray-300">Deskripsi</label><Textarea value={contactData.form.description} onChange={(e) => setContactData({ ...contactData, form: { ...contactData.form, description: e.target.value } })} rows={2} className="bg-gray-800 border-gray-700 text-white" /></div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="flex justify-center">
+                  <Button onClick={handleSaveContact} disabled={saving} size="lg" className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-12 py-4 text-lg shadow-xl">
+                    {saving ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Menyimpan...</> : <><Save className="w-5 h-5 mr-2" />Simpan Kontak</>}
+                  </Button>
+                </div>
+              </>
+            )}
+          </TabsContent>
+        </Tabs>
+      </main>
+    </div>
+  );
+                            }
+                                                           
