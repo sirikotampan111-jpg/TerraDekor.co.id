@@ -1,91 +1,201 @@
 'use client';
 
+import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Building, Home, Utensils, Hotel, Store, Briefcase, Heart, School, Stethoscope, Palette, Hammer, ArrowLeft, Home as HomeIcon } from 'lucide-react';
+import { Home as HomeIcon, Wrench, MessageCircle, Check, Award, Clock, Zap, Shield, Star, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 
-const services = [
+// Types untuk layanan
+interface Service {
+  image: string;
+  title: string;
+  description: string;
+  color: string;
+}
+
+// Default data layanan
+const defaultServices = [
   {
-    icon: Building,
+    id: 1,
+    image: '/service-office.jpg',
     title: 'Interior Kantor & Co-working Space',
     description: 'Desain dan pemasangan interior kantor modern dan fungsional untuk produktivitas tim',
     color: 'from-blue-500 to-blue-700',
   },
   {
-    icon: Home,
+    id: 2,
+    image: '/service-home.jpg',
     title: 'Interior Rumah',
     description: 'Transformasi rumah menjadi ruang nyaman dan estetis sesuai gaya hidup Anda',
     color: 'from-green-500 to-green-700',
   },
   {
-    icon: Building,
+    id: 3,
+    image: '/service-apartment.jpg',
     title: 'Interior Apartment',
     description: 'Solusi interior apartment compact yang maksimal dan elegan',
     color: 'from-purple-500 to-purple-700',
   },
   {
-    icon: Utensils,
+    id: 4,
+    image: '/service-restaurant.jpg',
     title: 'Interior Restoran, Kafe & Retail',
     description: 'Desain interior yang menarik pelanggan dan meningkatkan pengalaman bersantap',
     color: 'from-orange-500 to-orange-700',
   },
   {
-    icon: Stethoscope,
+    id: 5,
+    image: '/service-hospital.jpg',
     title: 'Interior Rumah Sakit, Klinik & Apotek',
     description: 'Interior medis yang bersih, profesional, dan nyaman untuk pasien',
     color: 'from-red-500 to-red-700',
   },
   {
-    icon: Hotel,
+    id: 6,
+    image: '/service-hotel.jpg',
     title: 'Interior Hotel',
     description: 'Desain interior hotel yang mewah dan memberikan pengalaman tak terlupakan',
     color: 'from-amber-500 to-amber-700',
   },
   {
-    icon: Store,
+    id: 7,
+    image: '/service-showroom.jpg',
     title: 'Interior Showroom Produk',
     description: 'Showroom produk yang menarik dan profesional untuk meningkatkan penjualan',
     color: 'from-cyan-500 to-cyan-700',
   },
   {
-    icon: School,
+    id: 8,
+    image: '/service-campus.jpg',
     title: 'Interior Kampus',
     description: 'Interior kampus yang inspiratif dan mendukung kegiatan belajar mengajar',
     color: 'from-indigo-500 to-indigo-700',
   },
   {
-    icon: Store,
+    id: 9,
+    image: '/service-ruko.jpg',
     title: 'Interior Ruko',
     description: 'Solusi interior ruko yang efektif untuk usaha dan bisnis Anda',
     color: 'from-teal-500 to-teal-700',
   },
   {
-    icon: Building,
+    id: 10,
+    image: '/service-hall.jpg',
     title: 'Interior Aula',
     description: 'Desain aula yang luas, fungsional, dan estetis untuk berbagai acara',
     color: 'from-pink-500 to-pink-700',
   },
   {
-    icon: Store,
+    id: 11,
+    image: '/service-booth.jpg',
     title: 'Interior Booth & Exhibition',
     description: 'Booth pameran yang menarik perhatian dan efektif untuk branding',
     color: 'from-rose-500 to-rose-700',
   },
   {
-    icon: Palette,
+    id: 12,
+    image: '/service-furniture.jpg',
     title: 'Furniture Custom',
     description: 'Furniture custom yang dibuat khusus sesuai kebutuhan dan selera Anda',
     color: 'from-violet-500 to-violet-700',
+  },
+  {
+    id: 13,
+    image: '/service-contractor.jpg',
+    title: 'Jasa Kontraktor',
+    description: 'Jasa konstruksi ground-up dan renovasi dengan tim ahli berpengalaman',
+    color: 'from-gray-600 to-gray-800',
+  },
+  {
+    id: 14,
+    image: '/service-renovasi.jpg',
+    title: 'Renovasi',
+    description: 'Jasa renovasi bangunan lama menjadi baru',
+    color: 'from-gray-600 to-gray-800',
+  },
+];
+
 export default function LayananPage() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [services, setServices] = useState<Service[]>(defaultServices);
+  const [isInView, setIsInView] = useState(false);
+
+  // Load services data on mount
+  useEffect(() => {
+    const loadServices = async () => {
+      try {
+        const response = await fetch('/services-data.json');
+        if (response.ok) {
+          const data = await response.json();
+          setServices(data.services || []);
+        } else {
+          // Fallback ke default data jika file tidak ada
+          setServices(defaultServices);
+        }
+      } catch (error) {
+        console.error('Load services error:', error);
+        setServices(defaultServices);
+      }
+    };
+
+    loadServices();
+  }, []);
+
+  // Scroll handler
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Intersection observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const parallaxStyle = {
+    transform: `translateY(${scrollY * 0.05}px)`,
+  };
+
   return (
     <div className="min-h-screen pt-20">
       <FloatingWhatsApp />
 
       {/* Header Section */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px, rgba(201, 162, 77, 0.1) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px)' }}></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="flex items-center space-x-4 mb-8">
             <Link href="/">
               <Button variant="ghost" className="text-[#C9A24D] hover:bg-[#C9A24D]/10">
@@ -103,6 +213,43 @@ export default function LayananPage() {
           <p className="text-xl text-gray-300 font-bold max-w-3xl">
             Solusi lengkap dari desain, konstruksi, hingga pemasangan untuk berbagai kebutuhan interior Anda
           </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+            <Link href="/konsultasi">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Konsultasi Gratis
+              </Button>
+            </Link>
+            <Link href="/portofolio">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D] hover:text-white font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                Lihat Portofolio
+              </Button>
+            </Link>
+            <a
+              href="https://wa.me/6281251511997"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+            >
+              <Phone className="w-5 h-5 mr-2" />
+              Hubungi Kami
+            </a>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-8 h-12 border-2 border-[#C9A24D] rounded-full flex justify-center pt-2">
+            <div className="w-2 h-2 bg-[#C9A24D] rounded-full animate-pulse"></div>
+          </div>
         </div>
       </section>
 
@@ -120,163 +267,40 @@ export default function LayananPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <Card
-                key={index}
-                className="group bg-white border-2 border-gray-200 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
+                key={service.id}
+                className="bg-white border-2 border-gray-200 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
               >
-                <div className="p-6">
-                  <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <service.icon className="w-8 h-8 text-white" />
+                {/* Image Section - Full Width */}
+                <div className="aspect-[16/10] bg-gradient-to-br from-gray-300 to-gray-400 relative overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const placeholder = e.currentTarget.parentElement?.querySelector('.placeholder-text');
+                      if (placeholder) {
+                        (placeholder as HTMLElement).style.display = 'flex';
+                      }
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Placeholder text if image fails */}
+                  <div className="placeholder-text hidden absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+                    <Wrench className="w-16 h-16 text-gray-400" />
+                    <span className="text-gray-500 text-sm font-semibold">Foto Layanan</span>
                   </div>
+                </div>
+
+                {/* Content Section */}
+                <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
                   <p className="text-gray-600 font-semibold leading-relaxed">{service.description}</p>
                 </div>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">
-              Portofolio <span className="text-[#C9A24D]">Kami</span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full"></div>
-            <p className="text-lg text-gray-700 font-bold mt-8 max-w-2xl mx-auto">
-              Beberapa hasil karya interior yang telah kami selesaikan
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Portfolio Item 1 */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center relative overflow-hidden">
-                <img
-                  src="/portfolio-1.jpg"
-                  alt="Portofolio 1"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const placeholder = e.currentTarget.parentElement?.querySelector('.placeholder-text');
-                    if (placeholder) placeholder.style.display = 'block';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Interior Rumah Modern</h3>
-                <p className="text-gray-600 font-semibold">Rumah Tinggal</p>
-              </div>
-            </div>
-
-            {/* Portfolio Item 2 */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center relative overflow-hidden">
-                <img
-                  src="/portfolio-2.jpg"
-                  alt="Portofolio 2"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const placeholder = e.currentTarget.parentElement?.querySelector('.placeholder-text');
-                    if (placeholder) placeholder.style.display = 'block';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Kantor Profesional</h3>
-                <p className="text-gray-600 font-semibold">Co-working Space</p>
-              </div>
-            </div>
-
-            {/* Portfolio Item 3 */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center relative overflow-hidden">
-                <img
-                  src="/portfolio-3.jpg"
-                  alt="Portofolio 3"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const placeholder = e.currentTarget.parentElement?.querySelector('.placeholder-text');
-                    if (placeholder) placeholder.style.display = 'block';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Restoran Mewah</h3>
-                <p className="text-gray-600 font-semibold">Restoran & Kafe</p>
-              </div>
-            </div>
-
-            {/* Portfolio Item 4 */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center relative overflow-hidden">
-                <img
-                  src="/portfolio-4.jpg"
-                  alt="Portofolio 4"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const placeholder = e.currentTarget.parentElement?.querySelector('.placeholder-text');
-                    if (placeholder) placeholder.style.display = 'block';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Apartment Elegan</h3>
-                <p className="text-gray-600 font-semibold">Residential</p>
-              </div>
-            </div>
-
-            {/* Portfolio Item 5 */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center relative overflow-hidden">
-                <img
-                  src="/portfolio-5.jpg"
-                  alt="Portofolio 5"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const placeholder = e.currentTarget.parentElement?.querySelector('.placeholder-text');
-                    if (placeholder) placeholder.style.display = 'block';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Showroom Produk</h3>
-                <p className="text-gray-600 font-semibold">Commercial</p>
-              </div>
-            </div>
-
-            {/* Portfolio Item 6 */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center relative overflow-hidden">
-                <img
-                  src="/portfolio-6.jpg"
-                  alt="Portofolio 6"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const placeholder = e.currentTarget.parentElement?.querySelector('.placeholder-text');
-                    if (placeholder) placeholder.style.display = 'block';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Klinik Medis</h3>
-                <p className="text-gray-600 font-semibold">Healthcare</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -312,121 +336,68 @@ export default function LayananPage() {
               <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center">
                 <span className="text-4xl font-bold text-white">03</span>
               </div>
-              <h3 className="text-xl font-bold text-[#C9A24D]">Harga Transparan</h3>
-              <p className="text-gray-300 font-semibold">Harga kompetitif tanpa biaya tersembunyi</p>
+              <h3 className="text-xl font-bold text-[#C9A24D]">Kualitas Premium</h3>
+              <p className="text-gray-300 font-semibold">Material berkualitas tinggi dengan standar internasional</p>
             </div>
 
             <div className="text-center space-y-4">
               <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center">
                 <span className="text-4xl font-bold text-white">04</span>
               </div>
+              <h3 className="text-xl font-bold text-[#C9A24D]">Harga Terjangkau</h3>
+              <p className="text-gray-300 font-semibold">Solusi premium dengan harga yang kompetitif</p>
+            </div>
+
+            <div className="text-center space-y-4">
+              <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center">
+                <span className="text-4xl font-bold text-white">05</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#C9A24D]">Material Berkualitas</h3>
+              <p className="text-gray-300 font-semibold">Produk import dan lokal dengan kualitas terbaik</p>
+            </div>
+
+            <div className="text-center space-y-4">
+              <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center">
+                <span className="text-4xl font-bold text-white">06</span>
+              </div>
               <h3 className="text-xl font-bold text-[#C9A24D]">Tepat Waktu</h3>
-              <p className="text-gray-300 font-semibold">Penyelesaian proyek sesuai jadwal</p>
+              <p className="text-gray-300 font-semibold">Penyelesaian proyek sesuai jadwal yang disepakati</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200">
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">
-              Proses <span className="text-[#C9A24D]">Kerja Kami</span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="relative">
-              <div className="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-200 hover:border-[#C9A24D] transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center mb-4">
-                  <span className="text-xl font-bold text-white">1</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Konsultasi</h3>
-                <p className="text-gray-600 font-semibold">Diskusikan kebutuhan dan keinginan Anda dengan tim kami</p>
-              </div>
-              <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-[#C9A24D]">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-[#C9A24D]">Alamat Kami</h3>
+              <p className="text-gray-400">Jalan Raya Mawar No. 1234, Indonesia</p>
+              <p className="text-gray-500 text-sm">Kecamatan Menteng, Jakarta Tengah, Indonesia 12820</p>
             </div>
 
-            <div className="relative">
-              <div className="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-200 hover:border-[#C9A24D] transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center mb-4">
-                  <span className="text-xl font-bold text-white">2</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Desain</h3>
-                <p className="text-gray-600 font-semibold">Buat desain dan rencana kerja yang sesuai budget</p>
-              </div>
-              <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-[#C9A24D]">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-[#C9A24D]">Kontak</h3>
+              <p className="text-gray-400">WhatsApp: +62 812-5151-1997</p>
+              <p className="text-gray-500 text-sm">Email: info@terradekor.id</p>
             </div>
 
-            <div className="relative">
-              <div className="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-200 hover:border-[#C9A24D] transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center mb-4">
-                  <span className="text-xl font-bold text-white">3</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Pengerjaan</h3>
-                <p className="text-gray-600 font-semibold">Eksekusi proyek dengan tim profesional dan material berkualitas</p>
-              </div>
-              <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-[#C9A24D]">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-200 hover:border-[#C9A24D] transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#b69245] to-[#B89B5E] flex items-center justify-center mb-4">
-                  <span className="text-xl font-bold text-white">4</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Serah Terima</h3>
-                <p className="text-gray-600 font-semibold">Proyek selesai dengan kualitas terbaik dan tepat waktu</p>
-              </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-[#C9A24D]">Jam Operasional</h3>
+              <p className="text-gray-400">
+                Senin - Jumat: 09:00 - 17:00
+              </p>
+              <p className="text-gray-500 text-sm">
+                Sabtu: 09:00 - 14:00
+              </p>
+              <p className="text-gray-500 text-sm">
+                Minggu: Tutup
+              </p>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#C9A24D] via-[#D4AF6A] to-[#B89B5E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4">
-            Siap Mewujudkan Interior Impian Anda?
-          </h2>
-          <p className="text-xl text-white/90 font-bold mb-8 max-w-2xl mx-auto">
-            Hubungi kami sekarang untuk konsultasi gratis dan penawaran terbaik
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/konsultasi">
-              <Button
-                size="lg"
-                className="bg-white text-[#C9A24D] hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Heart className="w-5 h-5 mr-2" />
-                Konsultasi Gratis
-              </Button>
-            </Link>
-            <Link href="/kontak">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-[#C9A24D] font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
-                Hubungi Kami
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      </footer>
     </div>
   );
 }
