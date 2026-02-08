@@ -36,23 +36,23 @@ export default function PortofolioPage() {
       } else {
         // Fallback data
         setPortfolios([
-          { image: '/portfolio-1.svg', title: 'Interior Rumah Modern', category: 'interior-rumah' },
-          { image: '/portfolio-2.svg', title: 'Kantor Profesional', category: 'kantor' },
-          { image: '/portfolio-3.svg', title: 'Restoran Mewah', category: 'restaurant' },
-          { image: '/portfolio-4.svg', title: 'Apartment Elegan', category: 'apartment' },
-          { image: '/portfolio-5.svg', title: 'Showroom Produk', category: 'komersial' },
-          { image: '/portfolio-6.svg', title: 'Klinik Medis', category: 'interior-rumah' },
+          { image: '/portfolio-1.jpg', title: 'Interior Rumah Modern', category: 'interior-rumah' },
+          { image: '/portfolio-2.jpg', title: 'Kantor Profesional', category: 'kantor' },
+          { image: '/portfolio-3.jpg', title: 'Restoran Mewah', category: 'restaurant' },
+          { image: '/portfolio-4.jpg', title: 'Apartment Elegan', category: 'apartment' },
+          { image: '/portfolio-5.jpg', title: 'Showroom Produk', category: 'komersial' },
+          { image: '/portfolio-6.jpg', title: 'Klinik Medis', category: 'interior-rumah' },
         ]);
       }
     } catch (err) {
       console.error('Load portfolio error:', err);
       setPortfolios([
-        { image: '/portfolio-1.svg', title: 'Interior Rumah Modern', category: 'interior-rumah' },
-        { image: '/portfolio-2.svg', title: 'Kantor Profesional', category: 'kantor' },
-        { image: '/portfolio-3.svg', title: 'Restoran Mena', category: 'restaurant' },
-        { image: '/portfolio-4.svg', title: 'Apartment Elegan', category: 'apartment' },
-        { image: '/portfolio-5.svg', title: 'Showroom Produk', category: 'komersial' },
-        { image: '/portfolio-6.svg', title: 'Klinik Medis', category: 'interior-rumah' },
+        { image: '/portfolio-1.jpg', title: 'Interior Rumah Modern', category: 'interior-rumah' },
+        { image: '/portfolio-2.jpg', title: 'Kantor Profesional', category: 'kantor' },
+        { image: '/portfolio-3.jpg', title: 'Restoran Mena', category: 'restaurant' },
+        { image: '/portfolio-4.jpg', title: 'Apartment Elegan', category: 'apartment' },
+        { image: '/portfolio-5.jpg', title: 'Showroom Produk', category: 'komersial' },
+        { image: '/portfolio-6.jpg', title: 'Klinik Medis', category: 'interior-rumah' },
       ]);
     }
   };
