@@ -1,0 +1,26 @@
+{
+  "home": {
+    "title": "Terradekor",
+    "content": "Kontraktor dan jasa konstruksi profesional"
+  },
+  "layanan": {
+    "title": "Layanan",
+    "content": "Jasa konstruksi, interior, eksterior, dan renovasi bangunan"
+  },
+  "portofolio": {
+    "title": "Portofolio",
+    "content": "Proyek rumah, ruko, kantor, dan bangunan lainnya"
+  },
+  "tentang": {
+    "title": "Tentang Kami",
+    "content": "Terradekor adalah perusahaan kontraktor terpercaya"
+  },
+  "konsultasi": {
+    "title": "Konsultasi",
+    "content": "Konsultasi gratis bersama tim profesional kami"
+  },
+  "kontak": {
+    "title": "Kontak",
+    "content": "Hubungi kami via WhatsApp atau Email"
+  }
+}
