@@ -1,26 +1,30 @@
 {
   "home": {
-    "title": "Terradekor",
-    "content": "Kontraktor dan jasa konstruksi profesional"
+    "title": "Terradekor • Solusi Interior & Konstruksi Premium",
+    "content": "PT. Opulent Interior Indonesia menyediakan solusi interior modern dan jasa konstruksi profesional dengan tenaga ahli berpengalaman dan material berkualitas."
   },
   "layanan": {
-    "title": "Layanan",
-    "content": "Jasa konstruksi, interior, eksterior, dan renovasi bangunan"
+    "title": "Layanan Terradekor",
+    "content": "Kami melayani desain dan pemasangan interior premium serta jasa konstruksi lengkap seperti wall panel, wallpaper, vinyl, WPC decking, pintu baja & custom furniture."
   },
   "portofolio": {
-    "title": "Portofolio",
-    "content": "Proyek rumah, ruko, kantor, dan bangunan lainnya"
+    "title": "Portofolio Proyek",
+    "content": "Koleksi proyek interior dan konstruksi yang telah kami selesaikan, dari rumah tinggal hingga bangunan komersial."
+  },
+  "produk": {
+    "title": "Produk Interior Premium",
+    "content": "Terradekor menawarkan berbagai produk interior berkualitas seperti wall panel, WPC decking, vinyl & SPC, wallpaper, pintu WPC & baja, dan furniture custom."
   },
   "tentang": {
-    "title": "Tentang Kami",
-    "content": "Terradekor adalah perusahaan kontraktor terpercaya"
-  },
-  "konsultasi": {
-    "title": "Konsultasi",
-    "content": "Konsultasi gratis bersama tim profesional kami"
+    "title": "Tentang Terradekor",
+    "content": "Terradekor (PT. Opulent Interior Indonesia) berkomitmen memberikan solusi interior dan konstruksi terbaik dengan standar profesional, kualitas premium, dan harga kompetitif."
   },
   "kontak": {
-    "title": "Kontak",
-    "content": "Hubungi kami via WhatsApp atau Email"
+    "title": "Kontak Terradekor",
+    "content": "Hubungi kami melalui WhatsApp atau email untuk konsultasi dan penawaran proyek interior & konstruksi Anda."
+  },
+  "konsultasi": {
+    "title": "Konsultasi Gratis",
+    "content": "Tim profesional kami siap membantu Anda melalui konsultasi gratis, dari desain hingga pengerjaan."
   }
 }
