@@ -45,7 +45,7 @@ const services: Service[] = [
     title: 'Fit Out Interior',
     description:
       'Pengerjaan interior dari kondisi kosong hingga siap digunakan.',
-    image: '/service-fitout.jpg',
+    image: '/full.jpg',
   },
   {
     id: 6,
