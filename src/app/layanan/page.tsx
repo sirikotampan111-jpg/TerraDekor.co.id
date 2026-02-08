@@ -17,28 +17,28 @@ const services: Service[] = [
     title: 'Jasa Interior Rumah',
     description:
       'Perencanaan dan pengerjaan interior rumah tinggal secara profesional.',
-    image: '/service-interior-rumah.jpg',
+    image: '/interior-rumah.jpg',
   },
   {
     id: 2,
     title: 'Jasa Interior Kantor',
     description:
       'Penataan dan pengerjaan interior kantor dan ruang kerja.',
-    image: '/service-interior-kantor.jpg',
+    image: '/interior-kantor.jpg',
   },
   {
     id: 3,
     title: 'Jasa Interior Apartemen',
     description:
       'Pengerjaan interior apartemen agar lebih fungsional dan nyaman.',
-    image: '/service-apartemen.jpg',
+    image: '/apartemen.jpg',
   },
   {
     id: 4,
     title: 'Jasa Interior Komersial',
     description:
       'Interior café, restoran, toko, showroom, dan ruang usaha.',
-    image: '/service-komersial.jpg',
+    image: '/rumah-makan.jpg',
   },
   {
     id: 5,
