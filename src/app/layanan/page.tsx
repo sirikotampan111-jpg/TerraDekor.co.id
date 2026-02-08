@@ -2,17 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Home as HomeIcon, Wrench, MessageCircle, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 
 // Types untuk layanan
 interface Service {
+  id: number;
   image: string;
   title: string;
   description: string;
-  color: string;
 }
 
 // Default data layanan
@@ -21,24 +20,23 @@ const defaultServices: Service[] = [
     id: 1,
     image: '/service-office.jpg',
     title: 'Interior Kantor & Co-working Space',
-    description: 'Desain dan pemasangan interior kantor modern dan fungsional untuk produktivitas tim',
-    color: 'from-blue-500 to-blue-700',
+    description:
+      'Desain dan pemasangan interior kantor modern dan fungsional untuk produktivitas tim',
   },
   {
     id: 2,
     image: '/service-home.jpg',
     title: 'Interior Rumah',
-    description: 'Transformasi rumah menjadi ruang nyaman dan estetis sesuai gaya hidup Anda',
-    color: 'from-green-500 to-green-700',
+    description:
+      'Transformasi rumah menjadi ruang nyaman dan estetis sesuai gaya hidup Anda',
   },
   {
     id: 3,
     image: '/service-apartment.jpg',
     title: 'Interior Apartment',
-    description: 'Solusi interior apartment compact yang maksimal dan elegan',
-    color: 'from-purple-500 to-purple-700',
+    description:
+      'Solusi interior apartment compact yang maksimal dan elegan',
   },
-  // ... tambahkan semua layanan lain seperti di defaultServices kamu
 ];
 
 export default function LayananPage() {
@@ -54,8 +52,7 @@ export default function LayananPage() {
         } else {
           setServices(defaultServices);
         }
-      } catch (error) {
-        console.error('Load services error:', error);
+      } catch {
         setServices(defaultServices);
       }
     };
@@ -67,48 +64,52 @@ export default function LayananPage() {
     <div className="min-h-screen pt-20 bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <FloatingWhatsApp />
 
-      {/* Header Section */}
+      {/* HEADER */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/background.jpg"
             alt="Background"
             className="w-full h-full object-cover"
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = 'none';
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/90 to-gray-900/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/90 to-gray-900/90" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center space-x-4 mb-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
             <Link href="/">
               <Button variant="ghost" className="text-white hover:bg-white/10">
-                <HomeIcon className="w-5 h-5 mr-2" />
                 Beranda
               </Button>
             </Link>
             <span className="text-gray-400">/</span>
-            <span className="text-[#C9A24D] font-bold text-xl">Layanan</span>
+            <span className="text-[#C9A24D] font-bold text-xl">
+              Layanan
+            </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-4">
-            Layanan Interior & <span className="text-[#C9A24D]">Konstruksi</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4">
+            Layanan Interior &{' '}
+            <span className="text-[#C9A24D]">Konstruksi</span>
           </h1>
-          <p className="text-xl text-gray-300 font-bold max-w-3xl">
+          <p className="text-xl text-gray-300 font-semibold max-w-3xl">
             Solusi lengkap dari desain, konstruksi, hingga pemasangan profesional
           </p>
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* SERVICES */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               Layanan <span className="text-[#C9A24D]">Kami</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full"></div>
-            <p className="text-lg text-gray-700 font-bold mt-8 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full" />
+            <p className="text-lg text-gray-700 font-semibold mt-8 max-w-2xl mx-auto">
               Kami menyediakan berbagai layanan interior untuk memenuhi kebutuhan Anda
             </p>
           </div>
@@ -117,30 +118,28 @@ export default function LayananPage() {
             {services.map((service) => (
               <Card
                 key={service.id}
-                className="bg-white border-2 border-gray-200 overflow-hidden hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
+                className="bg-white border-2 border-gray-200 overflow-hidden hover:border-[#C9A24D] transition-all duration-300 hover:shadow-2xl hover:scale-105"
               >
-                <div className="flex flex-col h-full">
-                  {service.image && (
-                    <div className="aspect-[16/10] bg-gradient-to-br from-gray-200 to-gray-300 relative overflow-hidden">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).style.display = 'none';
-                        }}
-                      />
-                      <div className="placeholder-text hidden absolute inset-0 bg-gradient-to-br from-[#C9A24D]/20 to-[#B89B5E]/20 flex items-center justify-center">
-                        <Wrench className="w-16 h-16 text-gray-400" />
-                        <span className="text-gray-500 text-sm font-semibold ml-2">Foto Layanan</span>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="p-6 flex-1 flex flex-col justify-center">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                    <p className="text-gray-600 font-semibold leading-relaxed">{service.description}</p>
+                {service.image && (
+                  <div className="aspect-[16/10] bg-gray-200 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
                   </div>
+                )}
+
+                <div className="p-6 text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 font-semibold">
+                    {service.description}
+                  </p>
                 </div>
               </Card>
             ))}
@@ -148,64 +147,64 @@ export default function LayananPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-[#C9A24D] via-[#D4AF6A] to-[#B89B5E]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Siap Mewujudkan Ruang Impian Anda?
           </h2>
-          <p className="text-xl text-white/90 font-semibold max-w-2xl mx-auto leading-relaxed">
-            Tim profesional kami siap membantu Anda dari konsultasi hingga pemasangan
+          <p className="text-xl text-white/90 font-semibold mb-8">
+            Konsultasi gratis dengan tim profesional kami
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/konsultasi">
-              <Button
-                size="lg"
-                className="bg-white text-[#C9A24D] hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
+              <Button className="bg-white text-[#C9A24D] font-bold px-8 py-4 text-lg">
                 Konsultasi Gratis
               </Button>
             </Link>
+
             <a
               href="https://wa.me/6281251511997"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 bg-gray-900 text-white font-bold px-8 py-4 text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              className="bg-gray-900 text-white font-bold px-8 py-4 text-lg rounded-lg"
             >
-              <Phone className="w-5 h-5" />
-              <span>WhatsApp Kami</span>
+              WhatsApp Kami
             </a>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-8 border-t border-[#C9A24D]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-[#C9A24D]">Tentang Kami</h3>
-              <p className="text-gray-300 font-semibold">
-                PT. Opulent Interior Indonesia - Solusi interior dan konstruksi premium
-              </p>
-            </div>
+      {/* FOOTER */}
+      <footer className="bg-gray-900 py-8 border-t border-[#C9A24D]/20">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-300">
+          <div>
+            <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
+              Tentang Kami
+            </h3>
+            <p className="font-semibold">
+              PT. Opulent Interior Indonesia – solusi interior premium
+            </p>
+          </div>
 
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-[#C9A24D]">Jam Operasional</h3>
-              <p className="text-gray-400">Senin - Jumat: 09:00 - 17:00</p>
-              <p className="text-gray-500 text-sm">Sabtu: 09:00 - 14:00</p>
-              <p className="text-gray-500 text-sm">Minggu: Tutup</p>
-            </div>
+          <div>
+            <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
+              Jam Operasional
+            </h3>
+            <p>Senin – Jumat: 09.00 – 17.00</p>
+            <p>Sabtu: 09.00 – 14.00</p>
+            <p>Minggu: Tutup</p>
+          </div>
 
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-[#C9A24D]">Hubungi Kami</h3>
-              <p className="text-gray-400">WhatsApp: 0812-5151-1997</p>
-            </div>
+          <div>
+            <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
+              Hubungi Kami
+            </h3>
+            <p>WhatsApp: 0812-5151-1997</p>
           </div>
         </div>
       </footer>
     </div>
   );
-              }
+}
