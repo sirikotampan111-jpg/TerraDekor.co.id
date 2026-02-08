@@ -31,7 +31,7 @@ const services: Service[] = [
     title: 'Jasa Interior Apartemen',
     description:
       'Pengerjaan interior apartemen agar lebih fungsional dan nyaman.',
-    image: '/apartmen.jpg',
+    image: '/apartment.jpg',
   },
   {
     id: 4,
@@ -66,7 +66,7 @@ const services: Service[] = [
     title: 'Jasa Konstruksi Bangunan',
     description:
       'Pembangunan bangunan dari awal hingga selesai.',
-    image: '/konstruksi.jpg',
+    image: '/kontruksi.jpg',
   },
   {
     id: 9,
