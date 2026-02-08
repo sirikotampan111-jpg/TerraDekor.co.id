@@ -17,7 +17,7 @@ const services: Service[] = [
     title: 'Jasa Interior Rumah',
     description:
       'Perencanaan dan pengerjaan interior rumah tinggal secara profesional.',
-    image: '/interior-rumah.jpg',
+    image: '/rumah.jpg',
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const services: Service[] = [
     title: 'Jasa Interior Apartemen',
     description:
       'Pengerjaan interior apartemen agar lebih fungsional dan nyaman.',
-    image: '/apartemen.jpg',
+    image: '/apartmen.jpg',
   },
   {
     id: 4,
@@ -52,35 +52,35 @@ const services: Service[] = [
     title: 'Pekerjaan Eksterior Bangunan',
     description:
       'Pengerjaan area luar bangunan seperti fasad, kanopi, dan pagar.',
-    image: '/service-eksterior.jpg',
+    image: '/luar.jpg',
   },
   {
     id: 7,
     title: 'Renovasi Bangunan',
     description:
       'Renovasi bangunan lama menjadi lebih modern dan fungsional.',
-    image: '/service-renovasi.jpg',
+    image: '/renovasi.jpg',
   },
   {
     id: 8,
     title: 'Jasa Konstruksi Bangunan',
     description:
       'Pembangunan bangunan dari awal hingga selesai.',
-    image: '/service-konstruksi.jpg',
+    image: '/konstruksi.jpg',
   },
   {
     id: 9,
     title: 'Jasa Kontraktor Umum',
     description:
       'Pelaksanaan proyek bangunan secara profesional dan terencana.',
-    image: '/service-kontraktor.jpg',
+    image: '/kontraktor.jpg',
   },
   {
     id: 10,
     title: 'Jasa Desain & Perencanaan',
     description:
       'Perencanaan desain bangunan dan interior sebelum pengerjaan.',
-    image: '/service-desain.jpg',
+    image: '/desain.jpg',
   },
 ];
 
