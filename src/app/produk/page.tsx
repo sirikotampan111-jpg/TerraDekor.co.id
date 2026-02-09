@@ -15,16 +15,16 @@ const categories = [
 ];
 
 const products = [
-  { id: 1, name: 'Wall Panel Dinding', category: 'wall-finishing', code: 'WP-DINDING-01', price: 'Hubungi Kami', image: '/products/pd1.jpg' },
-  { id: 2, name: 'WPC Wall Panel 30 cm', category: 'wall-finishing', code: 'WPC-WALL-30', price: 'Hubungi Kami', image: '/products/pd2.jpg' },
+  { id: 1, name: 'Wall Panel Dinding', category: 'wall-finishing', code: 'WP-DINDING-01', price: 'Hubungi Kami', image: '/products/pd2.jpg' },
+  { id: 2, name: 'WPC Wall Panel 30 cm', category: 'wall-finishing', code: 'WPC-WALL-30', price: 'Hubungi Kami', image: '/products/pd1.jpg' },
   { id: 3, name: 'Wallpaper', category: 'wall-finishing', code: 'WALLPAPER-01', price: 'Hubungi Kami', image: '/products/pd3.jpg' },
   { id: 4, name: 'Wallpaper 3D Dinding', category: 'wall-finishing', code: 'WALLPAPER-3D', price: 'Hubungi Kami', image: '/products/pd4.jpg' },
   { id: 5, name: 'Wallboard Dinding', category: 'wall-finishing', code: 'WALLBOARD-DIND', price: 'Hubungi Kami', image: '/products/pd5.jpg' },
   { id: 6, name: 'Wall Foam', category: 'wall-finishing', code: 'WALLFOAM-01', price: 'Hubungi Kami', image: '/products/pd6.jpg' },
   { id: 7, name: 'Stiker UV Motif Marmer', category: 'wall-finishing', code: 'STIKER-UV-MAR', price: 'Hubungi Kami', image: '/products/pd8.jpg' },
   { id: 8, name: 'Stiker Foam Vinyl', category: 'wall-finishing', code: 'STIKER-FOAM-VIN', price: 'Hubungi Kami', image: '/products/pd7.jpg' },
-  { id: 9, name: 'UV PVC Marmer', category: 'wall-finishing', code: 'UV-PVC-MARMER', price: 'Hubungi Kami', image: '/products/pd9.jpg' },
-  { id: 10, name: 'List Wall Border PVC', category: 'wall-finishing', code: 'LIST-BORDER-PVC', price: 'Hubungi Kami', image: '/products/pd10.jpg' },
+  { id: 9, name: 'UV PVC Marmer', category: 'wall-finishing', code: 'UV-PVC-MARMER', price: 'Hubungi Kami', image: '/products/pd10.jpg' },
+  { id: 10, name: 'List Wall Border PVC', category: 'wall-finishing', code: 'LIST-BORDER-PVC', price: 'Hubungi Kami', image: '/products/pd9.jpg' },
   { id: 11, name: 'List Moulding', category: 'wall-finishing', code: 'LIST-MOULDING', price: 'Hubungi Kami', image: '/products/pd12.jpg' },
 
   { id: 12, name: 'WPC Decking', category: 'flooring-exterior', code: 'WPC-DECKING', price: 'Hubungi Kami', image: '/products/pd11.jpg' },
