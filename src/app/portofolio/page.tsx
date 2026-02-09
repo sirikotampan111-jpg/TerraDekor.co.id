@@ -30,12 +30,12 @@ const categories = [
 
 // fallbackData: 12 foto portofolio urut
 const fallbackData: PortfolioItem[] = [
-  { image: '/portfolio-1.jpg', title: 'Interior Kantor Modern', category: 'interior-kantor' },
-  { image: '/portfolio-2.jpg', title: 'Rumah Minimalis', category: 'interior-rumah' },
-  { image: '/portfolio-3.jpg', title: 'Apartment Elegan', category: 'interior-apartment' },
-  { image: '/portfolio-4.jpg', title: 'Restoran Mewah', category: 'interior-restaurant' },
-  { image: '/portfolio-5.jpg', title: 'Klinik Modern', category: 'interior-klinik' },
-  { image: '/portfolio-6.jpg', title: 'Hotel Bintang 5', category: 'interior-hotel' },
+  { image: '/portfolio-2.jpg', title: 'Interior Kantor Modern', category: 'interior-kantor' },
+  { image: '/portfolio-1.jpg', title: 'Rumah Minimalis', category: 'interior-rumah' },
+  { image: '/portfolio-4.jpg', title: 'Apartment Elegan', category: 'interior-apartment' },
+  { image: '/portfolio-3.jpg', title: 'Restoran Mewah', category: 'interior-restaurant' },
+  { image: '/portfolio-6.jpg', title: 'Klinik Modern', category: 'interior-klinik' },
+  { image: '/portfolio-5.jpg', title: 'Hotel Bintang 5', category: 'interior-hotel' },
   { image: '/portfolio-7.jpg', title: 'Showroom Produk', category: 'interior-showroom' },
   { image: '/portfolio-8.jpg', title: 'Kampus & Aula', category: 'interior-kampus' },
   { image: '/portfolio-9.jpg', title: 'Ruko Komersial', category: 'interior-ruko' },
