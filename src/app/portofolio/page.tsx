@@ -11,22 +11,37 @@ interface PortfolioItem {
   category: string;
 }
 
+// 12 kategori baru
 const categories = [
   { id: 'all', name: 'Semua Proyek' },
+  { id: 'interior-kantor', name: 'Interior Kantor & Co-working Space' },
   { id: 'interior-rumah', name: 'Interior Rumah' },
-  { id: 'komersial', name: 'Komersial' },
-  { id: 'apartment', name: 'Apartment' },
-  { id: 'restaurant', name: 'Restoran & Kafe' },
-  { id: 'kantor', name: 'Kantor & Showroom' },
+  { id: 'interior-apartment', name: 'Interior Apartment' },
+  { id: 'interior-restaurant', name: 'Interior Restoran, Kafe & Retail' },
+  { id: 'interior-klinik', name: 'Interior Rumah Sakit, Klinik & Apotek' },
+  { id: 'interior-hotel', name: 'Interior Hotel' },
+  { id: 'interior-showroom', name: 'Interior Showroom Produk' },
+  { id: 'interior-kampus', name: 'Interior Kampus' },
+  { id: 'interior-ruko', name: 'Interior Ruko' },
+  { id: 'interior-aula', name: 'Interior Aula' },
+  { id: 'interior-booth', name: 'Interior Booth & Exhibition' },
+  { id: 'furniture', name: 'Furniture' },
 ];
 
+// fallbackData: 12 foto portofolio urut
 const fallbackData: PortfolioItem[] = [
-  { image: '/portfolio-1.jpg', title: 'Interior Rumah Modern', category: 'interior-rumah' },
-  { image: '/portfolio-2.jpg', title: 'Kantor Profesional', category: 'kantor' },
-  { image: '/portfolio-3.jpg', title: 'Restoran Mewah', category: 'restaurant' },
-  { image: '/portfolio-4.jpg', title: 'Apartment Elegan', category: 'apartment' },
-  { image: '/portfolio-5.jpg', title: 'Showroom Produk', category: 'komersial' },
-  { image: '/portfolio-6.jpg', title: 'Klinik Medis', category: 'interior-rumah' },
+  { image: '/portfolio-1.jpg', title: 'Interior Kantor Modern', category: 'interior-kantor' },
+  { image: '/portfolio-2.jpg', title: 'Rumah Minimalis', category: 'interior-rumah' },
+  { image: '/portfolio-3.jpg', title: 'Apartment Elegan', category: 'interior-apartment' },
+  { image: '/portfolio-4.jpg', title: 'Restoran Mewah', category: 'interior-restaurant' },
+  { image: '/portfolio-5.jpg', title: 'Klinik Modern', category: 'interior-klinik' },
+  { image: '/portfolio-6.jpg', title: 'Hotel Bintang 5', category: 'interior-hotel' },
+  { image: '/portfolio-7.jpg', title: 'Showroom Produk', category: 'interior-showroom' },
+  { image: '/portfolio-8.jpg', title: 'Kampus & Aula', category: 'interior-kampus' },
+  { image: '/portfolio-9.jpg', title: 'Ruko Komersial', category: 'interior-ruko' },
+  { image: '/portfolio-10.jpg', title: 'Aula Serbaguna', category: 'interior-aula' },
+  { image: '/portfolio-11.jpg', title: 'Booth & Exhibition', category: 'interior-booth' },
+  { image: '/portfolio-12.jpg', title: 'Furniture Custom', category: 'furniture' },
 ];
 
 export default function PortofolioPage() {
