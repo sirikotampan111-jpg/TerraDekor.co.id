@@ -35,13 +35,13 @@ const fallbackData: PortfolioItem[] = [
   { image: '/portfolio-4.jpg', title: 'Apartment Elegan', category: 'interior-apartment' },
   { image: '/portfolio-3.jpg', title: 'Restoran Mewah', category: 'interior-restaurant' },
   { image: '/portfolio-6.jpg', title: 'Klinik Modern', category: 'interior-klinik' },
-  { image: '/portfolio-5.jpg', title: 'Hotel Bintang 5', category: 'interior-hotel' },
-  { image: '/portfolio-7.jpg', title: 'Showroom Produk', category: 'interior-showroom' },
-  { image: '/portfolio-8.jpg', title: 'Kampus & Aula', category: 'interior-kampus' },
-  { image: '/portfolio-9.jpg', title: 'Ruko Komersial', category: 'interior-ruko' },
-  { image: '/portfolio-10.jpg', title: 'Aula Serbaguna', category: 'interior-aula' },
-  { image: '/portfolio-11.jpg', title: 'Booth & Exhibition', category: 'interior-booth' },
-  { image: '/portfolio-12.jpg', title: 'Furniture Custom', category: 'furniture' },
+  { image: '/hotel.jpg', title: 'Hotel Bintang 5', category: 'interior-hotel' },
+  { image: '/portfolio-5.jpg', title: 'Showroom Produk', category: 'interior-showroom' },
+  { image: '/kampus.jpg', title: 'Kampus & Aula', category: 'interior-kampus' },
+  { image: '/ruko.jpg', title: 'Ruko Komersial', category: 'interior-ruko' },
+  { image: '/aula.jpg', title: 'Aula Serbaguna', category: 'interior-aula' },
+  { image: '/both.jpg', title: 'Booth & Exhibition', category: 'interior-booth' },
+  { image: '/costume.jpg', title: 'Furniture Custom', category: 'furniture' },
 ];
 
 export default function PortofolioPage() {
