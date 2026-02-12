@@ -18,7 +18,7 @@ const products = [
   { title: 'Wall Panel', desc: 'Panel dinding premium.', img: 'wallpanel.jpg' },
   { title: 'Wallpaper', desc: 'Motif eksklusif.', img: 'walpaper.jpg' },
   { title: 'Vinyl', desc: 'Lantai kuat & elegan.', img: 'vinil.jpg' },
-  { title: 'WPC', desc: 'Interior & eksterior.', img: 'wpc.jpg' },
+  { title: 'Decking Lantai', desc: 'Interior & eksterior.', img: 'wpc.jpg' },
   { title: 'Pintu Baja', desc: 'Aman & kokoh.', img: 'pintu-baja.jpg' },
   { title: 'Terima Jasa', desc: 'Custom interior.', img: 'terima-jasa.jpg' },
 ];
