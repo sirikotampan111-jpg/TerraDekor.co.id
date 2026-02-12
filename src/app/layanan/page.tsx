@@ -16,7 +16,7 @@ const services: Service[] = [
     title: 'Jasa Interior Rumah',
     description:
       'Perencanaan dan pengerjaan interior rumah tinggal secara profesional.',
-    image: '/rumah1.jpg',
+    image: '/rumah.jpg',
   },
   {
     id: 2,
