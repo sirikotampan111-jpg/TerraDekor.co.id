@@ -26,11 +26,9 @@ const products = [
   { id: 9, name: 'UV PVC Marmer', category: 'wall-finishing', code: 'UV-PVC-MARMER', price: 'Hubungi Kami', image: '/products/pd10.jpg' },
   { id: 10, name: 'List Wall Border PVC', category: 'wall-finishing', code: 'LIST-BORDER-PVC', price: 'Hubungi Kami', image: '/products/pd9.jpg' },
   { id: 11, name: 'List Moulding', category: 'wall-finishing', code: 'LIST-MOULDING', price: 'Hubungi Kami', image: '/products/pd12.jpg' },
-
   { id: 12, name: 'WPC Decking', category: 'flooring-exterior', code: 'WPC-DECKING', price: 'Hubungi Kami', image: '/products/pd11.jpg' },
   { id: 13, name: 'Lantai Vinyl', category: 'flooring-exterior', code: 'LANTAI-VINYL', price: 'Hubungi Kami', image: '/products/pd13.jpg' },
   { id: 14, name: 'Lantai SPC', category: 'flooring-exterior', code: 'LANTAI-SPC', price: 'Hubungi Kami', image: '/products/pd14.jpg' },
-
   { id: 15, name: 'Pintu WPC', category: 'furniture-sanitary', code: 'PINTU-WPC', price: 'Hubungi Kami', image: '/products/pd15.jpg' },
   { id: 16, name: 'Pintu Baja', category: 'furniture-sanitary', code: 'PINTU-BAJA', price: 'Hubungi Kami', image: '/products/pd16.jpg' },
   { id: 17, name: 'Wastafel', category: 'furniture-sanitary', code: 'WASTAFEL-01', price: 'Hubungi Kami', image: '/products/pd17.jpg' },
@@ -42,144 +40,92 @@ export default function ProdukPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredProducts = products.filter(product => {
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+    const matchesCategory =
+      selectedCategory === 'all' || product.category === selectedCategory;
+
     const matchesSearch =
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.code.toLowerCase().includes(searchQuery.toLowerCase());
+
     return matchesCategory && matchesSearch;
   });
+
+  const getWhatsAppLink = (product) => {
+    return `https://wa.me/6281251511997?text=${encodeURIComponent(
+      `Halo Terradekor, saya ingin bertanya tentang produk: ${product.name} dengan kode ${product.code}`
+    )}`;
+  };
 
   return (
     <div className="min-h-screen pt-20">
       <FloatingWhatsApp />
 
-      {/* Header */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center space-x-4 mb-8">
-            <Link href="/">
-              <Button variant="ghost" className="text-[#C9A24D] hover:bg-[#C9A24D]/10">
-                <Home className="w-5 h-5 mr-2" /> Beranda
-              </Button>
-            </Link>
-            <span className="text-gray-500">/</span>
-            <span className="text-[#C9A24D] font-bold">Kategori Produk</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
-            Katalog <span className="text-[#C9A24D]">Produk Premium</span>
-          </h1>
-          <p className="text-xl text-gray-300 font-bold max-w-3xl">
-            Temukan berbagai produk interior berkualitas untuk mempercantik ruangan Anda
-          </p>
-        </div>
-      </section>
-
-      {/* Search & Filter */}
-      <section className="bg-white border-b border-gray-200 py-8 sticky top-20 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4 items-center justify-between">
-          <div className="relative w-full lg:w-96">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <Input
-              type="text"
-              placeholder="Cari produk..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              className="pl-10 border-2 border-gray-200 focus:border-[#C9A24D] font-semibold"
-            />
-          </div>
-
-          <div className="hidden lg:flex flex-wrap gap-2">
-            {categories.map(category => (
-              <Button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                variant={selectedCategory === category.id ? 'default' : 'outline'}
-                className={`font-semibold ${
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white'
-                    : 'border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D]/10'
-                }`}
-              >
-                <Filter className="w-4 h-4 mr-2" /> {category.name}
-              </Button>
-            ))}
-          </div>
-
-          <select
-            value={selectedCategory}
-            onChange={e => setSelectedCategory(e.target.value)}
-            className="lg:hidden w-full px-4 py-2 border-2 border-[#C9A24D] rounded-lg font-semibold text-[#C9A24D] bg-white"
-          >
-            {categories.map(category => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </section>
-
-      {/* Products Grid */}
+      {/* Products */}
       <section className="py-16 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <p className="text-lg text-gray-700 font-bold">
-              Menampilkan <span className="text-[#C9A24D]">{filteredProducts.length}</span> produk
-            </p>
-          </div>
 
-          {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map(product => (
-                <div
-                  key={product.id}
-                  className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-200 hover:border-[#C9A24D] overflow-hidden"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProducts.map(product => (
+              <div
+                key={product.id}
+                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-200 hover:border-[#C9A24D] overflow-hidden"
+              >
+
+                {/* IMAGE CLICKABLE */}
+                <a
+                  href={getWhatsAppLink(product)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="aspect-square bg-gray-100 flex items-center justify-center relative overflow-hidden group block cursor-pointer"
                 >
-                  {/* Product Image */}
-                  <div className="aspect-square bg-gray-100 flex items-center justify-center relative overflow-hidden group">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/10 to-[#B89B5E]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                  />
 
-                  {/* Product Info */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
-                    <p className="text-sm text-gray-600 font-semibold mb-3">
-                      <span className="text-[#C9A24D]">Kode:</span> {product.code}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <p className="text-lg font-bold text-[#C9A24D]">{product.price}</p>
-                      <a
-                        href={`https://wa.me/6281251511997?text=Halo Terradekor, saya ingin bertanya tentang produk: ${encodeURIComponent(
-                          product.name
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-4 py-2 rounded-lg hover:from-[#D4AF6A] hover:to-[#C9A24D] transition-all duration-300 transform hover:scale-105"
-                      >
-                        <MessageCircle className="w-4 h-4" />
-                        <span>Tanya Harga</span>
-                      </a>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-[#C9A24D] text-white px-4 py-2 rounded-lg font-bold shadow-lg">
+                      Klik untuk Tanya Harga
                     </div>
                   </div>
+                </a>
+
+                {/* PRODUCT INFO */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {product.name}
+                  </h3>
+
+                  <p className="text-sm text-gray-600 font-semibold mb-3">
+                    <span className="text-[#C9A24D]">Kode:</span> {product.code}
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <p className="text-lg font-bold text-[#C9A24D]">
+                      {product.price}
+                    </p>
+
+                    <a
+                      href={getWhatsAppLink(product)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-4 py-2 rounded-lg hover:from-[#D4AF6A] hover:to-[#C9A24D] transition-all duration-300 transform hover:scale-105"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      <span>Tanya Harga</span>
+                    </a>
+                  </div>
+
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <div className="text-8xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Tidak ada produk ditemukan</h3>
-              <p className="text-gray-600 font-semibold">Coba ubah kata kunci pencarian atau filter kategori</p>
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 
       <FloatingWhatsApp />
     </div>
   );
-}
+                    }
