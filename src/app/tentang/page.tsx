@@ -119,7 +119,7 @@ export default function TentangPage() {
             <div className="relative">
               <div className="relative aspect-square rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/office1.jpg"
+                  src="/public/office1.jpg"
                   alt="Office Terradekor"
                   fill
                   className="object-cover"
@@ -142,4 +142,4 @@ export default function TentangPage() {
       {/* Section lainnya tetap sama */}
     </div>
   );
-      }
+                  }
