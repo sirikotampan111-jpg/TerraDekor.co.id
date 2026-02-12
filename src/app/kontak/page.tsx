@@ -63,8 +63,7 @@ export default function KontakPage() {
   ];
 
   const workingHours = [
-    { day: 'Senin - Jumat', hours: '09:00 - 17:00' },
-    { day: 'Sabtu', hours: '09:00 - 14:00' },
+    { day: 'Senin - sabtu', hours: '09:00 - 17:00' },
     { day: 'Minggu', hours: 'Tutup' },
   ];
 
