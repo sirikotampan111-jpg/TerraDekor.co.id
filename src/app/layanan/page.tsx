@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 type Service = {
@@ -85,8 +84,16 @@ const services: Service[] = [
 ];
 
 export default function LayananPage() {
+
+  const getWhatsAppLink = (service: Service) => {
+    return `https://wa.me/6281251511997?text=${encodeURIComponent(
+      `Halo Terradekor, saya ingin konsultasi mengenai layanan: ${service.title}`
+    )}`;
+  };
+
   return (
     <main className="min-h-screen bg-white">
+
       {/* HEADER */}
       <section className="px-6 py-20 text-center">
         <h1 className="text-4xl font-bold mb-4">
@@ -104,35 +111,55 @@ export default function LayananPage() {
           {services.map((service) => (
             <div
               key={service.id}
-              className="border rounded-xl overflow-hidden hover:shadow-lg transition"
+              className="border rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              <div className="relative w-full h-48">
+
+              {/* IMAGE CLICKABLE */}
+              <a
+                href={getWhatsAppLink(service)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-full h-48 block group cursor-pointer"
+              >
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-              </div>
+
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                  <span className="bg-[#C9A24D] text-white px-4 py-2 rounded-lg font-semibold shadow-lg">
+                    Klik untuk Konsultasi
+                  </span>
+                </div>
+              </a>
 
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">
                   {service.title}
                 </h3>
+
                 <p className="text-gray-600 text-sm mb-4">
                   {service.description}
                 </p>
 
-                <Link href="/konsultasi">
-                  <Button className="w-full">
+                <a
+                  href={getWhatsAppLink(service)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="w-full bg-[#C9A24D] hover:bg-[#B89B5E] text-white">
                     Konsultasi Sekarang
                   </Button>
-                </Link>
+                </a>
+
               </div>
             </div>
           ))}
         </div>
       </section>
+
     </main>
   );
 }
