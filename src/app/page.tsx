@@ -5,13 +5,15 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
+const WA_NUMBER = '6281251511997';
+
 const advantages = [
   { title: 'Terima Beres', desc: 'Pengerjaan rapi tanpa ribet.', img: 'terima-beres.jpg' },
   { title: 'Kualitas Premium', desc: 'Standar material terbaik.', img: 'kualitas-premium.jpg' },
   { title: 'Harga Terjangkau', desc: 'Transparan & masuk akal.', img: 'harga-terjangkau.jpg' },
   { title: 'Tim Profesional', desc: 'Tenaga ahli berpengalaman.', img: 'tim-profesional.jpg' },
   { title: 'Material Berkualitas', desc: 'Pilihan material unggulan.', img: 'bahan-premium.jpg' },
-  { title: 'Tepat Waktu', desc: 'Komitmen deadline.', img: 'tepat waktu.jpg' },
+  { title: 'Tepat Waktu', desc: 'Komitmen deadline.', img: 'tepat-waktu.jpg' },
 ];
 
 const products = [
@@ -23,65 +25,50 @@ const products = [
   { title: 'Terima Jasa', desc: 'Custom interior.', img: 'terima-jasa.jpg' },
 ];
 
-// WhatsApp link constant
-const WHATSAPP_LINK = 'https://wa.me/6281251511997';
-
 export default function HomePage() {
   const { scrollY } = useScroll();
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Hero paralax - lebih smooth dengan spring
   const heroTextY = useTransform(scrollY, [0, 400], [0, -60]);
   const heroSubY = useTransform(scrollY, [0, 400], [0, -30]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
   const bgY = useTransform(scrollY, [0, 800], [0, -200]);
-
   const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
 
   const heroText = 'Interior Elegant & Premium';
   const heroSub = 'Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.';
 
+  const waLink = (text: string) =>
+    `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+
   return (
     <main className="relative w-full text-white overflow-hidden">
 
-      {/* BACKGROUND FULL PAGE */}
-      <motion.div
-        className="fixed inset-0 -z-10"
-        style={{ y: bgY }}
-      >
-        <Image
-          src="/background1.jpg"
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-        />
+      {/* BACKGROUND */}
+      <motion.div className="fixed inset-0 -z-10" style={{ y: bgY }}>
+        <Image src="/background1.jpg" alt="Background" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-black/70" />
       </motion.div>
 
       {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center px-6 relative">
+      <section className="min-h-screen flex items-center justify-center px-6">
         <motion.div
           ref={heroRef}
           initial="hidden"
           animate="visible"
-          className="text-center max-w-4xl relative z-10"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.05 } }
-          }}
+          className="text-center max-w-4xl"
+          variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
         >
           <motion.h1
             style={{ y: heroTextY, opacity: heroOpacity }}
-            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-lg"
+            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6"
           >
-            {Array.from(heroText).map((char, i) => (
+            {heroText.split('').map((char, i) => (
               <motion.span
                 key={i}
-                variants={{
-                  hidden: { y: 20, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } }
-                }}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6 }}
               >
                 {char}
               </motion.span>
@@ -92,26 +79,12 @@ export default function HomePage() {
             style={{ y: heroSubY, opacity: heroOpacity }}
             className="text-gray-200 text-lg md:text-xl mb-10"
           >
-            {Array.from(heroSub).map((char, i) => (
-              <motion.span
-                key={i}
-                variants={{
-                  hidden: { y: 10, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }
-                }}
-              >
-                {char}
-              </motion.span>
-            ))}
+            {heroSub}
           </motion.p>
 
-          {/* CTA HERO */}
           <Link
-            href={WHATSAPP_LINK}
-            className="inline-block px-10 py-4 rounded-full
-              bg-[#C9A24D] text-black font-semibold text-lg
-              shadow-lg transition-transform duration-300 ease-out
-              hover:bg-[#e3bb5f] hover:scale-105"
+            href={waLink('Halo, saya ingin konsultasi interior')}
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:scale-105 transition"
           >
             Konsultasi Sekarang
           </Link>
@@ -119,135 +92,73 @@ export default function HomePage() {
       </section>
 
       {/* KENAPA MEMILIH KAMI */}
-      <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
-          >
-            Kenapa Memilih Kami
-          </motion.h2>
-        </div>
+      <section className="px-6 py-24 max-w-7xl mx-auto">
+        <motion.h2
+          style={{ y: sectionTitleY }}
+          className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16"
+        >
+          Kenapa Memilih Kami
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {advantages.map((item, idx) => (
+          {advantages.map((item, i) => (
             <motion.div
-              key={idx}
+              key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: idx * 0.05, ease: 'easeOut' }}
-              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition"
+              transition={{ duration: 0.6 }}
+              className="bg-black/40 p-4 rounded-lg backdrop-blur"
             >
-              <motion.div
-                className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
-                style={{ y: useTransform(scrollY, [0, 500], [0, -20]) }}
-              >
-                <Image
-                  src={`/${item.img}`}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
-
-              <motion.h3
-                initial={{ y: 10, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="text-xl font-bold text-[#C9A24D] mb-2"
-              >
-                {item.title}
-              </motion.h3>
-
+              <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
+                <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
+              </div>
+              <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
               <p className="text-gray-200">{item.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* PRODUK & LAYANAN - DENGAN LINK KE WHATSAPP */}
-      <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.h2
-            style={{ y: sectionTitleY }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4"
-          >
-            Produk & Layanan Premium
-          </motion.h2>
-        </div>
+      {/* PRODUK & LAYANAN */}
+      <section className="px-6 py-24 max-w-7xl mx-auto">
+        <motion.h2
+          style={{ y: sectionTitleY }}
+          className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16"
+        >
+          Produk & Layanan Premium
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((item, idx) => (
+          {products.map((item, i) => (
             <motion.div
-              key={idx}
+              key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.2 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: idx * 0.1, 
-                ease: [0.25, 0.1, 0.25, 1] // Cubic bezier untuk animasi lebih halus
-              }}
-              whileHover={{ 
-                scale: 1.03,
-                transition: { duration: 0.3, ease: 'easeOut' }
-              }}
-              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm cursor-pointer group"
+              transition={{ duration: 0.6 }}
+              className="bg-black/40 p-4 rounded-lg backdrop-blur"
             >
-              {/* Link wrapper untuk seluruh card */}
-              <Link 
-                href={WHATSAPP_LINK}
-                className="block"
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* FOTO = CTA WA */}
+              <Link
+                href={waLink(`Halo, saya tertarik dengan produk ${item.title}`)}
+                className="group block"
               >
-                <motion.div
-                  className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
-                >
+                <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md cursor-pointer">
                   <Image
                     src={`/${item.img}`}
                     alt={item.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  {/* Overlay saat hover */}
-                  <div className="absolute inset-0 bg-[#C9A24D]/0 group-hover:bg-[#C9A24D]/20 transition-colors duration-300 flex items-center justify-center">
-                    <motion.span 
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileHover={{ opacity: 1, scale: 1 }}
-                      className="bg-[#C9A24D] text-black px-4 py-2 rounded-full font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Pesan Sekarang
-                    </motion.span>
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <span className="text-[#C9A24D] font-semibold text-lg">
+                      Chat WhatsApp
+                    </span>
                   </div>
-                </motion.div>
-
-                <motion.h3
-                  initial={{ y: 10, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
-                  className="text-xl font-bold text-[#C9A24D] mb-2 group-hover:text-[#e3bb5f] transition-colors duration-300"
-                >
-                  {item.title}
-                </motion.h3>
-
-                <p className="text-gray-200 group-hover:text-white transition-colors duration-300">
-                  {item.desc}
-                </p>
+                </div>
               </Link>
+
+              <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
+              <p className="text-gray-200">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -255,11 +166,8 @@ export default function HomePage() {
         {/* CTA BAWAH */}
         <div className="text-center mt-20">
           <Link
-            href={WHATSAPP_LINK}
-            className="inline-block px-10 py-4 rounded-full
-              bg-[#C9A24D] text-black font-semibold text-lg
-              shadow-lg transition-transform duration-300 ease-out
-              hover:bg-[#e3bb5f] hover:scale-105"
+            href={waLink('Halo, saya ingin order layanan interior')}
+            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:scale-105 transition"
           >
             Hubungi Kami Sekarang
           </Link>
@@ -268,5 +176,4 @@ export default function HomePage() {
 
     </main>
   );
-                             }
-.
+                }
