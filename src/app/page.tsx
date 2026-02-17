@@ -7,6 +7,8 @@ import { useRef } from 'react';
 
 const WA_NUMBER = '6281251511997';
 
+/* ================== DATA ================== */
+
 const advantages = [
   { title: 'Terima Beres', desc: 'Pengerjaan rapi tanpa ribet.', img: 'terima-beres.jpg' },
   { title: 'Kualitas Premium', desc: 'Standar material terbaik.', img: 'kualitas-premium.jpg' },
@@ -26,49 +28,62 @@ const products = [
 ];
 
 export default function HomePage() {
-  const { scrollY } = useScroll();
+  /* ================== HERO PARALLAX ================== */
   const heroRef = useRef<HTMLDivElement>(null);
 
-  const heroTextY = useTransform(scrollY, [0, 400], [0, -60]);
-  const heroSubY = useTransform(scrollY, [0, 400], [0, -30]);
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
-  const bgY = useTransform(scrollY, [0, 800], [0, -200]);
-  const sectionTitleY = useTransform(scrollY, [200, 700], [40, 0]);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
 
-  const heroText = 'Interior Elegant & Premium';
-  const heroSub = 'Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.';
+  const heroTitleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const heroSubY   = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const heroFade   = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const heroBgY    = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   const waLink = (text: string) =>
     `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 
+  /* ================== RENDER ================== */
   return (
     <main className="relative w-full text-white overflow-hidden">
 
-      {/* BACKGROUND */}
-      <motion.div className="fixed inset-0 -z-10" style={{ y: bgY }}>
-        <Image src="/background1.jpg" alt="Background" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-black/70" />
-      </motion.div>
-
-      {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center px-6">
+      {/* ================= HERO ================= */}
+      <section
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden"
+      >
+        {/* BACKGROUND */}
         <motion.div
-          ref={heroRef}
-          initial="hidden"
-          animate="visible"
-          className="text-center max-w-4xl"
-          variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+          style={{ y: heroBgY }}
+          className="absolute inset-0 -z-10"
         >
+          <Image
+            src="/background1.jpg"
+            alt="Interior Background"
+            fill
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </motion.div>
+
+        {/* CONTENT */}
+        <div className="text-center max-w-4xl z-10">
+
           <motion.h1
-            style={{ y: heroTextY, opacity: heroOpacity }}
-            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6"
+            style={{ y: heroTitleY, opacity: heroFade }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-4xl md:text-6xl font-extrabold text-[#C9A24D] mb-6 drop-shadow-xl"
           >
-            {heroText.split('').map((char, i) => (
+            {'Interior Elegant & Premium'.split('').map((char, i) => (
               <motion.span
                 key={i}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: i * 0.035 }}
               >
                 {char}
               </motion.span>
@@ -76,29 +91,33 @@ export default function HomePage() {
           </motion.h1>
 
           <motion.p
-            style={{ y: heroSubY, opacity: heroOpacity }}
+            style={{ y: heroSubY, opacity: heroFade }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
             className="text-gray-200 text-lg md:text-xl mb-10"
           >
-            {heroSub}
+            Solusi desain interior modern dengan kualitas terbaik dan pengerjaan profesional.
           </motion.p>
 
           <Link
             href={waLink('Halo, saya ingin konsultasi interior')}
-            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:scale-105 transition"
+            className="inline-block px-10 py-4 rounded-full
+              bg-[#C9A24D] text-black font-semibold text-lg
+              shadow-[0_0_30px_rgba(201,162,77,0.4)]
+              transition-transform duration-300
+              hover:scale-105 hover:bg-[#e3bb5f]"
           >
             Konsultasi Sekarang
           </Link>
-        </motion.div>
+        </div>
       </section>
 
-      {/* KENAPA MEMILIH KAMI */}
+      {/* ============ KENAPA MEMILIH KAMI ============ */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
-        <motion.h2
-          style={{ y: sectionTitleY }}
-          className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16"
-        >
+        <h2 className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16">
           Kenapa Memilih Kami
-        </motion.h2>
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {advantages.map((item, i) => (
@@ -106,10 +125,11 @@ export default function HomePage() {
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6 }}
               className="bg-black/40 p-4 rounded-lg backdrop-blur"
             >
-              <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md">
+              <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
                 <Image src={`/${item.img}`} alt={item.title} fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
@@ -119,14 +139,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PRODUK & LAYANAN */}
+      {/* ============ PRODUK & LAYANAN ============ */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
-        <motion.h2
-          style={{ y: sectionTitleY }}
-          className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16"
-        >
+        <h2 className="text-center text-3xl md:text-4xl font-bold text-[#C9A24D] mb-16">
           Produk & Layanan Premium
-        </motion.h2>
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((item, i) => (
@@ -134,6 +151,7 @@ export default function HomePage() {
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6 }}
               className="bg-black/40 p-4 rounded-lg backdrop-blur"
             >
@@ -142,7 +160,7 @@ export default function HomePage() {
                 href={waLink(`Halo, saya tertarik dengan produk ${item.title}`)}
                 className="group block"
               >
-                <div className="relative w-full h-48 mb-4 overflow-hidden rounded-md cursor-pointer">
+                <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden cursor-pointer">
                   <Image
                     src={`/${item.img}`}
                     alt={item.title}
@@ -167,7 +185,9 @@ export default function HomePage() {
         <div className="text-center mt-20">
           <Link
             href={waLink('Halo, saya ingin order layanan interior')}
-            className="inline-block px-10 py-4 rounded-full bg-[#C9A24D] text-black font-semibold text-lg hover:scale-105 transition"
+            className="inline-block px-10 py-4 rounded-full
+              bg-[#C9A24D] text-black font-semibold text-lg
+              hover:scale-105 transition"
           >
             Hubungi Kami Sekarang
           </Link>
@@ -176,4 +196,4 @@ export default function HomePage() {
 
     </main>
   );
-                                                                                  }
+}
