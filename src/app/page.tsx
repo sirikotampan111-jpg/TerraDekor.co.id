@@ -23,11 +23,14 @@ const products = [
   { title: 'Terima Jasa', desc: 'Custom interior.', img: 'terima-jasa.jpg' },
 ];
 
+// WhatsApp link constant
+const WHATSAPP_LINK = 'https://wa.me/6281251511997';
+
 export default function HomePage() {
   const { scrollY } = useScroll();
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Hero paralax
+  // Hero paralax - lebih smooth dengan spring
   const heroTextY = useTransform(scrollY, [0, 400], [0, -60]);
   const heroSubY = useTransform(scrollY, [0, 400], [0, -30]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0.7]);
@@ -104,7 +107,7 @@ export default function HomePage() {
 
           {/* CTA HERO */}
           <Link
-            href="https://wa.me/6281251511997"
+            href={WHATSAPP_LINK}
             className="inline-block px-10 py-4 rounded-full
               bg-[#C9A24D] text-black font-semibold text-lg
               shadow-lg transition-transform duration-300 ease-out
@@ -168,7 +171,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PRODUK & LAYANAN */}
+      {/* PRODUK & LAYANAN - DENGAN LINK KE WHATSAPP */}
       <section className="px-6 py-24 max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <motion.h2
@@ -190,32 +193,61 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: idx * 0.05, ease: 'easeOut' }}
-              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm hover:scale-[1.03] transition"
+              transition={{ 
+                duration: 0.6, 
+                delay: idx * 0.1, 
+                ease: [0.25, 0.1, 0.25, 1] // Cubic bezier untuk animasi lebih halus
+              }}
+              whileHover={{ 
+                scale: 1.03,
+                transition: { duration: 0.3, ease: 'easeOut' }
+              }}
+              className="bg-black/40 p-4 rounded-lg backdrop-blur-sm cursor-pointer group"
             >
-              <motion.div
-                className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
-                style={{ y: useTransform(scrollY, [0, 500], [0, -20]) }}
+              {/* Link wrapper untuk seluruh card */}
+              <Link 
+                href={WHATSAPP_LINK}
+                className="block"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Image
-                  src={`/${item.img}`}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
+                <motion.div
+                  className="relative w-full h-48 mb-4 rounded-md overflow-hidden"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                >
+                  <Image
+                    src={`/${item.img}`}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Overlay saat hover */}
+                  <div className="absolute inset-0 bg-[#C9A24D]/0 group-hover:bg-[#C9A24D]/20 transition-colors duration-300 flex items-center justify-center">
+                    <motion.span 
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileHover={{ opacity: 1, scale: 1 }}
+                      className="bg-[#C9A24D] text-black px-4 py-2 rounded-full font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    >
+                      Pesan Sekarang
+                    </motion.span>
+                  </div>
+                </motion.div>
 
-              <motion.h3
-                initial={{ y: 10, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="text-xl font-bold text-[#C9A24D] mb-2"
-              >
-                {item.title}
-              </motion.h3>
+                <motion.h3
+                  initial={{ y: 10, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  className="text-xl font-bold text-[#C9A24D] mb-2 group-hover:text-[#e3bb5f] transition-colors duration-300"
+                >
+                  {item.title}
+                </motion.h3>
 
-              <p className="text-gray-200">{item.desc}</p>
+                <p className="text-gray-200 group-hover:text-white transition-colors duration-300">
+                  {item.desc}
+                </p>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -223,7 +255,7 @@ export default function HomePage() {
         {/* CTA BAWAH */}
         <div className="text-center mt-20">
           <Link
-            href="https://wa.me/6281251511997"
+            href={WHATSAPP_LINK}
             className="inline-block px-10 py-4 rounded-full
               bg-[#C9A24D] text-black font-semibold text-lg
               shadow-lg transition-transform duration-300 ease-out
@@ -236,4 +268,5 @@ export default function HomePage() {
 
     </main>
   );
-}
+                             }
+.
