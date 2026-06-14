@@ -129,5 +129,3 @@ export default function ProdukPage() {
     </div>
   );
                     }
-masukan semua data kesini...
-fotokan cuma 14 nah yang sisahnya biarkan pakai foto lama
