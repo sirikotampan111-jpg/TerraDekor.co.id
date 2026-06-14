@@ -48,7 +48,7 @@ const products = [
     category: 'wall-finishing',
     code: 'PU-STONE-01',
     price: 'Hubungi Kami',
-    image: '/products/TERRADEKOR_PU_STONE_SAMPUL.jpg', // ADA DI GITHUB (Sama/Mirip)
+    image: '/products/TERRADEKOR_PU STONE_SAMPUL.jpg', // ADA DI GITHUB (Sama/Mirip)
     description: 'PU Stone Outdoor Dinding adalah panel dekoratif pengganti batu alam yang terbuat dari material Polyurethane (PU) padat namun ringan. Didesain khusus untuk eksterior.'
   },
   {
