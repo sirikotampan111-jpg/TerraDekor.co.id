@@ -15,25 +15,170 @@ const categories = [
 ];
 
 const products = [
-  { id: 1, name: 'Wall Panel Dinding', category: 'wall-finishing', code: 'WP-DINDING-01', price: 'Hubungi Kami', image: '/products/pd2.jpg' },
-  { id: 2, name: 'WPC Wall Panel 30 cm', category: 'wall-finishing', code: 'WPC-WALL-30', price: 'Hubungi Kami', image: '/products/pd1.jpg' },
-  { id: 3, name: 'Wallpaper', category: 'wall-finishing', code: 'WALLPAPER-01', price: 'Hubungi Kami', image: '/products/pd3.jpg' },
-  { id: 4, name: 'Wallpaper 3D Dinding', category: 'wall-finishing', code: 'WALLPAPER-3D', price: 'Hubungi Kami', image: '/products/pd4.jpg' },
-  { id: 5, name: 'Wallboard Dinding', category: 'wall-finishing', code: 'WALLBOARD-DIND', price: 'Hubungi Kami', image: '/products/pd5.jpg' },
-  { id: 6, name: 'Wall Foam', category: 'wall-finishing', code: 'WALLFOAM-01', price: 'Hubungi Kami', image: '/products/pd6.jpg' },
-  { id: 7, name: 'Stiker UV Motif Marmer', category: 'wall-finishing', code: 'STIKER-UV-MAR', price: 'Hubungi Kami', image: '/products/pd8.jpg' },
-  { id: 8, name: 'Stiker Foam Vinyl', category: 'wall-finishing', code: 'STIKER-FOAM-VIN', price: 'Hubungi Kami', image: '/products/pd7.jpg' },
-  { id: 9, name: 'UV PVC Marmer', category: 'wall-finishing', code: 'UV-PVC-MARMER', price: 'Hubungi Kami', image: '/products/pd10.jpg' },
-  { id: 10, name: 'List Wall Border PVC', category: 'wall-finishing', code: 'LIST-BORDER-PVC', price: 'Hubungi Kami', image: '/products/pd9.jpg' },
-  { id: 11, name: 'List Moulding', category: 'wall-finishing', code: 'LIST-MOULDING', price: 'Hubungi Kami', image: '/products/pd12.jpg' },
-  { id: 12, name: 'WPC Decking', category: 'flooring-exterior', code: 'WPC-DECKING', price: 'Hubungi Kami', image: '/products/pd11.jpg' },
-  { id: 13, name: 'Lantai Vinyl', category: 'flooring-exterior', code: 'LANTAI-VINYL', price: 'Hubungi Kami', image: '/products/pd13.jpg' },
-  { id: 14, name: 'Lantai SPC', category: 'flooring-exterior', code: 'LANTAI-SPC', price: 'Hubungi Kami', image: '/products/pd14.jpg' },
-  { id: 15, name: 'Pintu WPC', category: 'furniture-sanitary', code: 'PINTU-WPC', price: 'Hubungi Kami', image: '/products/pd15.jpg' },
-  { id: 16, name: 'Pintu Baja', category: 'furniture-sanitary', code: 'PINTU-BAJA', price: 'Hubungi Kami', image: '/products/pd16.jpg' },
-  { id: 17, name: 'Wastafel', category: 'furniture-sanitary', code: 'WASTAFEL-01', price: 'Hubungi Kami', image: '/products/pd17.jpg' },
-  { id: 18, name: 'Meja Office', category: 'furniture-sanitary', code: 'MEJA-OFFICE', price: 'Hubungi Kami', image: '/products/pd18.jpg' },
+  { 
+    id: 1, 
+    name: 'Wall Panel Dinding', 
+    category: 'wall-finishing', 
+    code: 'WP-DINDING-01', 
+    price: 'Hubungi Kami', 
+    image: '/products/WALL PANEL DINDING.jpg', // Foto Baru
+    description: 'Panel Dekoratif pelapis dinding yang terbuat dari campuran serat kayu dan termoplastik (seperti PVC atau PE). Material ini memberikan kesan elegan.'
+  },
+  { 
+    id: 2, 
+    name: 'WPC Wall Panel 30 cm', 
+    category: 'wall-finishing', 
+    code: 'WPC-WALL-30', 
+    price: 'Hubungi Kami', 
+    image: '/products/WPC WALL PANEL 30 CM.jpg', // Foto Baru
+    description: 'WPC Wall Panel 30 cm adalah pelapis dinding dekoratif berbahan Wood Plastic Composite (WPC) dengan lebar 30 cm, sekaligus memberikan sentuhan estetis.'
+  },
+  { 
+    id: 3, 
+    name: 'Wallpaper', 
+    category: 'wall-finishing', 
+    code: 'WALLPAPER-01', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd3.jpg', // Foto Lama
+    description: 'Material pelapis interior berbahan kertas premium atau vinil dengan beragam motif dekoratif, sangat efektif untuk mengubah suasana ruangan dengan cepat.'
+  },
+  { 
+    id: 4, 
+    name: 'Wallpaper 3D Dinding', 
+    category: 'wall-finishing', 
+    code: 'WALLPAPER-3D', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd4.jpg', // Foto Lama
+    description: 'Wallpaper dekoratif dengan efek visual tiga dimensi (3D) yang memberikan tekstur, kedalaman, dan karakter modern yang kuat pada dinding ruangan Anda.'
+  },
+  { 
+    id: 5, 
+    name: 'Wallboard Dinding', 
+    category: 'wall-finishing', 
+    code: 'WALLBOARD-DIND', 
+    price: 'Hubungi Kami', 
+    image: '/products/WALL BOARD.jpg', // Foto Baru
+    description: 'Material pelapis atau penutup dinding yang digunakan untuk merapikan permukaan tembok yang tidak rata, sekaligus memberikan sentuhan estetis.'
+  },
+  { 
+    id: 6, 
+    name: 'Wall Foam', 
+    category: 'wall-finishing', 
+    code: 'WALLFOAM-01', 
+    price: 'Hubungi Kami', 
+    image: '/products/WALL FOAM.jpg', // Foto Baru
+    description: 'Wallfoam 3D adalah pelapis dinding dekoratif yang terbuat dari bahan busa (biasanya foam XPE atau PVC) dengan perekat di bagian belakangnya.'
+  },
+  { 
+    id: 7, 
+    name: 'Stiker UV Motif Marmer', 
+    category: 'wall-finishing', 
+    code: 'STIKER-UV-MAR', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd8.jpg', // Foto Lama
+    description: 'Stiker pelapis dinding berpola marmer alami yang diproduksi dengan teknologi UV Coating, menghasilkan tampilan berkilau, tahan gores, dan mewah.'
+  },
+  { 
+    id: 8, 
+    name: 'Stiker Foam Vinyl', 
+    category: 'wall-finishing', 
+    code: 'STIKER-FOAM-VIN', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd7.jpg', // Foto Lama
+    description: 'Pelapis dinding praktis berperekat yang mengombinasikan kelembutan foam dan kekuatan vinil, menciptakan permukaan yang empuk serta mudah dibersihkan.'
+  },
+  { 
+    id: 9, 
+    name: 'UV PVC Marmer', 
+    category: 'wall-finishing', 
+    code: 'UV-PVC-MARMER', 
+    price: 'Hubungi Kami', 
+    image: '/products/UV MARMER.jpg', // Foto Baru
+    description: 'Pengganti marmer asli yang terbuat dari bahan Polyvinyl Chloride dan serbuk batu. Lapisan atasnya menggunakan UV Coating untuk menghasilkan tampilan mengkilap.'
+  },
+  { 
+    id: 10, 
+    name: 'List Wall Border PVC', 
+    category: 'wall-finishing', 
+    code: 'LIST-BORDER-PVC', 
+    price: 'Hubungi Kami', 
+    image: '/products/LIST FOAM WALL BOARDER.jpg', // Foto Baru
+    description: 'Wallborder dinding adalah stiker dekorasi 3D berbahan busa (foam) atau PVC yang berfungsi sebagai pembatas, list pinggiran, atau transisi pada dinding ruangan.'
+  },
+  { 
+    id: 11, 
+    name: 'List Moulding', 
+    category: 'wall-finishing', 
+    code: 'LIST-MOULDING', 
+    price: 'Hubungi Kami', 
+    image: '/products/LIST MOULDING.jpg', // Foto Baru
+    description: 'Elemen dekoratif berupa cetakan atau lis yang dipasang pada permukaan dinding untuk memberikan tekstur, dimensi, dan pola, berfungsi menyulap dinding polos.'
+  },
+  { 
+    id: 12, 
+    name: 'WPC Decking', 
+    category: 'flooring-exterior', 
+    code: 'WPC-DECKING', 
+    price: 'Hubungi Kami', 
+    image: '/products/DECKING LANTAI.jpg', // Foto Baru
+    description: 'Material penutup lantai khusus untuk area luar ruangan yang dipasang sedikit lebih tinggi di atas permukaan dasar, dilengkapi rongga di bawahnya agar air mengalir.'
+  },
+  { 
+    id: 13, 
+    name: 'Lantai Vinyl', 
+    category: 'flooring-exterior', 
+    code: 'LANTAI-VINYL', 
+    price: 'Hubungi Kami', 
+    image: '/products/VINYL LANTAI.jpg', // Foto Baru (Catatan: bisa juga pakai '/products/VINYL.jpg' sesuai galeri)
+    description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif kayu atau batuan.'
+  },
+  { 
+    id: 14, 
+    name: 'Lantai SPC', 
+    category: 'flooring-exterior', 
+    code: 'LANTAI-SPC', 
+    price: 'Hubungi Kami', 
+    image: '/products/SPC LANTAI.jpg', // Foto Baru
+    description: 'Lantai SPC (Stone Plastic Composite) adalah material pelapis lantai modern yang terbuat dari campuran bubuk batu kapur (limestone), resin PVC, dan stabilisator.'
+  },
+  { 
+    id: 15, 
+    name: 'Pintu WPC', 
+    category: 'furniture-sanitary', 
+    code: 'PINTU-WPC', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd15.jpg', // Foto Lama
+    description: 'Pintu berbahan Wood Plastic Composite yang memadukan keindahan tekstur kayu dengan ketahanan plastik, menghasilkan pintu yang antirayap, tahan air, dan tidak memuai.'
+  },
+  { 
+    id: 16, 
+    name: 'Pintu Baja', 
+    category: 'furniture-sanitary', 
+    code: 'PINTU-BAJA', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd16.jpg', // Foto Lama
+    description: 'Pintu tangguh berbahan plat baja berkekuatan tinggi dengan finishing motif urat kayu alami, menawarkan keamanan maksimal, antilapuk, serta tahan cuaca ekstrim.'
+  },
+  { 
+    id: 17, 
+    name: 'Wastafel', 
+    category: 'furniture-sanitary', 
+    code: 'WASTAFEL-01', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd17.jpg', // Foto Lama
+    description: 'Perangkat sanitari premium dengan desain minimalis modern, dibuat dari material keramik tebal berkualitas tinggi yang mudah dibersihkan dan tahan noda.'
+  },
+  { 
+    id: 18, 
+    name: 'Meja Office', 
+    category: 'furniture-sanitary', 
+    code: 'MEJA-OFFICE', 
+    price: 'Hubungi Kami', 
+    image: '/products/pd18.jpg', // Foto Lama
+    description: 'Meja kerja ergonomis berstruktur kokoh dengan kompartemen laci penyimpanan yang rapi, dirancang khusus untuk meningkatkan produktivitas di ruang kerja atau kantor.'
+  }
 ];
+
 
 export default function ProdukPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
