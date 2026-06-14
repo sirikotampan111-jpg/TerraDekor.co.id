@@ -21,7 +21,7 @@ const products = [
     category: 'wall-finishing',
     code: 'WP-DINDING-01',
     price: 'Hubungi Kami',
-    image: '/products/WALL PANEL DINDING.jpg',
+    image: '/products/WALL PANEL DINDING.jpg', // ADA DI GITHUB
     description: 'Panel Dekoratif pelapis dinding yang terbuat dari campuran serat kayu dan termoplastik (seperti PVC atau PE). Material ini memberikan kesan elegan.'
   },
   {
@@ -30,7 +30,7 @@ const products = [
     category: 'wall-finishing',
     code: 'WPC-WALL-30',
     price: 'Hubungi Kami',
-    image: '/products/WPC WALL PANEL 30 CM.jpg',
+    image: '/products/WPC WALL PANEL 30 CM.jpg', // ADA DI GITHUB
     description: 'WPC Wall Panel 30 cm adalah pelapis dinding dekoratif berbahan Wood Plastic Composite (WPC) dengan lebar 30 cm.'
   },
   {
@@ -39,7 +39,7 @@ const products = [
     category: 'wall-finishing',
     code: 'WALLBOARD-DIND',
     price: 'Hubungi Kami',
-    image: '/products/WALL BOARD.jpg',
+    image: '/products/WALL BOARD.jpg', // ADA DI GITHUB
     description: 'Material pelapis atau penutup dinding yang digunakan untuk merapikan permukaan tembok yang tidak rata, sekaligus memberikan sentuhan estetis.'
   },
   {
@@ -48,7 +48,7 @@ const products = [
     category: 'wall-finishing',
     code: 'PU-STONE-01',
     price: 'Hubungi Kami',
-    image: '/products/TERRADEKOR_PU_STONE_SAMPUL.jpg',
+    image: '/products/TERRADEKOR_PU_STONE_SAMPUL.jpg', // ADA DI GITHUB (Sama/Mirip)
     description: 'PU Stone Outdoor Dinding adalah panel dekoratif pengganti batu alam yang terbuat dari material Polyurethane (PU) padat namun ringan. Didesain khusus untuk eksterior.'
   },
   {
@@ -57,7 +57,7 @@ const products = [
     category: 'wall-finishing',
     code: 'WPC-OUT-01',
     price: 'Hubungi Kami',
-    image: '/products/WPC OUTDOOR.jpg',
+    image: '/products/WPC OUTDOOR.jpg', // ADA DI GITHUB
     description: 'Panel dekoratif yang terbuat dari campuran serat kayu dan plastik berkualitas tinggi, dirancang khusus untuk dinding luar ruangan.'
   },
   {
@@ -66,7 +66,7 @@ const products = [
     category: 'flooring-exterior',
     code: 'DECKING-LANTAI',
     price: 'Hubungi Kami',
-    image: '/products/DECKING LANTAI.jpg',
+    image: '/products/DECKING LANTAI.jpg', // ADA DI GITHUB
     description: 'Material penutup lantai khusus untuk area luar ruangan yang dipasang sedikit lebih tinggi di atas permukaan dasar, dilengkapi rongga di bawahnya agar air hujan atau genangan air mudah mengalir.'
   },
   {
@@ -75,7 +75,7 @@ const products = [
     category: 'flooring-exterior',
     code: 'HLW-OUT-01',
     price: 'Hubungi Kami',
-    image: '/products/HOLLOW OUTDOOR.jpg',
+    image: '/products/HOLLOW OUTDOOR.jpg', // ADA DI GITHUB
     description: 'Hollow outdoor adalah material berbentuk batang berongga (profil kotak atau persegi panjang) yang dirancang khusus untuk penggunaan di luar ruangan.'
   },
   {
@@ -84,7 +84,7 @@ const products = [
     category: 'wall-finishing',
     code: 'HLW-IND-01',
     price: 'Hubungi Kami',
-    image: '/products/HOLLOW INDOOR.jpg',
+    image: '/products/HOLLOW INDOOR.jpg', // ADA DI GITHUB
     description: 'Material ini dirancang khusus untuk mempercantik ruangan, biasanya diaplikasikan sebagai partisi/sekat pembatas ruang, kisi-kisi (grill), hingga aksen dinding dan plafon.'
   },
   {
@@ -93,7 +93,7 @@ const products = [
     category: 'wall-finishing',
     code: 'PLAFON-PVC-01',
     price: 'Hubungi Kami',
-    image: '/products/PLAFON PVC.jpg',
+    image: '/products/PLAFON PVC.jpg', // ADA DI GITHUB
     description: 'Plafon PVC interior adalah langit-langit ruangan yang terbuat dari material Polyvinyl Chloride (PVC), sejenis polimer plastik sintetis yang fleksibel namun kuat.'
   },
   {
@@ -102,7 +102,7 @@ const products = [
     category: 'wall-finishing',
     code: 'SHEET-BOARD-01',
     price: 'Hubungi Kami',
-    image: '/products/SHEET BOARD.jpg',
+    image: '/products/SHEET BOARD.jpg', // ADA DI GITHUB
     description: 'Sheet board dinding adalah papan material komposit (biasanya berbasis PVC atau WPC) berbentuk lembaran besar layaknya triplek yang digunakan sebagai pelapis interior.'
   },
   {
@@ -111,7 +111,7 @@ const products = [
     category: 'flooring-exterior',
     code: 'LANTAI-SPC',
     price: 'Hubungi Kami',
-    image: '/products/Lantai SPC.jpg',
+    image: '/products/pd14.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (Lantai SPC bawaan)
     description: 'Lantai SPC (Stone Plastic Composite) adalah material pelapis lantai modern yang terbuat dari campuran bubuk batu kapur (limestone), resin PVC, dan stabilizer.'
   },
   {
@@ -120,7 +120,7 @@ const products = [
     category: 'wall-finishing',
     code: 'UV-PVC-MARMER',
     price: 'Hubungi Kami',
-    image: '/products/UV Marmer.jpg',
+    image: '/products/pd10.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (UV PVC Marmer bawaan)
     description: 'Pengganti marmer asli yang terbuat dari bahan Polyvinyl Chloride dan serbuk batu. Lapisan atasnya menggunakan UV Coating untuk menghasilkan tampilan mengkilap (glossy) yang sangat mirip dengan marmer asli.'
   },
   {
@@ -129,7 +129,7 @@ const products = [
     category: 'wall-finishing',
     code: 'LIST-MOULDING',
     price: 'Hubungi Kami',
-    image: '/products/LIST MOULDING.jpg',
+    image: '/products/LIST MOULDING.jpg', // ADA DI GITHUB
     description: 'Elemen dekoratif berupa cetakan atau lis yang dipasang pada permukaan dinding untuk memberikan tekstur, dimensi, dan pola. Berfungsi menyulap dinding polos menjadi lebih elegan.'
   },
   {
@@ -138,7 +138,7 @@ const products = [
     category: 'wall-finishing',
     code: 'WALLFOAM-01',
     price: 'Hubungi Kami',
-    image: '/products/Wall Foam.jpg',
+    image: '/products/pd6.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (Wall Foam bawaan)
     description: 'Wallfoam 3D adalah pelapis dinding dekoratif yang terbuat dari bahan busa (biasanya foam XPE atau PVC) dengan perekat di bagian belakangnya.'
   },
   {
@@ -147,7 +147,7 @@ const products = [
     category: 'wall-finishing',
     code: 'LIST-BORDER-PVC',
     price: 'Hubungi Kami',
-    image: '/products/List Wall Border PVC.jpg',
+    image: '/products/pd9.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (List Wall Border PVC bawaan)
     description: 'Wallborder dinding adalah stiker dekorasi 3D berbahan busa (foam) yang berfungsi sebagai pembatas, list pinggiran, atau transisi pada dinding ruangan.'
   },
   {
@@ -156,7 +156,7 @@ const products = [
     category: 'furniture-sanitary',
     code: 'PINTU-WPC',
     price: 'Hubungi Kami',
-    image: '/products/Pintu WPC.jpg',
+    image: '/products/pd15.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (Pintu WPC bawaan)
     description: 'Material ini menawarkan kombinasi kekuatan dan keindahan serat kayu alami dengan daya tahan, ketahanan terhadap air, dan anti-rayap dari plastik.'
   },
   {
@@ -165,7 +165,7 @@ const products = [
     category: 'furniture-sanitary',
     code: 'PINTU-BAJA',
     price: 'Hubungi Kami',
-    image: '/products/Pintu Baja.jpg',
+    image: '/products/pd16.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (Pintu Baja bawaan)
     description: 'Pintu ini dikenal sangat kuat, tahan lama, anti-rayap, serta tahan terhadap perubahan cuaca ekstrem. Pintu jenis ini umumnya menjadi pilihan utama untuk meningkatkan keamanan.'
   },
   {
@@ -174,7 +174,7 @@ const products = [
     category: 'flooring-exterior',
     code: 'LANTAI-VINYL',
     price: 'Hubungi Kami',
-    image: '/products/VINYL LANTAI.jpg',
+    image: '/products/VINYL LANTAI.jpg', // ADA DI GITHUB
     description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif (seperti kayu atau marmer).'
   }
 ];
@@ -247,7 +247,7 @@ export default function ProdukPage() {
                       <span className="text-[#C9A24D]">Kode:</span> {product.code}
                     </p>
 
-                    {/* PENJELASAN PRODUK */}
+                    {/* PENJELASAN PRODUK WAJIB MUNCUL */}
                     <p className="text-xs text-gray-500 leading-relaxed mb-4 border-t border-gray-100 pt-3">
                       {product.description}
                     </p>
