@@ -15,24 +15,168 @@ const categories = [
 ];
 
 const products = [
-  { id: 1, name: 'Wall Panel Dinding', category: 'wall-finishing', code: 'WP-DINDING-01', price: 'Hubungi Kami', image: '/products/pd2.jpg' },
-  { id: 2, name: 'WPC Wall Panel 30 cm', category: 'wall-finishing', code: 'WPC-WALL-30', price: 'Hubungi Kami', image: '/products/pd1.jpg' },
-  { id: 3, name: 'Wallpaper', category: 'wall-finishing', code: 'WALLPAPER-01', price: 'Hubungi Kami', image: '/products/pd3.jpg' },
-  { id: 4, name: 'Wallpaper 3D Dinding', category: 'wall-finishing', code: 'WALLPAPER-3D', price: 'Hubungi Kami', image: '/products/pd4.jpg' },
-  { id: 5, name: 'Wallboard Dinding', category: 'wall-finishing', code: 'WALLBOARD-DIND', price: 'Hubungi Kami', image: '/products/pd5.jpg' },
-  { id: 6, name: 'Wall Foam', category: 'wall-finishing', code: 'WALLFOAM-01', price: 'Hubungi Kami', image: '/products/pd6.jpg' },
-  { id: 7, name: 'Stiker UV Motif Marmer', category: 'wall-finishing', code: 'STIKER-UV-MAR', price: 'Hubungi Kami', image: '/products/pd8.jpg' },
-  { id: 8, name: 'Stiker Foam Vinyl', category: 'wall-finishing', code: 'STIKER-FOAM-VIN', price: 'Hubungi Kami', image: '/products/pd7.jpg' },
-  { id: 9, name: 'UV PVC Marmer', category: 'wall-finishing', code: 'UV-PVC-MARMER', price: 'Hubungi Kami', image: '/products/pd10.jpg' },
-  { id: 10, name: 'List Wall Border PVC', category: 'wall-finishing', code: 'LIST-BORDER-PVC', price: 'Hubungi Kami', image: '/products/pd9.jpg' },
-  { id: 11, name: 'List Moulding', category: 'wall-finishing', code: 'LIST-MOULDING', price: 'Hubungi Kami', image: '/products/pd12.jpg' },
-  { id: 12, name: 'WPC Decking', category: 'flooring-exterior', code: 'WPC-DECKING', price: 'Hubungi Kami', image: '/products/pd11.jpg' },
-  { id: 13, name: 'Lantai Vinyl', category: 'flooring-exterior', code: 'LANTAI-VINYL', price: 'Hubungi Kami', image: '/products/pd13.jpg' },
-  { id: 14, name: 'Lantai SPC', category: 'flooring-exterior', code: 'LANTAI-SPC', price: 'Hubungi Kami', image: '/products/pd14.jpg' },
-  { id: 15, name: 'Pintu WPC', category: 'furniture-sanitary', code: 'PINTU-WPC', price: 'Hubungi Kami', image: '/products/pd15.jpg' },
-  { id: 16, name: 'Pintu Baja', category: 'furniture-sanitary', code: 'PINTU-BAJA', price: 'Hubungi Kami', image: '/products/pd16.jpg' },
-  { id: 17, name: 'Wastafel', category: 'furniture-sanitary', code: 'WASTAFEL-01', price: 'Hubungi Kami', image: '/products/pd17.jpg' },
-  { id: 18, name: 'Meja Office', category: 'furniture-sanitary', code: 'MEJA-OFFICE', price: 'Hubungi Kami', image: '/products/pd18.jpg' },
+  {
+    id: 1,
+    name: 'Wall Panel Dinding',
+    category: 'wall-finishing',
+    code: 'WP-DINDING-01',
+    price: 'Hubungi Kami',
+    image: '/products/WALL PANEL DINDING.jpg',
+    description: 'Panel Dekoratif pelapis dinding yang terbuat dari campuran serat kayu dan termoplastik (seperti PVC atau PE). Material ini memberikan kesan elegan.'
+  },
+  {
+    id: 2,
+    name: 'WPC Wall Panel 30 cm',
+    category: 'wall-finishing',
+    code: 'WPC-WALL-30',
+    price: 'Hubungi Kami',
+    image: '/products/WPC WALL PANEL 30 CM.jpg',
+    description: 'WPC Wall Panel 30 cm adalah pelapis dinding dekoratif berbahan Wood Plastic Composite (WPC) dengan lebar 30 cm.'
+  },
+  {
+    id: 3,
+    name: 'Wall Board',
+    category: 'wall-finishing',
+    code: 'WALLBOARD-DIND',
+    price: 'Hubungi Kami',
+    image: '/products/WALL BOARD.jpg',
+    description: 'Material pelapis atau penutup dinding yang digunakan untuk merapikan permukaan tembok yang tidak rata, sekaligus memberikan sentuhan estetis.'
+  },
+  {
+    id: 4,
+    name: 'PU Stone',
+    category: 'wall-finishing',
+    code: 'PU-STONE-01',
+    price: 'Hubungi Kami',
+    image: '/products/TERRADEKOR_PU_STONE_SAMPUL.jpg',
+    description: 'PU Stone Outdoor Dinding adalah panel dekoratif pengganti batu alam yang terbuat dari material Polyurethane (PU) padat namun ringan. Didesain khusus untuk eksterior.'
+  },
+  {
+    id: 5,
+    name: 'WPC Outdoor',
+    category: 'wall-finishing',
+    code: 'WPC-OUT-01',
+    price: 'Hubungi Kami',
+    image: '/products/WPC OUTDOOR.jpg',
+    description: 'Panel dekoratif yang terbuat dari campuran serat kayu dan plastik berkualitas tinggi, dirancang khusus untuk dinding luar ruangan.'
+  },
+  {
+    id: 6,
+    name: 'Decking Lantai',
+    category: 'flooring-exterior',
+    code: 'DECKING-LANTAI',
+    price: 'Hubungi Kami',
+    image: '/products/DECKING LANTAI.jpg',
+    description: 'Material penutup lantai khusus untuk area luar ruangan yang dipasang sedikit lebih tinggi di atas permukaan dasar, dilengkapi rongga di bawahnya agar air hujan atau genangan air mudah mengalir.'
+  },
+  {
+    id: 7,
+    name: 'Hollow Outdoor',
+    category: 'flooring-exterior',
+    code: 'HLW-OUT-01',
+    price: 'Hubungi Kami',
+    image: '/products/HOLLOW OUTDOOR.jpg',
+    description: 'Hollow outdoor adalah material berbentuk batang berongga (profil kotak atau persegi panjang) yang dirancang khusus untuk penggunaan di luar ruangan.'
+  },
+  {
+    id: 8,
+    name: 'Hollow Indoor',
+    category: 'wall-finishing',
+    code: 'HLW-IND-01',
+    price: 'Hubungi Kami',
+    image: '/products/HOLLOW INDOOR.jpg',
+    description: 'Material ini dirancang khusus untuk mempercantik ruangan, biasanya diaplikasikan sebagai partisi/sekat pembatas ruang, kisi-kisi (grill), hingga aksen dinding dan plafon.'
+  },
+  {
+    id: 9,
+    name: 'Plafon PVC',
+    category: 'wall-finishing',
+    code: 'PLAFON-PVC-01',
+    price: 'Hubungi Kami',
+    image: '/products/PLAFON PVC.jpg',
+    description: 'Plafon PVC interior adalah langit-langit ruangan yang terbuat dari material Polyvinyl Chloride (PVC), sejenis polimer plastik sintetis yang fleksibel namun kuat.'
+  },
+  {
+    id: 10,
+    name: 'Sheet Board',
+    category: 'wall-finishing',
+    code: 'SHEET-BOARD-01',
+    price: 'Hubungi Kami',
+    image: '/products/SHEET BOARD.jpg',
+    description: 'Sheet board dinding adalah papan material komposit (biasanya berbasis PVC atau WPC) berbentuk lembaran besar layaknya triplek yang digunakan sebagai pelapis interior.'
+  },
+  {
+    id: 11,
+    name: 'SPC Lantai',
+    category: 'flooring-exterior',
+    code: 'LANTAI-SPC',
+    price: 'Hubungi Kami',
+    image: '/products/Lantai SPC.jpg',
+    description: 'Lantai SPC (Stone Plastic Composite) adalah material pelapis lantai modern yang terbuat dari campuran bubuk batu kapur (limestone), resin PVC, dan stabilizer.'
+  },
+  {
+    id: 12,
+    name: 'UV Marmer',
+    category: 'wall-finishing',
+    code: 'UV-PVC-MARMER',
+    price: 'Hubungi Kami',
+    image: '/products/UV Marmer.jpg',
+    description: 'Pengganti marmer asli yang terbuat dari bahan Polyvinyl Chloride dan serbuk batu. Lapisan atasnya menggunakan UV Coating untuk menghasilkan tampilan mengkilap (glossy) yang sangat mirip dengan marmer asli.'
+  },
+  {
+    id: 13,
+    name: 'List Moulding',
+    category: 'wall-finishing',
+    code: 'LIST-MOULDING',
+    price: 'Hubungi Kami',
+    image: '/products/LIST MOULDING.jpg',
+    description: 'Elemen dekoratif berupa cetakan atau lis yang dipasang pada permukaan dinding untuk memberikan tekstur, dimensi, dan pola. Berfungsi menyulap dinding polos menjadi lebih elegan.'
+  },
+  {
+    id: 14,
+    name: 'Wall Foam',
+    category: 'wall-finishing',
+    code: 'WALLFOAM-01',
+    price: 'Hubungi Kami',
+    image: '/products/Wall Foam.jpg',
+    description: 'Wallfoam 3D adalah pelapis dinding dekoratif yang terbuat dari bahan busa (biasanya foam XPE atau PVC) dengan perekat di bagian belakangnya.'
+  },
+  {
+    id: 15,
+    name: 'List Foam Wall Boarder',
+    category: 'wall-finishing',
+    code: 'LIST-BORDER-PVC',
+    price: 'Hubungi Kami',
+    image: '/products/List Wall Border PVC.jpg',
+    description: 'Wallborder dinding adalah stiker dekorasi 3D berbahan busa (foam) yang berfungsi sebagai pembatas, list pinggiran, atau transisi pada dinding ruangan.'
+  },
+  {
+    id: 16,
+    name: 'Pintu WPC',
+    category: 'furniture-sanitary',
+    code: 'PINTU-WPC',
+    price: 'Hubungi Kami',
+    image: '/products/Pintu WPC.jpg',
+    description: 'Material ini menawarkan kombinasi kekuatan dan keindahan serat kayu alami dengan daya tahan, ketahanan terhadap air, dan anti-rayap dari plastik.'
+  },
+  {
+    id: 17,
+    name: 'Pintu Baja',
+    category: 'furniture-sanitary',
+    code: 'PINTU-BAJA',
+    price: 'Hubungi Kami',
+    image: '/products/Pintu Baja.jpg',
+    description: 'Pintu ini dikenal sangat kuat, tahan lama, anti-rayap, serta tahan terhadap perubahan cuaca ekstrem. Pintu jenis ini umumnya menjadi pilihan utama untuk meningkatkan keamanan.'
+  },
+  {
+    id: 18,
+    name: 'Vinyl Lantai',
+    category: 'flooring-exterior',
+    code: 'LANTAI-VINYL',
+    price: 'Hubungi Kami',
+    image: '/products/VINYL LANTAI.jpg',
+    description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif (seperti kayu atau marmer).'
+  }
 ];
 
 export default function ProdukPage() {
@@ -68,40 +212,51 @@ export default function ProdukPage() {
             {filteredProducts.map(product => (
               <div
                 key={product.id}
-                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-200 hover:border-[#C9A24D] overflow-hidden"
+                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-200 hover:border-[#C9A24D] overflow-hidden flex flex-col justify-between"
               >
 
-                {/* IMAGE CLICKABLE */}
-                <a
-                  href={getWhatsAppLink(product)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="aspect-square bg-gray-100 flex items-center justify-center relative overflow-hidden group block cursor-pointer"
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                  />
+                {/* CONTAINER ATAS: Gambar & Info Utama */}
+                <div>
+                  {/* IMAGE CLICKABLE */}
+                  <a
+                    href={getWhatsAppLink(product)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="aspect-square bg-gray-100 flex items-center justify-center relative overflow-hidden group block cursor-pointer"
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    />
 
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-[#C9A24D] text-white px-4 py-2 rounded-lg font-bold shadow-lg">
-                      Klik untuk Tanya Harga
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-[#C9A24D] text-white px-4 py-2 rounded-lg font-bold shadow-lg">
+                        Klik untuk Tanya Harga
+                      </div>
                     </div>
+                  </a>
+
+                  {/* PRODUCT INFO */}
+                  <div className="p-6 pb-2">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {product.name}
+                    </h3>
+
+                    <p className="text-sm text-gray-600 font-semibold mb-3">
+                      <span className="text-[#C9A24D]">Kode:</span> {product.code}
+                    </p>
+
+                    {/* PENJELASAN PRODUK */}
+                    <p className="text-xs text-gray-500 leading-relaxed mb-4 border-t border-gray-100 pt-3">
+                      {product.description}
+                    </p>
                   </div>
-                </a>
+                </div>
 
-                {/* PRODUCT INFO */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {product.name}
-                  </h3>
-
-                  <p className="text-sm text-gray-600 font-semibold mb-3">
-                    <span className="text-[#C9A24D]">Kode:</span> {product.code}
-                  </p>
-
-                  <div className="flex items-center justify-between">
+                {/* CONTAINER BAWAH: Harga & Tombol WA */}
+                <div className="p-6 pt-0">
+                  <div className="flex items-center justify-between mt-2">
                     <p className="text-lg font-bold text-[#C9A24D]">
                       {product.price}
                     </p>
@@ -116,8 +271,8 @@ export default function ProdukPage() {
                       <span>Tanya Harga</span>
                     </a>
                   </div>
-
                 </div>
+
               </div>
             ))}
           </div>
@@ -128,4 +283,4 @@ export default function ProdukPage() {
       <FloatingWhatsApp />
     </div>
   );
-                    }
+}
