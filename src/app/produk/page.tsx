@@ -86,7 +86,7 @@ const products = [
     price: 'Hubungi Kami',
     image: '/products/VINYL LANTAI.jpg', // ADA DI GITHUB
     description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif (seperti kayu atau marmer).'
-  }
+  },
   {
     id: 9,
     name: 'Plafon PVC',
@@ -176,7 +176,7 @@ const products = [
     price: 'Hubungi Kami',
     image: '/products/HOLLOW INDOOR.jpg', // ADA DI GITHUB
     description: 'Material ini dirancang khusus untuk mempercantik ruangan, biasanya diaplikasikan sebagai partisi/sekat pembatas ruang, kisi-kisi (grill), hingga aksen dinding dan plafon.'
-  }
+  },
 ];
 
 export default function ProdukPage() {
