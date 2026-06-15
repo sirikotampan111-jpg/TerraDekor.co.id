@@ -80,12 +80,12 @@ const products = [
   },
   {
     id: 8,
-    name: 'Vinyl Lantai',
-    category: 'flooring-exterior',
-    code: 'LANTAI-VINYL',
+    name: 'Hollow Indoor',
+    category: 'wall-finishing',
+    code: 'HLW-IND-01',
     price: 'Hubungi Kami',
-    image: '/products/VINYL LANTAI.jpg', // ADA DI GITHUB
-    description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif (seperti kayu atau marmer).'
+    image: '/products/HOLLOW INDOOR.jpg', // ADA DI GITHUB
+    description: 'Material ini dirancang khusus untuk mempercantik ruangan, biasanya diaplikasikan sebagai partisi/sekat pembatas ruang, kisi-kisi (grill), hingga aksen dinding dan plafon.'
   },
   {
     id: 9,
@@ -116,12 +116,12 @@ const products = [
   },
   {
     id: 12,
-    name: 'UV Marmer',
-    category: 'wall-finishing',
-    code: 'UV-PVC-MARMER',
+    name: 'Vinyl Lantai',
+    category: 'flooring-exterior',
+    code: 'LANTAI-VINYL',
     price: 'Hubungi Kami',
-    image: '/products/pd10.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (UV PVC Marmer bawaan)
-    description: 'Pengganti marmer asli yang terbuat dari bahan Polyvinyl Chloride dan serbuk batu. Lapisan atasnya menggunakan UV Coating untuk menghasilkan tampilan mengkilap (glossy) yang sangat mirip dengan marmer asli.'
+    image: '/products/VINYL LANTAI.jpg', // ADA DI GITHUB
+    description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif (seperti kayu atau marmer).'
   },
   {
     id: 13,
@@ -170,12 +170,12 @@ const products = [
   },
   {
     id: 18,
-    name: 'Hollow Indoor',
+    name: 'UV Marmer',
     category: 'wall-finishing',
-    code: 'HLW-IND-01',
+    code: 'UV-PVC-MARMER',
     price: 'Hubungi Kami',
-    image: '/products/HOLLOW INDOOR.jpg', // ADA DI GITHUB
-    description: 'Material ini dirancang khusus untuk mempercantik ruangan, biasanya diaplikasikan sebagai partisi/sekat pembatas ruang, kisi-kisi (grill), hingga aksen dinding dan plafon.'
+    image: '/products/pd10.jpg', // TIDAK ADA -> PAKAI FOTO LAMA (UV PVC Marmer bawaan)
+    description: 'Pengganti marmer asli yang terbuat dari bahan Polyvinyl Chloride dan serbuk batu. Lapisan atasnya menggunakan UV Coating untuk menghasilkan tampilan mengkilap (glossy) yang sangat mirip dengan marmer asli.'
   },
 ];
 
