@@ -78,7 +78,7 @@ const products = [
     image: '/products/HOLLOW OUTDOOR.jpg', // ADA DI GITHUB
     description: 'Hollow outdoor adalah material berbentuk batang berongga (profil kotak atau persegi panjang) yang dirancang khusus untuk penggunaan di luar ruangan.'
   },
-  ,{
+  {
     id: 18,
     name: 'Vinyl Lantai',
     category: 'flooring-exterior',
