@@ -78,15 +78,15 @@ const products = [
     image: '/products/HOLLOW OUTDOOR.jpg', // ADA DI GITHUB
     description: 'Hollow outdoor adalah material berbentuk batang berongga (profil kotak atau persegi panjang) yang dirancang khusus untuk penggunaan di luar ruangan.'
   },
-  {
-    id: 8,
-    name: 'Hollow Indoor',
-    category: 'wall-finishing',
-    code: 'HLW-IND-01',
+  ,{
+    id: 18,
+    name: 'Vinyl Lantai',
+    category: 'flooring-exterior',
+    code: 'LANTAI-VINYL',
     price: 'Hubungi Kami',
-    image: '/products/HOLLOW INDOOR.jpg', // ADA DI GITHUB
-    description: 'Material ini dirancang khusus untuk mempercantik ruangan, biasanya diaplikasikan sebagai partisi/sekat pembatas ruang, kisi-kisi (grill), hingga aksen dinding dan plafon.'
-  },
+    image: '/products/VINYL LANTAI.jpg', // ADA DI GITHUB
+    description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif (seperti kayu atau marmer).'
+  }
   {
     id: 9,
     name: 'Plafon PVC',
@@ -169,13 +169,13 @@ const products = [
     description: 'Pintu ini dikenal sangat kuat, tahan lama, anti-rayap, serta tahan terhadap perubahan cuaca ekstrem. Pintu jenis ini umumnya menjadi pilihan utama untuk meningkatkan keamanan.'
   },
   {
-    id: 18,
-    name: 'Vinyl Lantai',
-    category: 'flooring-exterior',
-    code: 'LANTAI-VINYL',
+    id: 8,
+    name: 'Hollow Indoor',
+    category: 'wall-finishing',
+    code: 'HLW-IND-01',
     price: 'Hubungi Kami',
-    image: '/products/VINYL LANTAI.jpg', // ADA DI GITHUB
-    description: 'Lantai vinyl adalah pelapis lantai sintetis berbahan dasar PVC (polyvinyl chloride) yang fleksibel, tahan air, dan memiliki banyak variasi motif (seperti kayu atau marmer).'
+    image: '/products/HOLLOW INDOOR.jpg', // ADA DI GITHUB
+    description: 'Material ini dirancang khusus untuk mempercantik ruangan, biasanya diaplikasikan sebagai partisi/sekat pembatas ruang, kisi-kisi (grill), hingga aksen dinding dan plafon.'
   }
 ];
 
