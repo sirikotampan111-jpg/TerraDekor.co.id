@@ -79,7 +79,7 @@ const products = [
     description: 'Hollow outdoor adalah material berbentuk batang berongga (profil kotak atau persegi panjang) yang dirancang khusus untuk penggunaan di luar ruangan.'
   },
   {
-    id: 18,
+    id: 8,
     name: 'Vinyl Lantai',
     category: 'flooring-exterior',
     code: 'LANTAI-VINYL',
@@ -169,7 +169,7 @@ const products = [
     description: 'Pintu ini dikenal sangat kuat, tahan lama, anti-rayap, serta tahan terhadap perubahan cuaca ekstrem. Pintu jenis ini umumnya menjadi pilihan utama untuk meningkatkan keamanan.'
   },
   {
-    id: 8,
+    id: 18,
     name: 'Hollow Indoor',
     category: 'wall-finishing',
     code: 'HLW-IND-01',
