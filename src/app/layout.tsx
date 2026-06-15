@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import { Playfair_Display, Poppins } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -32,9 +33,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="id">
       <body className={`${playfair.variable} ${poppins.variable} antialiased`}>
-        {/* Background diam */}
+        {/* Background diam dengan Next.js Image Optimization */}
         <div className="fixed inset-0 -z-10 w-full h-full">
-          <img src="/background.jpg" className="w-full h-full object-cover" alt="Background" />
+          <Image 
+            src="/background.jpg" 
+            alt="Background Terradekor" 
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
         </div>
 
         {/* Navbar */}
